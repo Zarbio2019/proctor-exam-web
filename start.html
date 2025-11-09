@@ -3,12 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proctor Exam</title>
+<title>Exam Title</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 16px; background: #f7f9fb; color:#111 }
+    body {
+    font-family: Arial, sans-serif;
+    margin: 16px;
+    background: #f7f9fb;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+      color:#111 
+    }
     header { display:flex; align-items:center; justify-content:space-between }
     #timer { font-size: 20px; color: #b22222; font-weight:700 }
-    #layout { display:grid; grid-template-columns: 1fr 360px; gap:16px; margin-top:80px; }
+    #layout { display:grid; margin-top:100px; }
     .panel { background:white; padding:12px; border-radius:8px; box-shadow:0 1px 6px rgba(0,0,0,0.08) }
     video { width: 100%; border-radius:6px; background: #000 }
     #exam .question { margin-bottom:12px; }
@@ -44,6 +52,36 @@
 	  font-family: monospace;
 	  font-size: 14px;
 	}
+  .button-row {
+    display: none;
+    justify-content: space-between; /* pushes buttons to opposite sides */
+    width: 100%;
+    margin-top: 12px;
+  }
+  #prevBtn, #nextBtn {
+    padding: 10px 20px;
+  }
+  #prevBtn:hover {
+    opacity: 0.7;
+  }
+  #nextBtn:hover {
+    opacity: 0.7;
+  }
+  #submitBtn {
+    display: none; /* required for margin:auto centering */
+    margin: 50px auto 0;
+    background: linear-gradient(90deg, #6aa3ff, #1ea3ff, #0fa0ff);
+    border-radius: 20px;
+    padding: 14px 80px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  #submitBtn:hover {
+    opacity: 0.6;
+  }
   </style>
 </head>
 <body>
@@ -53,7 +91,7 @@
   </header>
 
   <div style="margin-top:8px">
-    <button id="toggleOneAtTime" style="display:none">Show One question at a time: ON</button>
+    <button id="toggleOneAtTime" style="display:none">Expand: ON</button>
   </div>
 
   <!-- Webcam -->
@@ -62,12 +100,16 @@
   </div>
   
   <div id="layout">
-    <div id="content" class="panel">
+    <div id="content" class="panel" class="center-box">
       <div id="exam"></div>
-      <div style="margin-top:12px">
+
+      <div class="button-row">
         <button id="prevBtn" class="secondary">Previous</button>
         <button id="nextBtn" class="secondary">Next</button>
       </div>
+
+      <button id="submitBtn">Submit</button>
+
       <div id="result" style="margin-top:12px"></div>
     </div>
   </div>
@@ -83,9 +125,10 @@ let recordingActive = false;
 let oneAtTime = true;
 let currentIndex = 0;
 
+document.getElementById('toggleOneAtTime').addEventListener('click', toggleOneAtTime);
 document.getElementById('prevBtn').addEventListener('click', () => showQuestion(currentIndex-1));
 document.getElementById('nextBtn').addEventListener('click', () => showQuestion(currentIndex+1));
-document.getElementById('toggleOneAtTime').addEventListener('click', toggleOneAtTime);
+document.getElementById('submitBtn').addEventListener('click', submitExam);
 
 window.onload = function() {
 
@@ -99,6 +142,8 @@ window.onload = function() {
     
     // show navigation buttons after questions are loaded
     document.getElementById("toggleOneAtTime").style.display = "inline-block";
+    document.querySelector('.button-row').style.display = 'flex'; // show
+    document.getElementById('submitBtn').style.display = 'block'; // show
 
     startTimer();
   }).catch(err => {
@@ -273,7 +318,7 @@ function submitExam(){
    ------------------------- */
 function toggleOneAtTime(){
   oneAtTime = !oneAtTime;
-  document.getElementById('toggleOneAtTime').textContent = `Show One question at a time: ${oneAtTime ? 'ON' :'OFF'}`;
+  document.getElementById('toggleOneAtTime').textContent = `Expand: ${oneAtTime ? 'ON' :'OFF'}`;
   if(oneAtTime) showQuestion(0);
   else {
     // reveal all
