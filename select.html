@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proctor Exam</title>
+<style>
+  body {
+    background: #02030a;
+    display: flex;
+    flex-direction: column; /* stack elements vertically */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 25px; /* space between title and buttons */
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .box {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 2px solid #1ea3ff;
+    border-radius: 15px;
+    padding: 15px 50px;
+    text-align: left;
+    box-shadow: 0 0 15px rgba(0, 153, 255, 0.3);
+  }
+  
+  h1 {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 50px;
+    background: linear-gradient(90deg, #6aa3ff, #1ea3ff, #0fa0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .button-container {
+	display: block;
+    margin: 50px auto 0; 
+    background: linear-gradient(90deg, #6aa3ff, #1ea3ff, #0fa0ff);
+    border-radius: 20px;
+    padding: 14px 80px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+  
+  .button-container:hover {
+    opacity: 0.6;
+  }
+  
+  .option {
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+	gap: 15px; /* space between radio and file input */
+  }
+  
+  input[type="radio"] {
+    accent-color: #1ea3ff;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  input[type="file"] {
+    background-color: #0a1126;
+    border: 1px solid #1ea3ff;
+    border-radius: 8px;
+    padding: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="file"]:hover {
+    border-color: #6aa3ff;
+  }
+  
+  /* Button container (horizontal layout) */
+  .button-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* space between buttons */
+    margin-top: 1px;
+  }
+
+  .button-row button {
+    background: linear-gradient(90deg, #6aa3ff, #1ea3ff, #0fa0ff);
+    border: none;
+    border-radius: 15px;
+    padding: 12px 50px;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .button-row button:hover {
+    opacity: 0.7;
+  }
+</style>
+</head>
+<body>
+  <div class="box">
+    <h1>Select Exam</h1>
+    <label class="option">
+	    <input type="radio" name="choice" value="option1"> From PC (Offline)
+	    <input type="file" id="fileInput" accept=".txt" />
+    </label>
+    
+	<label class="option">
+      <input type="radio" name="choice" value="option2"> From Cloud (Online)
+  </label>
+
+  <div class="button-container" onclick="window.location.href='start.html'">Start Exam</div>
+  </div>
+
+  <h4>or</h4>
+
+  <div class="button-row">
+    <button class="continue-btn" onclick="window.location.href='create.html'">Create Exam</button>
+    <button class="cancel-btn" onclick="window.location.href='edit.html'">Edit Exam</button>
+  </div>
+
+<script>
+  document.getElementById('fileInput').addEventListener('change', handleFile);
+
+  function handleFile(ev){
+    const f = ev.target.files[0];
+    if(!f) return;
+    const r = new FileReader();
+    r.onload = e => {
+      localStorage.setItem("saveContent", e.target.result);      
+    }
+    r.readAsText(f);
+  }  
+</script>
+</body>
+</html>
