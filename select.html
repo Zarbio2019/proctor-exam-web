@@ -6,7 +6,11 @@
 <title>Proctor Exam</title>
 <style>
   body {
-    background: #02030a;
+    background: url('./exam.gif');
+    background-size: cover; /* fills the entire screen */
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 100vh; /* ensures it fills viewport height */
     display: flex;
     flex-direction: column; /* stack elements vertically */
     align-items: center;
@@ -15,6 +19,7 @@
     gap: 25px; /* space between title and buttons */
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0; /* remove default margins */
   }
 
   .box {
@@ -56,9 +61,8 @@
   .option {
     margin: 10px 0;
     display: flex;
-    align-items: center;
     font-size: 18px;
-	gap: 15px; /* space between radio and file input */
+	  gap: 15px; /* space between radio and file input */
   }
   
   input[type="radio"] {
@@ -95,8 +99,8 @@
   .button-row button {
     background: linear-gradient(90deg, #6aa3ff, #1ea3ff, #0fa0ff);
     border: none;
-    border-radius: 1px;
-    padding: 1px 5px;
+    border-radius: 15px;
+    padding: 12px 50px;
     color: white;
     font-weight: bold;
     font-size: 16px;
@@ -112,19 +116,18 @@
 <body>
   <div class="box">
     <h1>Select Exam</h1>
-    <label class="option">
-	    <input type="radio" name="choice" value="option1"> From PC (Offline)
-	    <input type="file" id="fileInput" accept=".txt" />
-    </label>
     
+    <label class="option">
+	    <input type="radio" name="choice" value="option1"> From PC (Offline)</input>
+    </label>
+    <input type="file" id="fileInput" accept=".txt">
+
 	  <label class="option">
       <input type="radio" name="choice" value="option2"> From Cloud (Online)
     </label>
 
-    <div class="button-container" onclick="window.location.href='start.html'">Start Exam</div>
+    <div class="button-container" id="start-btn" onclick="window.location.href='start.html'" style="display:none">Start Exam</div>
   </div>
-
-  <h4>or</h4>
 
   <div class="button-row">
     <button class="continue-btn" onclick="window.location.href='create.html'">Create Exam</button>
@@ -134,15 +137,32 @@
 <script>
   document.getElementById('fileInput').addEventListener('change', handleFile);
 
-  function handleFile(ev){
-    const f = ev.target.files[0];
-    if(!f) return;
-    const r = new FileReader();
-    r.onload = e => {
-      localStorage.setItem("saveContent", e.target.result);      
-    }
-    r.readAsText(f);
-  }  
+  // file input hidden until the user selects that radio
+  const radio1 = document.querySelector('input[value="option1"]');
+  const radio2 = document.querySelector('input[value="option2"]');
+
+  const fileInput = document.getElementById('fileInput');
+
+  fileInput.style.display = 'none';
+
+  radio1.addEventListener('change', () => {
+    fileInput.style.display = radio1.checked ? 'block' : 'none';
+  });
+  
+  radio2.addEventListener('change', () => {
+    fileInput.style.display = !radio2.checked ? 'block' : 'none';
+  });
+
+function handleFile(ev){
+  const f = ev.target.files[0];
+  if(!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    localStorage.setItem("saveContent", e.target.result);
+    document.getElementById('start-btn').style.display = 'block'; // show
+  }
+  r.readAsText(f);
+}  
 </script>
 </body>
 </html>
