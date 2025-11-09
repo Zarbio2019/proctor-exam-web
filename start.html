@@ -67,7 +67,7 @@
   #nextBtn:hover {
     opacity: 0.7;
   }
-  #submitBtn {
+  .button-group {
     display: none; /* required for margin:auto centering */
     margin: 50px auto 0;
     background: linear-gradient(90deg, #6aa3ff, #1ea3ff, #0fa0ff);
@@ -79,7 +79,7 @@
     cursor: pointer;
     transition: opacity 0.3s ease;
   }
-  #submitBtn:hover {
+  .button-group:hover {
     opacity: 0.6;
   }
   </style>
@@ -108,7 +108,8 @@
         <button id="nextBtn" class="secondary">Next</button>
       </div>
 
-      <button id="submitBtn">Submit</button>
+      <button id="submitBtn" class="button-group">Submit</button>
+      <button id="homeBtn" class="button-group" onclick="window.location.href='index.html'">Go Home</button>
 
       <div id="result" style="margin-top:12px"></div>
     </div>
@@ -144,6 +145,7 @@ window.onload = function() {
     document.getElementById("toggleOneAtTime").style.display = "inline-block";
     document.querySelector('.button-row').style.display = 'flex'; // show
     document.getElementById('submitBtn').style.display = 'block'; // show
+    document.getElementById('homeBtn').style.display = 'block'; // show
 
     startTimer();
   }).catch(err => {

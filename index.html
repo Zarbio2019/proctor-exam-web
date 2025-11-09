@@ -6,7 +6,11 @@
 <title>Proctor Exam</title>
 <style>
   body {
-    background: #02030a;
+    background: url('./exam.gif');
+    background-size: cover; /* fills the entire screen */
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 100vh; /* ensures it fills viewport height */
     display: flex;
     flex-direction: column; /* stack elements vertically */
     align-items: center;
@@ -15,6 +19,7 @@
     gap: 25px; /* space between title and buttons */
     color: white;
     font-family: Arial, Helvetica, sans-serif;
+    margin: 0; /* remove default margins */
   }
 
   h1 {
@@ -44,7 +49,6 @@
 </style>
 </head>
 <body>
-
   <h1>Proctor Exam</h1>
   <div class="button-container" onclick="window.location.href='select.html'">Start Exam</a>
 </body>
