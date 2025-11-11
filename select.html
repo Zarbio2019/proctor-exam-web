@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <title>Proctor Exam</title>
 <style>
   body {
@@ -116,6 +117,25 @@
   .button-row button:hover {
     opacity: 0.7;
   }
+  #homeBtn{ 
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    }
+  #homeBtn:hover {
+    background: #0b5ed7;
+    transform: scale(1.1);
+  }
 </style>
 </head>
 <body>
@@ -138,7 +158,9 @@
     <button class="continue-btn" onclick="window.location.href='create.html'">Create Exam</button>
     <button class="cancel-btn" onclick="window.location.href='edit.html'">Edit Exam</button>
   </div>
-
+    <button id="homeBtn" class="button-group" onclick="window.location.href='index.html'"><i class="fa fa-house"></i></button>
+  </div>
+  
 <script>
   document.getElementById('fileInput').style.display = 'block';
 

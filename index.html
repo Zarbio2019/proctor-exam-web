@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Proctor Exam</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   body {
     background: url('./exam.gif');
@@ -46,10 +47,39 @@
   .button-container:hover {
     opacity: 0.6;
   }
+
+  #refBtn {
+    position: fixed;
+    z-index: 9999;          /* always on top */
+    bottom: 20px;           /* near the bottom edge */
+    right: 20px;            /* near the right edge */
+    background: #24292e;    /* GitHub dark gray */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    transition: transform 0.2s ease, background 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #refBtn:hover {
+    transform: scale(1.12);
+    background: #333;
+  }
 </style>
 </head>
 <body>
   <h1>Proctor Exam</h1>
   <div class="button-container" onclick="window.location.href='select.html'">Start Exam</a>
+
+  <button id="refBtn" title="Visit My GitHub" onclick="window.open('https://github.com/wodzarod-tech/proctor-exam-web', '_blank')">
+    <i class="fa-brands fa-github"></i>
+  </button>
 </body>
 </html>
