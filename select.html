@@ -123,12 +123,12 @@
     <h1>Select Exam</h1>
     
     <label class="option">
-	    <input type="radio" name="choice" value="option1"> Offline (PC)
+	    <input type="radio" name="choice" value="option1" checked> Offline (PC)
     </label>
-    <input type="file" id="fileInput" accept=".txt">
+    <input type="file" id="fileInput" style="display:block" accept=".txt">
 
 	  <label class="option">
-      <input type="radio" name="choice" value="option2"> Online
+      <input type="radio" name="choice" value="option2" disabled> Online
     </label>
 
     <div class="button-container" id="start-btn" onclick="window.location.href='start.html'" style="display:none">Start Exam</div>
@@ -140,6 +140,8 @@
   </div>
 
 <script>
+  document.getElementById('fileInput').style.display = 'block';
+
   document.getElementById('fileInput').addEventListener('change', handleFile);
 
   // file input hidden until the user selects that radio
@@ -148,6 +150,7 @@
 
   const fileInput = document.getElementById('fileInput');
 
+  /*
   fileInput.style.display = 'none';
 
   radio1.addEventListener('change', () => {
@@ -157,7 +160,7 @@
   radio2.addEventListener('change', () => {
     fileInput.style.display = !radio2.checked ? 'block' : 'none';
   });
-
+  */
 function handleFile(ev){
   const f = ev.target.files[0];
   if(!f) return;
