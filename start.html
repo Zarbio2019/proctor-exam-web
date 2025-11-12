@@ -32,7 +32,7 @@
       /*margin-right: 35px;*/
     }
     #layout { 
-      display:grid; 
+      display:none; 
       margin-top:100px; 
     }
     .panel { 
@@ -83,11 +83,11 @@
   }
 	#webcam {
 	  position: fixed;
-	  top: 40px;
+	  top: 10px;
 	  right: 10px;
 	  border: 2px solid #333;
 	  width: 150px;
-	  height: 100px;
+	  height: 130px;
 	  overflow: hidden;
 	}
 	#camera {
@@ -181,8 +181,6 @@
 <body>
   <header>
     <h1 id="examTitle">Proctored Exam</h1>
-
-    <div id="timer">Time Left: --:--</div>
   </header>
 
   <div style="margin-top:8px">
@@ -193,6 +191,7 @@
 
   <!-- Webcam -->
   <div id="webcam">
+    <div id="timer">Time Left: --:--</div>
     <video id="preview" autoplay muted playsinline></video>
   </div>
   
@@ -244,6 +243,9 @@ window.onload = function() {
       parseQuestions(savedContent);
     }
     
+    // show layout after content is ready
+    document.getElementById("layout").style.display = "grid";
+
     // show navigation buttons after questions are loaded
     document.getElementById("toggleOneAtTime").style.display = "inline-block";
     document.querySelector('.button-row').style.display = 'flex'; // show
