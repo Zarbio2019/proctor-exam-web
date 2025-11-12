@@ -83,7 +83,7 @@
   }
 	#webcam {
 	  position: fixed;
-	  top: 60px;
+	  top: 40px;
 	  right: 10px;
 	  border: 2px solid #333;
 	  width: 150px;
@@ -137,6 +137,23 @@
   .button-group:hover {
     opacity: 0.6;
   }
+  #homeBtn {
+    display: none; /* required for margin:auto centering */
+    margin: 20px auto 0;
+    background: linear-gradient(90deg, #90e9bb, #5ac055, #17650c);
+    border-radius: 12px;
+    padding: 10px 40px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    font-size: 16px;
+  }
+  #homeBtn:hover {
+    opacity: 0.6;
+  }
+
   #toggleOneAtTime {
     font-weight: bold;
     background: #8791a1;
@@ -163,7 +180,8 @@
 </head>
 <body>
   <header>
-    <h1>Proctored Exam</h1>
+    <h1 id="examTitle">Proctored Exam</h1>
+
     <div id="timer">Time Left: --:--</div>
   </header>
 
@@ -188,7 +206,7 @@
       </div>
 
       <button id="submitBtn" class="button-group">Submit</button>
-      <button id="homeBtn" class="button-group" onclick="window.location.href='index.html'">Go Home</button>
+      <button id="homeBtn" onclick="window.location.href='index.html'"><i class="fa fa-house"></i></button>
 
       <div id="result" style="margin-top:12px"></div>
     </div>
@@ -215,9 +233,15 @@ window.onload = function() {
   // ask for webcam and start preview + recording automatically
   initCameraAndPrepareRecording().then(() => {
     // Load questions
-    const saved = localStorage.getItem("saveContent");
-    if (saved) {
-      parseQuestions(saved);
+    const savedTitle = localStorage.getItem("saveTitle");
+    const savedContent = localStorage.getItem("saveContent");
+
+    if (savedTitle) {
+      document.getElementById("examTitle").textContent = savedTitle;
+    }
+  
+    if (savedContent) {
+      parseQuestions(savedContent);
     }
     
     // show navigation buttons after questions are loaded

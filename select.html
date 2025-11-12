@@ -160,7 +160,7 @@
   </div>
     <button id="homeBtn" class="button-group" onclick="window.location.href='index.html'"><i class="fa fa-house"></i></button>
   </div>
-  
+
 <script>
   document.getElementById('fileInput').style.display = 'block';
 
@@ -188,7 +188,9 @@ function handleFile(ev){
   if(!f) return;
   const r = new FileReader();
   r.onload = e => {
-    localStorage.setItem("saveContent", e.target.result);
+    localStorage.setItem("saveTitle", f.name.replace(/\.[^/.]+$/, "")); // save file name
+    localStorage.setItem("saveContent", e.target.result); // save file content
+
     document.getElementById('start-btn').style.display = 'block'; // show
   }
   r.readAsText(f);
