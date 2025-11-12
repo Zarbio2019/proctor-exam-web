@@ -38,7 +38,7 @@
   /* small panel style used for generated groups too */
   .small-panel {
     background:white;
-    width: 80%;
+    width: 100%;
     max-width: 780px;
     padding: 0; /* we'll handle padding in children so boxes join properly */
     border-radius: 10px;
@@ -76,11 +76,11 @@
     padding: 10px;
   }
 
-  /* Add button below the title */
+    /* Add button below the title */
   #addBoxBtn {
     position: fixed;
     z-index: 9999;        /* ensure it's in front */
-    bottom: 20px;
+    bottom: 160px;
     right: 20px;
     background: #007bff;
     color: white;
@@ -93,7 +93,9 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     transition: transform 0.2s ease;
   }
-  #addBoxBtn:hover { transform: scale(1.1); }
+  #addBoxBtn:hover { 
+    transform: scale(1.1); 
+  }
 
   #saveAllBtn {
     position: fixed;
@@ -112,7 +114,32 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     transition: transform 0.2s ease;
   }
-  #saveAllBtn:hover { transform: scale(1.1); }
+
+  #saveAllBtn:hover { 
+    transform: scale(1.1); 
+  }
+
+  #homeBtn {
+    position: fixed;
+    z-index: 9999;        /* ensure it's in front */
+    bottom: 20px; /* above the Load button */
+    right: 20px;
+    background: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  #homeBtn:hover {
+    transform: scale(1.1);
+    background: #0b5ed7;
+  }
 
   /* container for generated panels (outside the #layout) */
   #textboxArea {
@@ -196,9 +223,9 @@
 <body>
   <header>
     <h1>Create Exam</h1>
-    <button id="addBoxBtn" title="Add question group"><i class="fa fa-plus" aria-hidden="true"></i></button>
-	  <button id="saveAllBtn">Save</button>
-
+    <button id="addBoxBtn" title="Add question"><i class="fa fa-plus" aria-hidden="true"></i></button>
+	  <button id="saveAllBtn" title="Save">Save</button>
+    <button id="homeBtn" title="Home"><i class="fa fa-house"></i></button>
   </header>
 
   <div id="layout" style="margin-top:16px;">
@@ -227,6 +254,10 @@ let counter = 0;
 document.getElementById('submitBtn').addEventListener('click', submitExam);
 document.getElementById('addBoxBtn').addEventListener('click', addThreeTextboxes);
 document.getElementById('saveAllBtn').addEventListener('click', saveAllTextboxes);
+
+document.getElementById('homeBtn').addEventListener('click', () => {
+  window.location.href = 'index.html';
+});
 
 function parseQuestions(text){
   const blocks = text.split(/\n\s*\*/g)
@@ -310,9 +341,9 @@ function showQuestion(index){
    The textareas are appended so they touch each other (no gap)
    ------------------------- */
 function addThreeTextboxes() {
-  counter++;
-  
   const textboxArea = document.getElementById('textboxArea');
+  const currentPanels = textboxArea.querySelectorAll('.small-panel').length;
+  counter = currentPanels + 1;
 
   // panel wrapper (keeps consistent styling with other panels)
   const panel = document.createElement('div');
@@ -322,14 +353,15 @@ function addThreeTextboxes() {
   // container for number badge and delete button
   const topControls = document.createElement('div');
   //topControls.style.position = 'absolute';
-  topControls.style.top = '-10px';
-  topControls.style.left = '-10px';
+  //topControls.style.top = '-10px';
+  //topControls.style.left = '-10px';
   topControls.style.display = 'flex';
   topControls.style.alignItems = 'center';
   topControls.style.gap = '6px';
 
   // number badge
   const numberLabel = document.createElement('div');
+  numberLabel.dataset.role = 'numberBadge';
   numberLabel.textContent = `${counter}`;
   Object.assign(numberLabel.style, {
     backgroundColor: 'rgb(114,150,188)',
@@ -405,7 +437,7 @@ function addThreeTextboxes() {
 function updatePanelNumbers() {
   const panels = document.querySelectorAll('#textboxArea .small-panel');
   panels.forEach((panel, idx) => {
-    const label = panel.querySelector('div > div');
+    const label = panel.querySelector('[data-role="numberBadge"]');
     if (label) label.textContent = `${idx + 1}`;
   });
 }

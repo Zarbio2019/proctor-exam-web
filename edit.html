@@ -38,7 +38,7 @@
   /* small panel style used for generated groups too */
   .small-panel {
     background:white;
-    width: 80%;
+    width: 100%;
     max-width: 780px;
     padding: 0; /* we'll handle padding in children so boxes join properly */
     border-radius: 10px;
@@ -246,10 +246,10 @@
     <h1>Edit Exam</h1>
     <h2 id="examTitle"></h2>
 
-    <button id="addBoxBtn" title="Add question group"><i class="fa fa-plus" aria-hidden="true"></i></button>
-	  <button id="saveAllBtn">Save</button>
-    <button id="loadFileBtn" title="Load exam from file"><i class="fa fa-folder-open"></i></button>
-    <button id="homeBtn" title="Go Home"><i class="fa fa-house"></i></button>
+    <button id="addBoxBtn" title="Add question"><i class="fa fa-plus" aria-hidden="true"></i></button>
+	  <button id="saveAllBtn" title="Save">Save</button>
+    <button id="loadFileBtn" title="Load exam"><i class="fa fa-folder-open"></i></button>
+    <button id="homeBtn" title="Home"><i class="fa fa-house"></i></button>
   </header>
 
   <input type="file" id="fileInput" accept=".txt" style="display:none">
@@ -257,9 +257,6 @@
   <div id="layout" style="margin-top:16px;">
     <div id="content" class="panel">
       <div id="exam" contenteditable="true"></div>
-
-      <button id="submitBtn" class="button-group" style="display:none; margin-top:12px;">Save</button>
-      <button id="homeBtn" class="button-group" onclick="window.location.href='index.html'" style="display:none; margin-top:12px;">Go Home</button>
 
       <div id="result" style="margin-top:12px"></div>
     </div>
@@ -277,7 +274,6 @@ let oneAtTime = true;
 let currentIndex = 0;
 let counter = 0;
 
-document.getElementById('submitBtn').addEventListener('click', submitExam);
 document.getElementById('addBoxBtn').addEventListener('click', addThreeTextboxes);
 document.getElementById('saveAllBtn').addEventListener('click', saveAllTextboxes);
 
