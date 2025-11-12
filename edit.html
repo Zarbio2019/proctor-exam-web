@@ -76,44 +76,6 @@
     padding: 10px;
   }
 
-  /* Add button below the title */
-  #addBoxBtn {
-    position: fixed;
-    z-index: 9999;        /* ensure it's in front */
-    bottom: 20px;
-    right: 20px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease;
-  }
-  #addBoxBtn:hover { transform: scale(1.1); }
-
-  #saveAllBtn {
-    position: fixed;
-    z-index: 9999;        /* ensure it's in front */
-    bottom: 90px; /* places it right above addBoxBtn (which is at 20px) */
-    right: 20px;
-    background: #28a745;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 14px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: transform 0.2s ease;
-  }
-  #saveAllBtn:hover { transform: scale(1.1); }
-
   /* container for generated panels (outside the #layout) */
   #textboxArea {
     margin-top: 18px;
@@ -195,7 +157,7 @@
   #loadFileBtn {
     position: fixed;
     z-index: 9999;        /* ensure it's in front */
-    bottom: 160px; /* above Save and + buttons */
+    bottom: 230px; /* above Save and + buttons */
     right: 20px;
     background: #ffc107;
     color: white;
@@ -208,13 +170,58 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     transition: transform 0.2s ease;
   }
+
   #loadFileBtn:hover {
     transform: scale(1.1);
   }
+
+  #addBoxBtn {
+    position: fixed;
+    z-index: 9999;        /* ensure it's in front */
+    bottom: 160px;
+    right: 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+  }
+
+  #addBoxBtn:hover {
+    transform: scale(1.1); 
+  }
+
+  #saveAllBtn {
+    position: fixed;
+    z-index: 9999;        /* ensure it's in front */
+    bottom: 90px; /* places it right above addBoxBtn (which is at 20px) */
+    right: 20px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+  }
+
+  #saveAllBtn:hover { 
+    transform: scale(1.1); 
+  }
+
   #homeBtn {
     position: fixed;
     z-index: 9999;        /* ensure it's in front */
-    bottom: 230px; /* above the Load button */
+    bottom: 20px; /* above the Load button */
     right: 20px;
     background: #0d6efd;
     color: white;
@@ -227,6 +234,7 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     transition: transform 0.2s ease, background 0.2s ease;
   }
+
   #homeBtn:hover {
     transform: scale(1.1);
     background: #0b5ed7;
@@ -236,6 +244,8 @@
 <body>
   <header>
     <h1>Edit Exam</h1>
+    <h2 id="examTitle"></h2>
+
     <button id="addBoxBtn" title="Add question group"><i class="fa fa-plus" aria-hidden="true"></i></button>
 	  <button id="saveAllBtn">Save</button>
     <button id="loadFileBtn" title="Load exam from file"><i class="fa fa-folder-open"></i></button>
@@ -286,6 +296,12 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
     const reader = new FileReader();
     reader.onload = function(event) {
         const content = event.target.result;
+
+        const savedTitle = localStorage.getItem("saveTitle");
+        if (savedTitle) {
+          document.getElementById("examTitle").textContent = savedTitle;
+        }
+        
         loadTextIntoPanels(content);
     };
     reader.readAsText(file);
@@ -373,10 +389,10 @@ function showQuestion(index){
    The textareas are appended so they touch each other (no gap)
    ------------------------- */
 function addThreeTextboxes() {
-  counter++;
-  
   const textboxArea = document.getElementById('textboxArea');
-
+  const currentPanels = textboxArea.querySelectorAll('.small-panel').length;
+  counter = currentPanels + 1;
+  
   // panel wrapper (keeps consistent styling with other panels)
   const panel = document.createElement('div');
   panel.className = 'small-panel';
@@ -385,14 +401,15 @@ function addThreeTextboxes() {
   // container for number badge and delete button
   const topControls = document.createElement('div');
   //topControls.style.position = 'absolute';
-  topControls.style.top = '-10px';
-  topControls.style.left = '-10px';
+  //topControls.style.top = '-10px';
+  //topControls.style.left = '-10px';
   topControls.style.display = 'flex';
   topControls.style.alignItems = 'center';
   topControls.style.gap = '6px';
 
   // number badge
   const numberLabel = document.createElement('div');
+  numberLabel.dataset.role = 'numberBadge';
   numberLabel.textContent = `${counter}`;
   Object.assign(numberLabel.style, {
     backgroundColor: 'rgb(114,150,188)',
@@ -468,7 +485,7 @@ function addThreeTextboxes() {
 function updatePanelNumbers() {
   const panels = document.querySelectorAll('#textboxArea .small-panel');
   panels.forEach((panel, idx) => {
-    const label = panel.querySelector('div > div');
+    const label = panel.querySelector('[data-role="numberBadge"]');
     if (label) label.textContent = `${idx + 1}`;
   });
 }
