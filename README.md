@@ -1,2 +1,2 @@
 # proctor-exam-web
-Proctoc Exam Web
+Proctor Exam Web
