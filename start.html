@@ -461,7 +461,7 @@ function showQuestion(index){
 /* -------------------------
    Camera
    ------------------------- */
-let mediaStream = null;
+let stream = null;
 let mediaRecorder = null;
 let recordedChunks = [];
 let snapshotTimer = null;
@@ -471,12 +471,12 @@ const toggleRecordingBtn = document.getElementById('toggleRecording');
 const downloadRecordingBtn = document.getElementById('downloadRecording');
 
 async function startCamera(){
-  if(mediaStream) return; // already started
+  if(stream) return; // already started
 
   try {
     // get camera (and optionally audio)
-    mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    video.srcObject = mediaStream;
+    stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    video.srcObject = stream;
 
     await video.play();
 
@@ -499,6 +499,18 @@ async function startCamera(){
     console.log('Camera error', e);
     alert('Camera error', e);
   }
+
+  function stopCamera(){
+    if (stream){
+      stream.getTracks().forEach(t => t.stop());
+      stream = null;
+    }
+    video.pause();
+    video.srcObject = null;
+    stopDetectLoop();
+    console.log('Camera stopped');
+    ctx && ctx.clearRect(0,0,overlay.width, overlay.height);
+}
 
   /*
   // prepare MediaRecorder but don't start until toggleRecording
@@ -607,6 +619,14 @@ function startDetectLoop(){
     detectOnce().catch(e => console.error('detect error', e));
   }, 700);
   console.log('Detection started');
+}
+
+function stopDetectLoop(){
+  if (detectLoopId) {
+    clearInterval(detectLoopId);
+    detectLoopId = null;
+  }
+  console.log('Detection stopped');
 }
 
 function loadScript(src){
