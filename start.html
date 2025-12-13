@@ -188,6 +188,11 @@
   </style>
 </head>
 <body>
+  <!-- Eye-Tracking -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils"></script>
+
   <header>
     <h1 id="examTitle">Proctored Exam</h1>
   </header>
@@ -321,7 +326,7 @@ async function startMicrophone() {
             }
             const volume = Math.sqrt(sum / timeData.length);
 
-            console.log('volume = ', volume);
+            //console.log('volume = ', volume);
 
             // Check for noise / speaking
             if (volume > SPEAK_THRESHOLD) {
@@ -342,7 +347,7 @@ async function startMicrophone() {
             else
               noiseSeconds = 0;
 
-            console.log('noiseSeconds = ', noiseSeconds);
+            //console.log('noiseSeconds = ', noiseSeconds);
 
             // Auto-fail
             if (!failed && noiseSeconds >= MAX_NOISE_TIME) {
@@ -566,11 +571,40 @@ async function startCamera(){
   if(stream) return; // already started
 
   try {
+    // Eye-Tracking
+    const faceMesh = new window.FaceMesh({
+      locateFile: (file) =>
+        `https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh/${file}`,
+    });
+
+    faceMesh.setOptions({
+      maxNumFaces: 1,
+      refineLandmarks: true, // IMPORTANT → gives iris landmarks (468-478)
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5,
+    });
+
+    faceMesh.onResults(onResults);
+
+    // Start camera
+    const cam = new window.Camera(video, {
+      onFrame: async () => {
+        await faceMesh.send({ image: video });
+      },
+      width: 480,
+      height: 360,
+    });
+    cam.start();
+
+    /*****/
+/*
+    // Old
     // get camera (and optionally audio)
     stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
     video.srcObject = stream;
 
     await video.play();
+*/
 
     // set canvas size to video display size
     document.getElementById("overlay").style.display = "none"; // hide detection rectangle, hide = "none", show = "block"
@@ -749,6 +783,100 @@ async function loadModelIfNeeded(){
   // load model
   model = await blazeface.load();
   console.log('Model loaded');
+}
+
+/* -------------------------
+   Eye-Tracking
+   ------------------------- */
+const canvas = document.getElementById("overlay");
+
+let lastBlinkTime = 0;
+let blinkCount = 0;
+
+function distance(a, b) {
+  return Math.hypot(a.x - b.x, a.y - b.y);
+}
+
+function getEyeOpenness(landmarks, top, bottom) {
+  return distance(landmarks[top], landmarks[bottom]);
+}
+
+function analyzeEyes(landmarks) {
+  // MediaPipe eye landmark indices
+  const LEFT_TOP = 159;
+  const LEFT_BOTTOM = 145;
+  const RIGHT_TOP = 386;
+  const RIGHT_BOTTOM = 374;
+
+  const leftOpenness = getEyeOpenness(landmarks, LEFT_TOP, LEFT_BOTTOM);
+  const rightOpenness = getEyeOpenness(landmarks, RIGHT_TOP, RIGHT_BOTTOM);
+
+  const avgOpenness = (leftOpenness + rightOpenness) / 2;
+
+  if (avgOpenness < 0.01) {
+    const now = Date.now();
+    if (now - lastBlinkTime > 300) {
+      blinkCount++;
+      lastBlinkTime = now;
+    }
+
+    //alert('NO BLINK');
+    return "BLINK";
+  }
+
+  return "OPEN";
+}
+
+function getGazeDirection(landmarks) {
+  // Eye corner indices
+  const leftEyeLeft = landmarks[33];
+  const leftEyeRight = landmarks[133];
+  const leftPupil = landmarks[468]; // iris center
+
+  const eyeWidth = distance(leftEyeLeft, leftEyeRight);
+  const pupilOffset = (leftPupil.x - leftEyeLeft.x) / eyeWidth;
+
+  if (pupilOffset < 0.32) {
+    alert('NO LOOK TO THE RIGHT');
+    return "LOOKING RIGHT";
+  }
+
+  if (pupilOffset > 0.68) {
+    alert('NO LOOK TO THE LEFT');
+    return "LOOKING LEFT";
+  }
+
+  return "CENTER";
+}
+
+function onResults(results) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(results.image, 0, 0, canvas.width, canvas.height);
+
+  if (!results.multiFaceLandmarks || results.multiFaceLandmarks.length === 0) {
+    ctx.fillStyle = "red";
+    ctx.fillText("FACE NOT DETECTED", 10, 20);
+    return;
+  }
+
+  const landmarks = results.multiFaceLandmarks[0];
+
+  // Draw mesh
+  window.drawConnectors(ctx, landmarks, window.FACEMESH_TESSELATION, { color: "#0f0" });
+
+  // Eye state
+  const eyeState = analyzeEyes(landmarks);
+  const gaze = getGazeDirection(landmarks);
+
+  ctx.fillStyle = "yellow";
+  /*
+  ctx.fillText(`Eyes: ${eyeState}`, 10, 20);
+  ctx.fillText(`Gaze: ${gaze}`, 10, 40);
+  ctx.fillText(`Blink Count: ${blinkCount}`, 10, 60);
+  */
+  console.log('Eyes: ', eyeState);
+  console.log('Gaze: ', gaze);
+  console.log('Blink Count: ', blinkCount);
 }
 
 /* -------------------------
