@@ -176,7 +176,7 @@
     <label class="option">
 	    <input type="radio" name="choice" value="option1"> Offline
     </label>
-    <input type="file" id="fileInput" accept=".txt">
+    <input type="file" id="fileInput" accept=".txt,.csv,text/csv">
 
 	  <label class="option">
       <input type="radio" name="choice" value="option2" checked> Online
@@ -228,15 +228,94 @@
 function handleFile(ev){
 
   const f = ev.target.files[0];
+
   if(!f) return;
+
   const r = new FileReader();
   r.onload = e => {
     localStorage.setItem("saveTitle", f.name.replace(/\.[^/.]+$/, "")); // save file name
-    localStorage.setItem("saveContent", e.target.result); // save file content
+
+    // For CSV file
+    if (f.name.toLowerCase().endsWith('.csv')) {
+
+      const text = e.target.result;
+
+      debugger;
+      const questions = parseCSV(text);
+
+      localStorage.setItem('saveContent', JSON.stringify(questions));
+
+      //localStorage.setItem("saveContent", e.target.result); // save file content
+    }
+      
+    // For text file
+    if (f.name.toLowerCase().endsWith('.txt')) {
+      localStorage.setItem("saveContent", e.target.result); // save file content
+    }
 
     document.getElementById('start-btn').style.display = 'block'; // show
   }
   r.readAsText(f);
+}
+
+// CSV Parser (handles quotes + multiline)
+function parseCSV(text) {
+  const rows = [];
+  let current = '';
+  let insideQuotes = false;
+
+  for (let char of text) {
+    if (char === '"') insideQuotes = !insideQuotes;
+    if (char === '\n' && !insideQuotes) {
+      rows.push(current);
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  if (current.trim()) rows.push(current);
+
+  // Remove header
+  rows.shift();
+
+  return rows.map(row => parseRow(row));
+}
+
+// Parse one row
+function parseRow(row) {
+  const fields = [];
+  let current = '';
+  let insideQuotes = false;
+
+  for (let i = 0; i < row.length; i++) {
+    const char = row[i];
+
+    if (char === '"') {
+      insideQuotes = !insideQuotes;
+      continue;
+    }
+
+    if (char === ';' && !insideQuotes) {
+      fields.push(current.trim());
+      current = '';
+    } else {
+      current += char;
+    }
+  }
+  fields.push(current.trim());
+
+  const question = fields[0];
+
+  const options = fields[1]
+    .split('\n')
+    .map(o => o.trim())
+    .filter(Boolean);
+
+  const response = fields[2]
+    .split(',')
+    .map(r => r.trim());
+
+  return { question, options, response };
 }
 
 // Handle online (static) file

@@ -1,0 +1,15 @@
+question;options;response
+¿Cuál de los siguientes enunciados son incorrectos acerca de la nomenclatura de una transacción?;"a. Debe haber un código de versión. Este debe ser igual al número del pom.xml
+b. Debe tener un código de entrono. Este código de entorno es de 2 caracteres.
+c. Debe tener un código de transacción. Suele ir después de la letra y son 3 caracteres alfanuméricos.
+d. Debe tener un código de país. Este código de país debe tener 2 caracteres.
+e. Debe tener un código de aplicación, comúnmente conocido como UUAA y debe ser un código de 4 caracteres.";a,b
+¿Cuál de las siguientes preguntas son incorrectas sobre la nomenclatura de una transacción?;"a. Debe haber un país: debe tener 2 caracteres
+b. Ninguna
+c. Debe haber un código de aplicación, comúnmente conocido como UUAA: Debe ser un código de 4 caracteres
+d. Debe haber un número de versión. Este debe ser igual al número del pom.xml";d
+¿Para visualizar las dependencias de las transacciones, en qué lugar del proyecto me debo ubicar?;"a. En cualquier ubicación.
+b. En la transacción en específico
+c. Debo estar en artifact
+d. Debo estar en la librería
+e. Debo estar en el POM";e
