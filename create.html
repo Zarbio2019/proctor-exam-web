@@ -734,12 +734,13 @@
     <!-- Tab contents -->
     <div class="proctor-content">
 
+      <!-- TIMER -->
       <div class="tab-panel active" id="tab-timer">
 
         <div class="toggle-inline">
           <label class="toggle-row">
-            <input type="checkbox" onchange="toggleTimer(this)" />
-            <span>Timer Left:</span>
+            <input type="checkbox" data-proctor="timer-enabled" onchange="toggleTimer(this)" />
+            <span>Timer Left</span>
           </label>
 
           <div class="timer-row" style="display:none">
@@ -766,38 +767,46 @@
         </div>
       </div>
 
+      <!-- CAMERA -->
       <div class="tab-panel" id="tab-camera">
         <label class="toggle-row">
-          <input type="checkbox" />
-          <span>Enable camera monitoring</span>
+          <input type="checkbox" data-proctor="camera-enabled" />
+          <span>Enable camera</span>
         </label>
 
         <label class="toggle-row">
-          <input type="checkbox" />
-          <span>Detect face absence</span>
+          <input type="checkbox" data-proctor="camera-face" />
+          <span>Detect Face absence</span>
+        </label>
+
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="camera-eye" />
+          <span>Eye-Tracking</span>
         </label>
       </div>
 
+      <!-- NOISE -->
       <div class="tab-panel" id="tab-noise">
         <label class="toggle-row">
-          <input type="checkbox" />
-          <span>Enable microphone monitoring</span>
+          <input type="checkbox" data-proctor="noise-enabled" />
+          <span>Enable microphone</span>
         </label>
 
         <label class="toggle-row">
-          <input type="checkbox" />
-          <span>Detect loud background noise</span>
+          <input type="checkbox" data-proctor="noise-loud" />
+          <span>Noise-detection: Detect loud background noise</span>
         </label>
       </div>
 
+      <!-- SCREEN -->
       <div class="tab-panel" id="tab-screen">
         <label class="toggle-row">
-          <input type="checkbox" />
+          <input type="checkbox" data-proctor="screen-tab"/>
           <span>Detect tab switching</span>
         </label>
 
         <label class="toggle-row">
-          <input type="checkbox" />
+          <input type="checkbox" data-proctor="screen-fullscreen"/>
           <span>Detect fullscreen exit</span>
         </label>
       </div>
@@ -1125,12 +1134,45 @@ function updateJSON(){
           checked: control.checked
         };
       }),
-      comment: q.querySelector('#comment')?.value || ''
+      comment: q.querySelector('.q-comment')?.value || ''
     });
   });
 
+  form.proctor = getProctorSettings();
+
   outputEl.textContent = JSON.stringify(form, null, 2);
   updateTotalPoints();
+}
+
+function isChecked(key){
+  return document.querySelector(`[data-proctor="${key}"]`)?.checked || false;
+}
+
+function getProctorSettings(){
+  const timerEnabled = isChecked('timer-enabled');
+
+  const timerInputs = document.querySelectorAll('#tab-timer .timer-input');
+
+  return {
+    timer: {
+      enabled: timerEnabled,
+      minutes: timerEnabled ? Number(timerInputs[0]?.value || 0) : 0,
+      seconds: timerEnabled ? Number(timerInputs[1]?.value || 0) : 0
+    },
+    camera: {
+      enabled: isChecked('camera-enabled'),
+      faceAbsence: isChecked('camera-face'),
+      eyeTracking: isChecked('camera-eye')
+    },
+    noise: {
+      enabled: isChecked('noise-enabled'),
+      loudNoise: isChecked('noise-loud')
+    },
+    screen: {
+      tabSwitch: isChecked('screen-tab'),
+      fullscreenExit: isChecked('screen-fullscreen')
+    }
+  };
 }
 
 // export JSON in a file
