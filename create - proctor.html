@@ -101,7 +101,6 @@
       align-items:center;
       gap:8px;
       margin-bottom:8px;
-      user-select: none;
     }
 
     .option input[type=text]{
@@ -199,7 +198,6 @@
       gap: 4px;
       color: #5f6368;
       font-size: 13px;
-      pointer-events: none;
     }
 
     .points-input{
@@ -306,7 +304,7 @@
     }
 
     .drag{
-      display: none;
+      display: flex;
       justify-content: center;
       align-items: center;
 
@@ -320,7 +318,6 @@
       color: #9aa0a6;
       font-size: 18px;
       line-height: 4;
-      pointer-events: none;
     }
 
     /* Required toggle */
@@ -712,361 +709,161 @@
       color: #5f6368;
     }
 
-    /* Import JSON */
-    .start-screen{
-      height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      background:#f1f3f4;
-    }
-
-    .start-import-btn{
-      font-size:18px;
-      padding:14px 28px;
-      border:none;
-      border-radius:8px;
-      background:#1a73e8;
-      color:white;
-      cursor:pointer;
-      box-shadow:0 4px 10px rgba(0,0,0,.15);
-    }
-
-    .start-import-btn:hover{
-      opacity:.85;
-    }
-
-    /* Countdown modal animation */
-    .start-modal{
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10000;
-    }
-
-    .start-modal-content{
-      background: #0f1724;
-      padding: 40px 60px;
-      border-radius: 16px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 20px 60px rgba(0,0,0,.5);
-    }
-
-    .start-modal-content h2{
-      margin-bottom: 25px;
-      font-size: 22px;
-      font-weight: 600;
-    }
-
-    .countdown{
-      font-size: 96px;
-      font-weight: bold;
-      animation: pop 1s ease-in-out infinite;
-    }
-
-    @keyframes pop{
-      0%{ transform: scale(0.8); opacity: .5; }
-      50%{ transform: scale(1); opacity: 1; }
-      100%{ transform: scale(1.15); opacity: .6; }
-    }
-
-    /* Import panel */
-    .upload-card{
-      width:350px;
-      background:#fff;
-      border-radius:12px;
-      padding:20px 20px 60px; /* extra bottom space */
-      box-shadow:0 8px 30px rgba(0,0,0,.15);
-      font-family:Arial, sans-serif;
-      position: relative; /* 🔑 needed */
-    }
-
-    .upload-card h3{
-      margin:0 0 12px;
-      font-size:18px;
-    }
-
-    #importDropzone {
-      position: fixed;   /* overlay on entire screen */
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 1000;    /* above other content */
-    }
-
-    .dropzone{
-      border:2px dashed #3b82f6;
-      border-radius:10px;
-      padding:40px 20px;
-      text-align:center;
-      background:#f8fbff;
-      cursor:pointer;
-      transition:.2s;
-    }
-
-    /* Style when a file is uploaded */
-    .dropzone.uploaded {
-      background: #e0f7e9;  /* light green */
-      border-color: #10b981; /* green border */
-    }
-
-    .dropzone .file-name {
-      margin-top: 10px;
-      font-size: 14px;
-      color: #065f46; /* dark green */
-      font-weight: 500;
-    }
-
-    .dropzone.dragover{
-      background:#eef5ff;
-    }
-
-    .cloud{
-      font-size:42px;
-      margin-bottom:10px;
-    }
-
-    .dropzone p{
-      margin:0;
-      font-size:14px;
-      color:#555;
-    }
-
-    .browse{
-      color:#2563eb;
-      cursor:pointer;
-      font-weight:600;
-    }
-
-    .formats{
-      font-size:12px;
-      color:#666;
-      margin:12px 0 16px;
-    }
-
-    .upload-btn{
-      position:absolute;
-      bottom:16px;
-      right:20px;
-      background:#2563eb;
-      color:#fff;
-      border:none;
-      padding:10px 18px;
-      border-radius:6px;
-      font-weight:600;
-      cursor:pointer;
-    }
-
-    .upload-btn:hover{
-      background:#1d4ed8;
-    }
-
   </style>
 </head>
 <body>
 
-  <!-- Eye-Tracking -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils"></script>
-  <script src="eye-tracking.js"></script>
+<header></header>
 
-<!-- Import panel -->
-<div id="importDropzone" class="upload-card">
-  <h3>Upload file</h3>
+<div class="container">
 
-  <div class="dropzone" id="dropzone">
-    <div class="cloud">☁️</div>
-    <p>
-      Drag & Drop your file or
-      <span class="browse" onclick="fileInput.click()">Browse</span>
-    </p>
-    <input type="file" id="fileInput" accept=".json" hidden />
-  </div>
+  <!-- Form header -->
+<div class="card form-header">
+  <div class="form-header-row">
+    <div>
+      <input class="title-input" id="formTitle" placeholder="Title" />
+      <input class="desc-input" id="formDesc" placeholder="Form description" />
+    </div>
 
-  <p class="formats">
-    Supported format: <b>JSON</b> &nbsp; Maximum size: <b>5MB</b>
-  </p>
-
-  <button id="startExamBtn" class="upload-btn" style="display:none" onclick="handleImport()">Start Exam</button>
-</div>
-
-<!-- Countdown modal -->
-<div id="startModal" class="start-modal" style="display:none">
-  <div class="start-modal-content">
-    <h2>Starting exam</h2>
-    <div id="countdown" class="countdown">3</div>
+    <div class="total-points">
+      <span>Total points</span>
+      <strong id="totalPoints">0</strong>
+    </div>
   </div>
 </div>
 
-<div id="editorApp" style="display:none;">
-  <header></header>
+  <!-- Questions -->
+  <div id="questions"></div>
 
-  <!-- Webcam -->
-  <div id="webcam">
-    <div id="timer">Time Left: --:--</div>
-    <video id="video" autoplay muted playsinline></video>
-    <canvas id="overlay" class="overlay"></canvas> <!-- face detection -->
+  <!-- <button class="add-question" onclick="addQuestion()">+ Add question</button> -->
+
+  <!-- JSON view -->
+  <h3>Form JSON</h3>
+  <pre id="output"></pre>
+</div>
+
+<!-- Bottom toolbar -->
+<div id="gformsToolbar" class="gforms-toolbar bottom">
+  <!-- Handle -->
+  <div class="toolbar-handle g-tooltip" id="toolbarHandle" data-tooltip="Close panel" onclick="toggleToolbar()">▼</div>
+
+  <div class="toolbar-buttons">
+    <button class="g-tooltip" data-tooltip="Add question" onclick="addQuestion()">+</button>
+    <button class="g-tooltip" data-tooltip="Add section" onclick="addSection()">≡</button>
+        <button class="g-tooltip" data-tooltip="Import JSON" onclick="importJSON()">📂</button>
+    <button class="g-tooltip" data-tooltip="Export JSON" onclick="exportJSON()">💾</button>
+    <button  class="g-tooltip" data-tooltip="Proctor settings" onclick="openProctorConfig()">🛡️</button>
+    <button class="g-tooltip" data-tooltip="Home" onclick="window.location.href='index.html'">🏠</button>
   </div>
+</div>
 
-  
-  <div class="container">
+<!-- hidden file input -->
+<input
+  type="file"
+  id="jsonFileInput"
+  accept="application/json"
+  hidden
+/>
 
-    <!-- Form header -->
-  <div class="card form-header">
-    <div class="form-header-row">
-      <div>
-        <input class="title-input" id="formTitle" placeholder="Title" readonly/>
-        <input class="desc-input" id="formDesc" placeholder="Form description" readonly/>
-      </div>
+<!-- Proctor Modal -->
+<div id="proctorModal" class="proctor-modal hidden">
+  <div class="proctor-card">
 
-      <div class="total-points">
-        <span>Total points</span>
-        <strong id="totalPoints">0</strong>
-      </div>
+    <div class="proctor-header">
+      <h3>Proctor configuration</h3>
+      <button class="btn-icon" onclick="closeProctorConfig()">✕</button>
     </div>
-  </div>
 
-    <!-- Questions -->
-    <div id="questions"></div>
-
-    <!-- <button class="add-question" onclick="addQuestion()">+ Add question</button> -->
-
-    <!-- JSON view -->
-    <div style="display:none">
-    <h3>Form JSON</h3>
-    <pre id="output"></pre>
+    <!-- Tabs -->
+    <div class="proctor-tabs">
+      <button class="tab active" onclick="switchProctorTab('timer')">Timer</button>
+      <button class="tab" onclick="switchProctorTab('camera')">Camera detection</button>
+      <button class="tab" onclick="switchProctorTab('noise')">Noise detection</button>
+      <button class="tab" onclick="switchProctorTab('screen')">Screen detection</button>
     </div>
-  </div>
 
-  <!-- Bottom toolbar -->
-  <div id="gformsToolbar" class="gforms-toolbar bottom" style="display:none">
-    <!-- Handle -->
-    <div class="toolbar-handle g-tooltip" id="toolbarHandle" data-tooltip="Close panel" onclick="toggleToolbar()">▼</div>
+    <!-- Tab contents -->
+    <div class="proctor-content">
 
-    <div class="toolbar-buttons">
-      <button class="g-tooltip" data-tooltip="Add question" onclick="addQuestion()">+</button>
-      <button class="g-tooltip" data-tooltip="Add section" onclick="addSection()">≡</button>
-      <button class="g-tooltip" data-tooltip="Import JSON" onclick="importJSON()">📂</button>
-      <button class="g-tooltip" data-tooltip="Export JSON" onclick="exportJSON()">💾</button>
-      <button  class="g-tooltip" data-tooltip="Proctor settings" onclick="openProctorConfig()">🛡️</button>
-      <button class="g-tooltip" data-tooltip="Home" onclick="window.location.href='index.html'">🏠</button>
-    </div>
-  </div>
+      <!-- TIMER -->
+      <div class="tab-panel active" id="tab-timer">
 
-  <!-- hidden file input -->
-   <!--
-  <input
-    type="file"
-    id="jsonFileInput"
-    accept="application/json"
-    hidden
-  />
--->
-  <!-- Proctor Modal -->
-  <div id="proctorModal" class="proctor-modal hidden">
-    <div class="proctor-card">
+        <div class="toggle-inline">
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="timer-enabled" onchange="toggleTimer(this)" />
+            <span>Timer Left</span>
+          </label>
 
-      <div class="proctor-header">
-        <h3>Proctor configuration</h3>
-        <button class="btn-icon" onclick="closeProctorConfig()">✕</button>
-      </div>
-
-      <!-- Tabs -->
-      <div class="proctor-tabs">
-        <button class="tab active" onclick="switchProctorTab('timer')">Timer</button>
-        <button class="tab" onclick="switchProctorTab('camera')">Camera detection</button>
-        <button class="tab" onclick="switchProctorTab('noise')">Noise detection</button>
-        <button class="tab" onclick="switchProctorTab('screen')">Screen detection</button>
-      </div>
-
-      <!-- Tab contents -->
-      <div class="proctor-content">
-
-        <!-- TIMER -->
-        <div class="tab-panel active" id="tab-timer">
-
-          <div class="toggle-inline">
-            <label class="toggle-row">
-              <input type="checkbox" data-proctor="timer-enabled" onchange="toggleTimer(this)" />
-              <span>Timer Left</span>
-            </label>
-
-            <div class="timer-row" style="display:none">
-              <input
-                type="number"
-                class="timer-input"
-                min="0"
-                max="59"
-                step="1"
-                value="0"
-                oninput="updateTimerJSON()"
-              />
-              <span>:</span>
-              <input
-                type="number"
-                class="timer-input"
-                min="0"
-                max="59"
-                step="1"
-                value="0"
-                oninput="fixSeconds(this); updateTimerJSON()"
-              />
-            </div>
+          <div class="timer-row" style="display:none">
+            <input
+              type="number"
+              class="timer-input"
+              min="0"
+              max="59"
+              step="1"
+              value="0"
+              oninput="updateTimerJSON()"
+            />
+            <span>:</span>
+            <input
+              type="number"
+              class="timer-input"
+              min="0"
+              max="59"
+              step="1"
+              value="0"
+              oninput="fixSeconds(this); updateTimerJSON()"
+            />
           </div>
         </div>
+      </div>
 
-        <!-- CAMERA -->
-        <div class="tab-panel" id="tab-camera">
-          <label class="toggle-row">
-            <input type="checkbox" data-proctor="camera-enabled" />
-            <span>Enable camera</span>
-          </label>
+      <!-- CAMERA -->
+      <div class="tab-panel" id="tab-camera">
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="camera-enabled" />
+          <span>Enable camera</span>
+        </label>
 
-          <label class="toggle-row">
-            <input type="checkbox" data-proctor="camera-face" />
-            <span>Detect Face absence</span>
-          </label>
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="camera-face" />
+          <span>Detect Face absence</span>
+        </label>
 
-          <label class="toggle-row">
-            <input type="checkbox" data-proctor="camera-eye" />
-            <span>Eye-Tracking</span>
-          </label>
-        </div>
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="camera-eye" />
+          <span>Eye-Tracking</span>
+        </label>
+      </div>
 
-        <!-- NOISE -->
-        <div class="tab-panel" id="tab-noise">
-          <label class="toggle-row">
-            <input type="checkbox" data-proctor="noise-enabled" />
-            <span>Enable microphone</span>
-          </label>
+      <!-- NOISE -->
+      <div class="tab-panel" id="tab-noise">
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="noise-enabled" />
+          <span>Enable microphone</span>
+        </label>
 
-          <label class="toggle-row">
-            <input type="checkbox" data-proctor="noise-loud" />
-            <span>Noise-detection: Detect loud background noise</span>
-          </label>
-        </div>
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="noise-loud" />
+          <span>Noise-detection: Detect loud background noise</span>
+        </label>
+      </div>
 
-        <!-- SCREEN -->
-        <div class="tab-panel" id="tab-screen">
-          <label class="toggle-row">
-            <input type="checkbox" data-proctor="screen-tab"/>
-            <span>Detect tab switching</span>
-          </label>
+      <!-- SCREEN -->
+      <div class="tab-panel" id="tab-screen">
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="screen-tab"/>
+          <span>Detect tab switching</span>
+        </label>
 
-          <label class="toggle-row">
-            <input type="checkbox" data-proctor="screen-fullscreen"/>
-            <span>Detect fullscreen exit</span>
-          </label>
-        </div>
-
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="screen-fullscreen"/>
+          <span>Detect fullscreen exit</span>
+        </label>
       </div>
 
     </div>
+
   </div>
 </div>
 
@@ -1077,96 +874,6 @@ let questionIdCounter = 0; // question ID
 
 const questionsEl = document.getElementById('questions');
 const outputEl = document.getElementById('output');
-
-/***************************
-Import panel
-***************************/
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-let importedFile = null;
-
-function showStartButton() {
-  document.getElementById('startExamBtn').style.display = 'block';
-}
-
-dropzone.addEventListener('dragover', e => {
-  e.preventDefault();
-  dropzone.classList.add('dragover');
-});
-
-dropzone.addEventListener('dragleave', () => {
-  dropzone.classList.remove('dragover');
-});
-
-dropzone.addEventListener('drop', e => {
-  e.preventDefault();
-  dropzone.classList.remove('dragover');
-
-  importedFile = e.dataTransfer.files[0];
-
-  if(importedFile){
-    // show uploaded state
-    dropzone.classList.add('uploaded');
-
-    // remove previous file name if exists
-    const existing = dropzone.querySelector('.file-name');
-    if(existing) existing.remove();
-
-    // show file name
-    const nameEl = document.createElement('div');
-    nameEl.className = 'file-name';
-    nameEl.textContent = importedFile.name;
-    dropzone.appendChild(nameEl);
-
-    showStartButton();
-  }
-});
-
-fileInput.onchange = e => {
-  importedFile = e.target.files[0];
-
-  if(importedFile){
-    dropzone.classList.add('uploaded');
-
-    const existing = dropzone.querySelector('.file-name');
-    if(existing) existing.remove();
-
-    const nameEl = document.createElement('div');
-    nameEl.className = 'file-name';
-    nameEl.textContent = importedFile.name;
-    dropzone.appendChild(nameEl);
-
-    showStartButton();
-  }
-};
-
-function handleImport(){
-  if(!importedFile){
-    alert("Please select a JSON file");
-    return;
-  }
-
-  if(!importedFile.name.endsWith(".json")){
-    alert("Only JSON files allowed");
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    const json = JSON.parse(reader.result);
-
-    // Show Editor, Hide Import modal
-    document.getElementById('importDropzone').style.display = 'none';
-
-    // Countdown modal
-    showStartExamModal(() => {
-      document.getElementById('editorApp').style.display = 'block';
-    });
-
-    loadFormFromJSON(json);
-  };
-  reader.readAsText(importedFile);
-}
 
 /***************************
 Header
@@ -1254,7 +961,7 @@ function addQuestion(){
       </div>
     </div>
 
-    <textarea class="q-title" placeholder="Question" rows="1" readonly></textarea>
+    <textarea class="q-title" placeholder="Question" rows="1"></textarea>
 
     <select class="q-type" onchange="updateOptions(this)">
       <option value="radio">◉ One choice</option>
@@ -1267,7 +974,7 @@ function addQuestion(){
       <button class="btn-link" onclick="addOption(this)">Add option</button>
     </div>
 
-    <div class="feedback" style="display:none">
+    <div class="feedback">
       <textarea class="q-title q-comment" id="comment" rows="1"
         placeholder="Feedback"></textarea>
     </div>
@@ -1545,7 +1252,7 @@ function exportJSON(){
 }
 
 // import JSON from file
-/*function importJSON(){
+function importJSON(){
   document.getElementById('jsonFileInput').click();
 }
 
@@ -1557,15 +1264,6 @@ document.getElementById('jsonFileInput').addEventListener('change', e => {
   reader.onload = () => {
     try{
       const data = JSON.parse(reader.result);
-
-      // SHOW EDITOR, HIDE START SCREEN
-      document.getElementById('startScreen').style.display = 'none';
-      
-      // Countdown modal
-      showStartExamModal(() => {
-        document.getElementById('editorApp').style.display = 'block';
-      });
-
       loadFormFromJSON(data);
     }catch(err){
       alert('Invalid JSON file');
@@ -1576,7 +1274,6 @@ document.getElementById('jsonFileInput').addEventListener('change', e => {
   // reset input so same file can be re-imported
   e.target.value = '';
 });
-*/
 
 // load JSON into editor
 function loadFormFromJSON(data){
@@ -1605,8 +1302,7 @@ function loadFormFromJSON(data){
       const lastOpt = q.querySelector('.options').lastElementChild;
 
       lastOpt.querySelector('.opt-text').value = opt.text || '';
-      lastOpt.querySelector('.opt-icon').checked = false;
-      //lastOpt.querySelector('.opt-icon').checked = !!opt.checked;
+      lastOpt.querySelector('.opt-icon').checked = !!opt.checked;
     });
 
     // feedback
@@ -1656,7 +1352,6 @@ function toggleToolbar(){
 }
 
 // toolbar: Blue active question indicator
-/*
 document.addEventListener('click', e => {
   document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
 
@@ -1666,7 +1361,7 @@ document.addEventListener('click', e => {
     card.classList.add('active');
   else
     document.activeElement.blur(); // zero cursor blinking when clicking outside
-});*/
+});
 
 /***************************
 Section
@@ -1693,29 +1388,6 @@ function updateSectionNumbers(){
 }
 
 /***************************
-Countdown modal
-***************************/
-function showStartExamModal(onFinish){
-  const modal = document.getElementById('startModal');
-  const counter = document.getElementById('countdown');
-
-  let time = 3;
-  counter.textContent = time;
-  modal.style.display = 'flex';
-
-  const interval = setInterval(() => {
-    time--;
-    if(time === 0){
-      clearInterval(interval);
-      modal.style.display = 'none';
-      onFinish && onFinish();
-    } else {
-      counter.textContent = time;
-    }
-  }, 1000);
-}
-
-/***************************
 Initialization
 ***************************/
 new Sortable(questionsEl, {
@@ -1724,7 +1396,7 @@ new Sortable(questionsEl, {
   onEnd: updateJSON
 });
 
-//addQuestion();
+addQuestion();
 </script>
 
 </body>

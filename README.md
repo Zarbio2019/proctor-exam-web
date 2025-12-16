@@ -2,51 +2,44 @@
 Proctor Exam Web
 
 ## Features
-1. Face Detection
-2. Screen-switch-detection
-3. Noise-detection
-4. Eye-tracking
-5. Proctor settings
-  5.1. Timer
-
-<input class="opt-icon" type="${type}" ${type === 'radio' ? `name="${qid}" data-was-checked="false"` : ''} />
-
-function loadFormFromJSON(data){
-
-handleImport
-importJSON
-
-
-document.getElementById('jsonFileInput').addEventListener('change', e => {
-  const file = e.target.files[0];
-  if(!file) return;
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    try{
-      const data = JSON.parse(reader.result);
-
-      // SHOW EDITOR, HIDE START SCREEN
-      document.getElementById('startScreen').style.display = 'none';
-      
-      // Countdown modal
-      showStartExamModal(() => {
-        document.getElementById('editorApp').style.display = 'block';
-      });
-
-      loadFormFromJSON(data);
-    }catch(err){
-      alert('Invalid JSON file');
+1. Create questions dynamically
+2. Choose Multiple choice, Checkboxes
+3. Drag and drop questions and options with dotted handle
+4. JSON output for Firebase
+{
+  "title": "",
+  "description": "",
+  "questions": [
+    {
+      "text": "",
+      "type": "radio",
+      "options": [
+        {
+          "text": "Option 1",
+          "checked": true
+        },
+        {
+          "text": "Option 2",
+          "checked": false
+        }
+      ],
+      "comment": "12343"
     }
-  };
-  reader.readAsText(file);
+  ]
+}
+5. Sections (Section 1 of 2)
+6. Answer key selection
+7. Required indicator (*)
+8. Proctor settings:
+   8.1. Timer
+   8.1. Face Detection
+   8.2. Screen-switch-detection
+   8.3. Noise-detection
+   8.4. Eye-tracking
 
-  // reset input so same file can be re-imported
-  e.target.value = '';
-});
-
-fileInput
-
-Add:
-1. Settings
+Others: “Google Forms + Proctor exam system
+Preview mode (student view)
+Save / load from Firebase Firestore
+Proctoring hooks (camera / mic / tab focus)
+Settings
   Show One question/All questions
