@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <title>Google Forms Clone – UI + Drag & Drop</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <!-- SortableJS -->
   <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
@@ -676,6 +677,38 @@
       opacity:1;
     }
 
+    /* Top-right delete button (Google Forms style) */
+    .delete-top{
+      background: rgb(220, 53, 69);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 4px;
+  
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* Show only when question is active */
+    .card.active .delete-top{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .delete-top:hover{
+      color: #5f6368;
+    }
+
   </style>
 </head>
 <body>
@@ -717,8 +750,8 @@
   <div class="toolbar-buttons">
     <button class="g-tooltip" data-tooltip="Add question" onclick="addQuestion()">+</button>
     <button class="g-tooltip" data-tooltip="Add section" onclick="addSection()">≡</button>
-    <button class="g-tooltip" data-tooltip="Export JSON" onclick="exportJSON()">⬇</button>
-    <button class="g-tooltip" data-tooltip="Import JSON" onclick="importJSON()">⬆</button>
+        <button class="g-tooltip" data-tooltip="Import JSON" onclick="importJSON()">📂</button>
+    <button class="g-tooltip" data-tooltip="Export JSON" onclick="exportJSON()">💾</button>
     <button  class="g-tooltip" data-tooltip="Proctor settings" onclick="openProctorConfig()">🛡️</button>
   </div>
 </div>
@@ -904,6 +937,18 @@ function addQuestion(){
 
     <div class="question-header">
 
+      <button class="btn-link g-tooltip delete-top"
+        data-tooltip="Delete question"
+        onclick="removeQuestion(this)">
+      <i class="fa fa-trash"></i></button>
+
+      <!--
+      <button class="btn-link g-tooltip delete-top"
+        data-tooltip="Delete question"
+        onclick="removeQuestion(this)">
+        🗑️
+      </button>-->
+      
       <div class="q-points">
         <input type="number"
           class="points-input"
@@ -934,17 +979,12 @@ function addQuestion(){
     </div>
 
     <div class="actions">
+      <!--
       <button class="btn-link g-tooltip"
         data-tooltip="Duplicate"
         onclick="duplicateQuestion(this)">
         📄
-      </button>
-
-      <button class="btn-link g-tooltip"
-        data-tooltip="Delete question"
-        onclick="removeQuestion(this)">
-        🗑️
-      </button>
+      </button>-->
 
       <div class="required-toggle">
         <span>Required</span>

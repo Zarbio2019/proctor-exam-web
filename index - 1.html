@@ -33,6 +33,21 @@
     -webkit-text-fill-color: transparent;
   }
 
+  .button-container {
+    background: linear-gradient(90deg, #6aa3ff, #1ea3ff, #0fa0ff);
+    border-radius: 20px;
+    padding: 14px 80px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .button-container:hover {
+    opacity: 0.6;
+  }
+
   #refBtn {
     position: fixed;
     z-index: 9999;          /* always on top */
@@ -57,47 +72,11 @@
     transform: scale(1.12);
     background: #333;
   }
-
-    /* Button container (horizontal layout) */
-  .button-row {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* space between buttons */
-    margin-top: 1px;
-  }
-
-  .button-row button {
-    border: none;
-    border-radius: 15px;
-    padding: 12px 40px;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    transition: opacity 0.3s ease;
-  }
-
-  .button-row button:hover {
-    opacity: 0.7;
-  }
-
-  /* Take Exam - green */
-  .start-btn{
-    background: linear-gradient(90deg, #2ecc71, #27ae60, #1e8449);
-  }
-
-  .create-btn{
-    background: linear-gradient(90deg, #6aa3ff, #1ea3ff, #0fa0ff);
-  }
-
 </style>
 </head>
 <body>
   <h1>Proctor Exam</h1>
-  <div class="button-row">
-    <button class="start-btn" onclick="window.location.href='start.html'">Take Exam</button>
-    <button class="create-btn" onclick="window.location.href='create.html'">Create/Edit Exam</button>
-  </div>
+  <div class="button-container" onclick="window.location.href='select.html'">Start Exam</a>
 
   <button id="refBtn" title="Visit My GitHub" onclick="window.open('https://github.com/wodzarod-tech/proctor-exam-web', '_blank')">
     <i class="fa-brands fa-github"></i>
