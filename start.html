@@ -736,6 +736,44 @@
       opacity:.85;
     }
 
+    /* Countdown modal animation */
+    .start-modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .start-modal-content{
+      background: #0f1724;
+      padding: 40px 60px;
+      border-radius: 16px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+
+    .start-modal-content h2{
+      margin-bottom: 25px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .countdown{
+      font-size: 96px;
+      font-weight: bold;
+      animation: pop 1s ease-in-out infinite;
+    }
+
+    @keyframes pop{
+      0%{ transform: scale(0.8); opacity: .5; }
+      50%{ transform: scale(1); opacity: 1; }
+      100%{ transform: scale(1.15); opacity: .6; }
+    }
+
   </style>
 </head>
 <body>
@@ -744,6 +782,14 @@
   <button class="start-import-btn" onclick="importJSON()">
     📂 Import exam
   </button>
+</div>
+
+<!-- Countdown modal -->
+<div id="startModal" class="start-modal" style="display:none">
+  <div class="start-modal-content">
+    <h2>Starting exam</h2>
+    <div id="countdown" class="countdown">3</div>
+  </div>
 </div>
 
 <div id="editorApp" style="display:none;">
@@ -1291,6 +1337,8 @@ function exportJSON(){
 // import JSON from file
 function importJSON(){
   document.getElementById('jsonFileInput').click();
+
+
 }
 
 document.getElementById('jsonFileInput').addEventListener('change', e => {
@@ -1304,8 +1352,12 @@ document.getElementById('jsonFileInput').addEventListener('change', e => {
 
       // SHOW EDITOR, HIDE START SCREEN
       document.getElementById('startScreen').style.display = 'none';
-      document.getElementById('editorApp').style.display = 'block';
       
+      // Countdown modal
+      showStartExamModal(() => {
+        document.getElementById('editorApp').style.display = 'block';
+      });
+
       loadFormFromJSON(data);
     }catch(err){
       alert('Invalid JSON file');
@@ -1344,7 +1396,8 @@ function loadFormFromJSON(data){
       const lastOpt = q.querySelector('.options').lastElementChild;
 
       lastOpt.querySelector('.opt-text').value = opt.text || '';
-      lastOpt.querySelector('.opt-icon').checked = !!opt.checked;
+      lastOpt.querySelector('.opt-icon').checked = false;
+      //lastOpt.querySelector('.opt-icon').checked = !!opt.checked;
     });
 
     // feedback
@@ -1428,6 +1481,29 @@ function updateSectionNumbers(){
   sections.forEach((s, i) => {
     s.textContent = `Section ${i + 1} of ${sections.length}`;
   });
+}
+
+/***************************
+Countdown modal
+***************************/
+function showStartExamModal(onFinish){
+  const modal = document.getElementById('startModal');
+  const counter = document.getElementById('countdown');
+
+  let time = 3;
+  counter.textContent = time;
+  modal.style.display = 'flex';
+
+  const interval = setInterval(() => {
+    time--;
+    if(time === 0){
+      clearInterval(interval);
+      modal.style.display = 'none';
+      onFinish && onFinish();
+    } else {
+      counter.textContent = time;
+    }
+  }, 1000);
 }
 
 /***************************

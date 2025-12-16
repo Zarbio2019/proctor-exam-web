@@ -8,3 +8,8 @@ Proctor Exam Web
 4. Eye-tracking
 5. Proctor settings
   5.1. Timer
+
+<input class="opt-icon" type="${type}" ${type === 'radio' ? `name="${qid}" data-was-checked="false"` : ''} />
+
+function loadFormFromJSON(data){
+
