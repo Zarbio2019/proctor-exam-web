@@ -610,11 +610,53 @@
       font-size: 14px;
     }
 
+    .toggle-inline{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    .toggle-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+
     .btn-icon{
       background: none;
       border: none;
       font-size: 18px;
       cursor: pointer;
+    }
+
+    /* Timer */
+    .timer-row{
+      display:flex;
+      align-items:center;
+      margin-left:4px;
+      /*margin-left:auto;*/
+    }
+
+    .timer-input{
+      width:42px;
+      text-align:center;
+      border:none;
+      border-bottom:1px solid transparent;
+      text-align:right;
+      font-size:13px;
+      color:#202124;
+      outline:none;
+      background:transparent;
+    }
+
+    .timer-input:focus{
+      border-bottom-color:#1a73e8;
+    }
+
+    /* keep native steppers */
+    .timer-input::-webkit-inner-spin-button,
+    .timer-input::-webkit-outer-spin-button{
+      opacity:1;
     }
 
   </style>
@@ -683,7 +725,8 @@
 
     <!-- Tabs -->
     <div class="proctor-tabs">
-      <button class="tab active" onclick="switchProctorTab('camera')">Camera detection</button>
+      <button class="tab active" onclick="switchProctorTab('timer')">Timer</button>
+      <button class="tab" onclick="switchProctorTab('camera')">Camera detection</button>
       <button class="tab" onclick="switchProctorTab('noise')">Noise detection</button>
       <button class="tab" onclick="switchProctorTab('screen')">Screen detection</button>
     </div>
@@ -691,7 +734,39 @@
     <!-- Tab contents -->
     <div class="proctor-content">
 
-      <div class="tab-panel active" id="tab-camera">
+      <div class="tab-panel active" id="tab-timer">
+
+        <div class="toggle-inline">
+          <label class="toggle-row">
+            <input type="checkbox" onchange="toggleTimer(this)" />
+            <span>Timer Left:</span>
+          </label>
+
+          <div class="timer-row" style="display:none">
+            <input
+              type="number"
+              class="timer-input"
+              min="0"
+              max="59"
+              step="1"
+              value="0"
+              oninput="updateTimerJSON()"
+            />
+            <span>:</span>
+            <input
+              type="number"
+              class="timer-input"
+              min="0"
+              max="59"
+              step="1"
+              value="0"
+              oninput="fixSeconds(this); updateTimerJSON()"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-camera">
         <label class="toggle-row">
           <input type="checkbox" />
           <span>Enable camera monitoring</span>
@@ -1002,6 +1077,28 @@ function switchProctorTab(name){
 
   document.getElementById(`tab-${name}`)
     .classList.add('active');
+}
+
+// Timer
+function toggleTimer(cb){
+  const row = cb.closest('.tab-panel').querySelector('.timer-row');
+  row.style.display = cb.checked ? 'flex' : 'none';
+}
+
+function fixSeconds(input){
+  if (input.value > 59) input.value = 59;
+  if (input.value < 0) input.value = 0;
+}
+
+function updateTimerJSON(){
+  const panel = document.getElementById('tab-timer');
+  const min = panel.querySelector('.timer-min')?.value || 0;
+  const sec = panel.querySelector('.timer-sec')?.value || 0;
+
+  const totalSeconds = (Number(min) * 60) + Number(sec);
+
+  // save where you want (example)
+  console.log('Timer (seconds):', totalSeconds);
 }
 
 /***************************
