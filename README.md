@@ -44,3 +44,9 @@ document.getElementById('jsonFileInput').addEventListener('change', e => {
   // reset input so same file can be re-imported
   e.target.value = '';
 });
+
+fileInput
+
+Add:
+1. Settings
+  Show One question/All questions

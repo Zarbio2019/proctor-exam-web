@@ -776,7 +776,7 @@
 
     /* Import panel */
     .upload-card{
-      width:420px;
+      /*width:420px;*/
       background:#fff;
       border-radius:12px;
       padding:20px 20px 60px; /* extra bottom space */
@@ -951,13 +951,14 @@
   </div>
 
   <!-- hidden file input -->
+   <!--
   <input
     type="file"
     id="jsonFileInput"
     accept="application/json"
     hidden
   />
-
+-->
   <!-- Proctor Modal -->
   <div id="proctorModal" class="proctor-modal hidden">
     <div class="proctor-card">
@@ -1075,8 +1076,6 @@ Import panel
 const dropzone = document.getElementById('dropzone');
 const fileInput = document.getElementById('fileInput');
 let importedFile = null;
-
-dropzone.onclick = () => fileInput.click();
 
 dropzone.addEventListener('dragover', e => {
   e.preventDefault();
