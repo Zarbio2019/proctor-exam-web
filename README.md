@@ -135,12 +135,12 @@ submitBtn.style.display = 'inline-block';
 </div>
 
 function startTimer(){
+Auto-grade
+window.onload = async function() {
+function addOption(btn)
 
 
 
 
 
-
-
-  
 this is the final boss feature.

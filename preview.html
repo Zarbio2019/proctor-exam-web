@@ -954,6 +954,54 @@ function readFileAsJSON(file){
 }
 
 /***************************
+Auto-grade
+***************************/
+let examData = null;
+
+// Auto-grade function (JSON-based, correct)
+function gradeExamFromJSON(){
+  let score = 0;
+  let total = examData.questions.length;
+  let details = [];
+
+  examData.questions.forEach((q, index) => {
+    const questionEl = document.querySelectorAll('.question')[index];
+
+    // Correct answers from JSON
+    const correctOptions = q.options
+      .map((opt, i) => opt.checked ? i : null)
+      .filter(i => i !== null);
+
+    // User selected answers from UI
+    const selectedOptions = [...questionEl.querySelectorAll('input:checked')]
+      .map(input => Number(input.dataset.optionIndex));
+
+    // Compare arrays (order-independent)
+    const isCorrect =
+      correctOptions.length === selectedOptions.length &&
+      correctOptions.every(i => selectedOptions.includes(i));
+
+    if (isCorrect) score++;
+
+    details.push({
+      question: q.text,
+      correctOptions,
+      selectedOptions,
+      isCorrect,
+      feedback: q.comment || ""
+    });
+  });
+
+  return {
+    title: examData.title,
+    score,
+    total,
+    percentage: Math.round((score / total) * 100),
+    details
+  };
+}
+
+/***************************
 Header
 ***************************/
 // Add total points calculation
@@ -1308,6 +1356,11 @@ function submitExam(){
 
   // collect answers here
   // redirect / show results / save to Firebase
+  const result = gradeExamFromJSON();
+
+  localStorage.setItem("examResult", JSON.stringify(result));
+
+  window.location.href = "result.html";
 }
 
 // Auto-submit when the timer ends
@@ -1525,8 +1578,7 @@ function updateSectionNumbers(){
 /***************************
 Timer
 ***************************/
-//let timeLeft = 60 * 60;   // default: 15 minutes, change before start
-let timeLeft = 3; // pruebas
+let timeLeft = 60 * 60;   // default: 15 minutes, change before start
 let timerInterval = null;
 
 function startTimer(){
@@ -2040,6 +2092,7 @@ window.onload = async function() {
     // Read JSON file (awaitable)
     const json = localStorage.getItem("formContent");
     const data = JSON.parse(json);
+    examData = data;
 
     // ask for webcam
     //await startCamera();
