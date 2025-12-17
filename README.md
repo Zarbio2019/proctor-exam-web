@@ -64,3 +64,41 @@ let currentIndex = 0;
 Violation #2: Tab switch or minimize
 
 Screen-switch-detection
+
+---
+
+async function handleImport() -> preview
+
+function importJSON() -> create
+
+function exportJSON(){
+  const data = outputEl.textContent;
+  if(!data) return;
+
+I have:
+
+I have this button, do open preview.html in the same tab : 
+<button class="g-tooltip" data-tooltip="Preview exam" onclick="previewExam()">👁️</button>
+
+function previewExam() {
+  const data = outputEl.textContent;
+  if(!data) return;
+
+  localStorage.setItem('formContent', data);
+  debugger;
+  // Option 1: open preview in a new tab
+  window.open("preview.html", "_blank");
+
+  // Option 2 (alternative): show preview modal
+  // document.getElementById("previewModal").classList.add("open");
+}
+
+loadFormFromJSON
+
+updateJSON
+
+  formTitle.value = data.title || '';
+  formDesc.value = data.description || '';
+  JSON.stringify
+  JSON.parse
+  

@@ -750,9 +750,10 @@
   <div class="toolbar-buttons">
     <button class="g-tooltip" data-tooltip="Add question" onclick="addQuestion()">+</button>
     <button class="g-tooltip" data-tooltip="Add section" onclick="addSection()">≡</button>
-        <button class="g-tooltip" data-tooltip="Import JSON" onclick="importJSON()">📂</button>
+    <button class="g-tooltip" data-tooltip="Import JSON" onclick="importJSON()">📂</button>
     <button class="g-tooltip" data-tooltip="Export JSON" onclick="exportJSON()">💾</button>
-    <button  class="g-tooltip" data-tooltip="Proctor settings" onclick="openProctorConfig()">🛡️</button>
+    <button class="g-tooltip" data-tooltip="Proctor settings" onclick="openProctorConfig()">🛡️</button>
+    <button class="g-tooltip" data-tooltip="Preview exam" onclick="previewExam()">👁️</button>
     <button class="g-tooltip" data-tooltip="Home" onclick="window.location.href='index.html'">🏠</button>
   </div>
 </div>
@@ -1119,6 +1120,25 @@ function enableOptionDrag(q){
     preventOnFilter: false,
     onEnd: updateJSON
   });
+}
+
+/***************************
+Preview exam
+***************************/
+function previewExam() {
+  const data = outputEl.textContent;
+  if(!data) return;
+
+  localStorage.setItem('formContent', data);
+
+  // open preview in the same tab
+  window.location.href = "preview.html";
+
+  // Option 1: open preview in a new tab
+  //window.open("preview.html", "_blank");
+
+  // Option 2 (alternative): show preview modal
+  // document.getElementById("previewModal").classList.add("open");
 }
 
 /***************************
