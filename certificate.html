@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Certificate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    body{
+      margin:0;
+      font-family: Georgia, serif;
+      background:#f1f3f4;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+    }
+
+    .certificate{
+      background:white;
+      width:820px;
+      padding:60px;
+      border:10px solid #2e7d32;
+      text-align:center;
+      box-shadow:0 8px 24px rgba(0,0,0,.2);
+    }
+
+    h1{
+      color:#2e7d32;
+      font-size:36px;
+    }
+
+    .exam{
+      font-size:22px;
+      margin-top:10px;
+    }
+
+    .score{
+      margin-top:12px;
+      font-size:16px;
+      color:#555;
+    }
+
+    .footer{
+      margin-top:40px;
+      display:flex;
+      justify-content:space-between;
+      font-size:14px;
+      color:#555;
+    }
+
+    .actions{
+      margin-top:30px;
+    }
+
+    button{
+      padding:10px 18px;
+      border:none;
+      border-radius:6px;
+      background:#2e7d32;
+      color:white;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    button:hover{
+      opacity:.9;
+    }
+
+    /* QR code */
+    #qrSection{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- QR Code library -->
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<div class="certificate" id="certificate">
+  <h1>🎓 Certificate of Completion</h1>
+
+  <p>This certifies that the candidate has successfully passed</p>
+
+  <div class="exam" id="examTitle"></div>
+  <div class="score" id="examScore"></div>
+
+  <div class="footer">
+    <div>Date: <span id="date"></span></div>
+    <div>Authorized Signature</div>
+  </div>
+
+  <p style="margin-top:12px;font-size:14px;color:#555">
+  Certificate ID: <strong id="certId"></strong>
+  </p>
+
+  <div id="qrSection" style="margin-top:20px;">
+    <div id="qrcode"></div>
+    <p style="font-size:12px;color:#555;margin-top:6px;">
+        Scan to verify certificate
+    </p>
+  </div>
+
+  <div class="actions">
+    <button onclick="downloadPDF()">⬇ Download as PDF</button>
+  </div>
+</div>
+
+<script>
+  const result = JSON.parse(localStorage.getItem("examResult"));
+
+  // Security check
+  if (!result || result.percentage < 70 || !result.certificateId) {
+    document.body.innerHTML = "<h2>Access denied</h2>";
+  } else {
+    document.getElementById("examTitle").textContent = result.title;
+    document.getElementById("examScore").textContent =
+      `Final Score: ${result.percentage}%`;
+
+    document.getElementById("certId").textContent = result.certificateId;
+    document.getElementById("date").textContent =
+      new Date().toLocaleDateString();
+      
+    // QR content
+    const qrValue = `CERTIFICATE:${result.certificateId}`;
+    
+    // QR for verification URL -> verify.html
+    //const qrValue = `https://yourdomain.com/verify.html?id=${result.certificateId}`;
+
+    new QRCode(document.getElementById("qrcode"), {
+        text: qrValue,
+        width: 128,
+        height: 128,
+        correctLevel: QRCode.CorrectLevel.H
+    });
+  }
+
+  function downloadPDF(){
+    window.print(); // browser → Save as PDF
+  }
+
+// get Certificate ID
+document.getElementById("certId").textContent = result.certificateId;
+
+</script>
+
+</body>
+</html>

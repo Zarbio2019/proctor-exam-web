@@ -57,6 +57,12 @@ Disable Submit until all required answered
 
 ⚠ Turn timer red at last 60s
 
+🔐 QR verification
+
+🏫 Institution logo & signatures
+
+
+
 
 
 ***********************************************
@@ -156,7 +162,19 @@ function submitExam(){
 
 gradeExamFromJSON()
 
+let examData = null;
 
+    const selectedOptions = [...questionEl.querySelectorAll('input:checked')]
+      .map(input => Number(input.dataset.optionIndex));
+
+  // to map UI answers
+  const optionIndex = options.querySelectorAll('.option').length - 1;
+  opt.querySelector('.opt-icon').dataset.optionIndex = optionIndex;
+    /* resulting HTML:
+    <input type="radio" data-option-index="0">
+    <input type="radio" data-option-index="1">
+    */
+  //
 
 
 

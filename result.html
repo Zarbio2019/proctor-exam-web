@@ -23,6 +23,23 @@
     font-weight:bold;
     color:#673ab7;
   }
+
+  /* Certificate */
+  #certificateBtn{
+    margin-top:12px;
+    padding:10px 16px;
+    border:none;
+    border-radius:20px;
+    background:#2e7d32;
+    color:white;
+    font-size:14px;
+    cursor:pointer;
+  }
+
+  #certificateBtn:hover{
+    opacity:.9;
+  }
+
 </style>
 </head>
 <body>
@@ -31,20 +48,40 @@
   <h2>Exam Result</h2>
   <div class="score" id="score"></div>
   <p id="summary"></p>
-  <button onclick="goHome()">🏠 Home</button>
+  <button onclick="window.location.href='index.html'">🏠 Home</button>
 </div>
 
 <script>
   const result = JSON.parse(localStorage.getItem("examResult"));
-  debugger;
+
   if (!result) {
     document.body.innerHTML = "<h2>No result found</h2>";
   } else {
     document.getElementById("score").textContent =
       `${result.score} / ${result.total}`;
 
-    document.getElementById("summary").textContent =
-      `Score: ${result.percentage}%`;
+    const status = result.percentage >= 70 ? "✅ PASSED" : "❌ NOT PASSED";
+
+    let html = `
+      <p>
+        <strong>
+          Score: ${result.percentage}% → <b>${status}</b>
+        </strong>
+      </p>
+    `;
+
+    if (result.percentage >= 70) {
+      result.certificateId = generateCertificateId();
+      localStorage.setItem("examResult", JSON.stringify(result));
+
+      html += `
+        <button id="certificateBtn" onclick="goToCertificate()">
+          🎓 Get Certificate
+        </button>
+      `;
+    }
+
+    document.getElementById("summary").innerHTML = html;
 
     const list = document.createElement("ul");
 
@@ -56,6 +93,17 @@
 
     document.querySelector(".card").appendChild(list);
   }
+
+// get certificate
+function goToCertificate(){
+  window.location.href = "certificate.html";
+}
+
+// Generate Certificate ID
+function generateCertificateId(){
+  return "CERT-" + Date.now().toString(36).toUpperCase();
+}
+
 </script>
 
 </body>

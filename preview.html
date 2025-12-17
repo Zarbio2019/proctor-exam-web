@@ -954,7 +954,7 @@ function readFileAsJSON(file){
 }
 
 /***************************
-Auto-grade
+Auto-grade: Exam results
 ***************************/
 let examData = null;
 
@@ -966,7 +966,7 @@ function gradeExamFromJSON(){
 
   examData.questions.forEach((q, index) => {
     const questionEl = document.querySelectorAll('.question')[index];
-
+    debugger;
     // Correct answers from JSON
     const correctOptions = q.options
       .map((opt, i) => opt.checked ? i : null)
@@ -1193,6 +1193,15 @@ function addOption(btn){
 
   options.appendChild(opt);
 
+  // to map UI answers
+  const optionIndex = options.querySelectorAll('.option').length - 1;
+  opt.querySelector('.opt-icon').dataset.optionIndex = optionIndex;
+    /* resulting HTML:
+    <input type="radio" data-option-index="0">
+    <input type="radio" data-option-index="1">
+    */
+  //
+
   enableOptionDrag(opt); // drag & drop per option
 
   updateJSON();
@@ -1357,7 +1366,7 @@ function submitExam(){
   // collect answers here
   // redirect / show results / save to Firebase
   const result = gradeExamFromJSON();
-
+  debugger;
   localStorage.setItem("examResult", JSON.stringify(result));
 
   window.location.href = "result.html";
@@ -1493,7 +1502,7 @@ function getProctorSettings(){
   };
 }
 
-// load JSON into editor
+// import exam: load JSON into editor
 function loadFormFromJSON(data){
 
   // clear existing
@@ -1523,7 +1532,14 @@ function loadFormFromJSON(data){
 
       lastOpt.querySelector('.opt-text').value = opt.text || '';
       lastOpt.querySelector('.opt-icon').checked = false; // option unchecked
-      //lastOpt.querySelector('.opt-icon').checked = !!opt.checked;
+
+      // to map UI answers
+      lastOpt.querySelector('.opt-icon').checked = !!opt.checked;
+        /* resulting HTML:
+        <input type="radio" data-option-index="0">
+        <input type="radio" data-option-index="1">
+        */
+      //
     });
 
     // feedback
@@ -2099,8 +2115,7 @@ window.onload = async function() {
   try {
     // Read JSON file (awaitable)
     const json = localStorage.getItem("formContent");
-    const data = JSON.parse(json);
-    examData = data;
+    examData = JSON.parse(json);
 
     // ask for webcam
     //await startCamera();
@@ -2114,7 +2129,7 @@ window.onload = async function() {
     }
     
     // Load questions
-    loadFormFromJSON(data);
+    loadFormFromJSON(examData);
     //addQuestion();
     startTimer();
 
