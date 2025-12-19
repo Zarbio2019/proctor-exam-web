@@ -9,13 +9,17 @@
   body {
     background: url('./exam.gif');
     background-size: cover; /* fills the entire screen */
-    background-position: left center;
+    background-position: center top;
     background-repeat: no-repeat;
-    height: 100vh; /* ensures it fills viewport height */
+    height: 100svh; /* ensures it fills viewport height. svh: fit mobile-safe viewport height */
     display: flex;
     flex-direction: column; /* stack elements vertically */
     align-items: center;
     justify-content: center;
+    
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+
     height: 100vh;
     gap: 25px; /* space between title and buttons */
     color: white;
