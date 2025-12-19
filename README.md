@@ -99,3 +99,22 @@ function getProctorSettings(){
 preview:
   window.onload = async function() {
     
+Proctor configuration
+
+      <div class="tab-panel active" id="tab-timer">
+
+    camera: {
+      enabled: isChecked('camera-enabled'),
+
+
+      // General Settings
+
+      style="display:none;"
+
+      form.proctor = getProctorSettings();
+
+<div id="proctorModal" class="proctor-modal hidden">
+
+function updateJSON(){
+  outputEl.textContent = JSON.stringify(form, null, 2);
+  

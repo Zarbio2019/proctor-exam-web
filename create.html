@@ -765,7 +765,7 @@
     <button class="g-tooltip" data-tooltip="Add section" onclick="addSection()">≡</button>
     <button class="g-tooltip" data-tooltip="Import JSON" onclick="importJSON()">📂</button>
     <button class="g-tooltip" data-tooltip="Export JSON" onclick="exportJSON()">💾</button>
-    <button class="g-tooltip" data-tooltip="Proctor settings" onclick="openProctorConfig()">🛡️</button>
+    <button class="g-tooltip" data-tooltip="Settings" onclick="openProctorConfig()">⚙️</button>
     <button class="g-tooltip" data-tooltip="Preview exam" onclick="previewExam()">👁️</button>
     <button class="g-tooltip" data-tooltip="Home" onclick="window.location.href='index.html'">🏠</button>
   </div>
@@ -784,23 +784,46 @@
   <div class="proctor-card">
 
     <div class="proctor-header">
-      <h3>Proctor configuration</h3>
+      <h3>Settings</h3>
       <button class="btn-icon" onclick="closeProctorConfig()">✕</button>
     </div>
 
-    <!-- Tabs -->
+    <!-- Settings Tabs -->
     <div class="proctor-tabs">
+      <button class="tab active" onclick="switchSettingsTab('general')">General</button>
+      <button class="tab" onclick="switchSettingsTab('proctor')">Proctor 🛡️</button>
+
+      <!--
       <button class="tab active" onclick="switchProctorTab('timer')">Timer</button>
       <button class="tab" onclick="switchProctorTab('camera')">Camera</button>
       <button class="tab" onclick="switchProctorTab('noise')">Microphone</button>
       <button class="tab" onclick="switchProctorTab('screen')">Screen</button>
+      -->
     </div>
 
     <!-- Tab contents -->
     <div class="proctor-content">
 
-      <!-- TIMER -->
-      <div class="tab-panel active" id="tab-timer">
+      <!-- General Settings -->
+      <div class="tab-panel active" id="tab-general">
+
+        <label class="toggle-row"><strong>General:</strong></label>
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="view-toggle-questions" />
+          <span>View toggle questions (One by One/All)</span>
+        </label>
+        
+        <label class="toggle-row">
+          <input type="checkbox" data-proctor="view-questions" />
+          <span>View questions One by One</span>
+        </label>
+
+      </div>
+
+      <div class="tab-panel" id="tab-proctor">
+
+        <!-- Timer -->
+        <label class="toggle-row"><strong>Timer:</strong></label>
 
         <div class="toggle-inline">
           <label class="toggle-row">
@@ -830,13 +853,13 @@
             />
           </div>
         </div>
-      </div>
 
-      <!-- CAMERA -->
-      <div class="tab-panel" id="tab-camera">
+        <!-- Camera -->
+        <!--<div class="tab-panel" id="tab-camera">-->
+        <label class="toggle-row"><strong>Camera:</strong></label>
         <label class="toggle-row">
           <input type="checkbox" data-proctor="camera-enabled" />
-          <span>Enable camera</span>
+          <span>Show camera</span>
         </label>
 
         <label class="toggle-row">
@@ -848,23 +871,27 @@
           <input type="checkbox" data-proctor="camera-eye" />
           <span>Eye-Tracking: Gaze Direction</span>
         </label>
-      </div>
+        <!--</div>-->
 
-      <!-- NOISE -->
-      <div class="tab-panel" id="tab-noise">
+        <!-- Microphone -->
+        <!--<div class="tab-panel" id="tab-noise">-->
+        <label class="toggle-row"><strong>Microphone:</strong></label>
+
         <label class="toggle-row">
           <input type="checkbox" data-proctor="microphone-enabled" />
-          <span>Enable microphone</span>
+          <span>Show microphone</span>
         </label>
 
         <label class="toggle-row">
           <input type="checkbox" data-proctor="noise-loud" />
           <span>Noise-detection: Detect loud background noise</span>
         </label>
-      </div>
+        <!--</div>-->
 
-      <!-- SCREEN -->
-      <div class="tab-panel" id="tab-screen">
+        <!-- Screen -->
+        <!--<div class="tab-panel" id="tab-screen">-->
+        <label class="toggle-row"><strong>Screen:</strong></label>
+
         <label class="toggle-row">
           <input type="checkbox" data-proctor="screen-tab"/>
           <span>Detect tab switching or minimize</span>
@@ -894,6 +921,7 @@
           <input type="checkbox" data-proctor="screen-secondmonitor"/>
           <span>Fake "Second Monitor Detection"</span>
         </label>
+        <!--</div>-->
 
       </div>
 
@@ -1250,14 +1278,14 @@ function closeProctorConfig(){
   document.getElementById('proctorModal').classList.add('hidden');
 }
 
-function switchProctorTab(name){
+function switchSettingsTab(name){
   document.querySelectorAll('.proctor-tabs .tab')
     .forEach(t => t.classList.remove('active'));
 
   document.querySelectorAll('.tab-panel')
     .forEach(p => p.classList.remove('active'));
 
-  document.querySelector(`[onclick="switchProctorTab('${name}')"]`)
+  document.querySelector(`[onclick="switchSettingsTab('${name}')"]`)
     .classList.add('active');
 
   document.getElementById(`tab-${name}`)
@@ -1321,10 +1349,10 @@ function updateJSON(){
     });
   });
 
-  form.proctor = getProctorSettings();
+  form.settings = getProctorSettings();
 
   outputEl.textContent = JSON.stringify(form, null, 2);
-  updateTotalPoints();
+  //updateTotalPoints();
 }
 
 function isChecked(key){
@@ -1337,6 +1365,10 @@ function getProctorSettings(){
   const timerInputs = document.querySelectorAll('#tab-timer .timer-input');
 
   return {
+    general: {
+      viewToggleQuestions: isChecked('view-toggle-questions'),
+      viewQuestions: isChecked('view-questions')
+    },
     timer: {
       enabled: timerEnabled,
       minutes: timerEnabled ? Number(timerInputs[0]?.value || 0) : 0,
