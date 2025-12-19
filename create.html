@@ -1543,6 +1543,31 @@ document.getElementById('jsonFileInput').addEventListener('change', e => {
 
   // reset input so same file can be re-imported
   e.target.value = '';
+
+  // Prevent page from staying at bottom after import
+  window.scrollTo({ top: 0, behavior: 'instant' });
+
+  // scroll to the title
+  setTimeout(() => {
+    const titleInput = document.getElementById('formTitle');
+
+    if (titleInput) {
+      // focus cursor
+      titleInput.focus();
+
+      // place cursor at end (or start if you prefer)
+      titleInput.setSelectionRange(
+        titleInput.value.length,
+        titleInput.value.length
+      );
+
+      // scroll to title smoothly
+      titleInput.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  }, 50);
 });
 
 // load JSON into editor
@@ -1698,6 +1723,12 @@ window.onload = async function() {
     });
 
     addQuestion();
+
+    // Auto-focus title text:
+    // when clicking Add question, then cursor automatically appears in the title text
+    setTimeout(() => {
+      document.getElementById('formTitle')?.focus();
+    }, 0);
   }
 }
 

@@ -121,3 +121,10 @@ warning at last X minutes
       hours: timerEnabled ? Number(timerInputs[0]?.value || 0) : 0,
 
 gradeExamFromJSON
+
+    // Auto-focus title text:
+    // when clicking Add question, then cursor automatically appears in the title text
+    setTimeout(() => {
+      document.getElementById('formTitle')?.focus();
+    }, 0);
+    
