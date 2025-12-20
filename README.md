@@ -98,7 +98,37 @@ addQuestion
         <span>points</span>
       </div>
 
+timer:
+          <div class="timer-row" style="display:none">
+            <input
+              type="number"
+              class="timer-input"
+              min="0"
+              max="24"
+              step="1"
+              value="0"
+              oninput="fixHour(this); updateTimerJSON()"
+            />h
 
+score:
+        <div class="toggle-inline">
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="score-min" onchange="toggleScoreMin(this)" />
+            <span>Score minimum to pass (%)</span>
+          </label>
+
+          <div class="score-row" style="display:none">
+              <input
+                type="number"
+                class="score-input"
+                min="0"
+                step="1"
+                value="0"
+              />%
+          </div>
+        </div>
+
+/* keep native steppers */
 
 PENDINGS:
 1. In create.html addSection().

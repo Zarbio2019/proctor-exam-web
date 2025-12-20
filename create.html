@@ -787,6 +787,7 @@
       display:flex;
       align-items:center;
       margin-left:4px;
+      pointer-events: auto;
     }
 
     .score-input{
@@ -799,16 +800,12 @@
       color:#202124;
       outline:none;
       background:transparent;
+      pointer-events: auto;
+      cursor: text;
     }
 
     .score-input:focus{
       border-bottom-color:#1a73e8;
-    }
-
-    /* keep native steppers */
-    .score-input::-webkit-inner-spin-button,
-    .score-input::-webkit-outer-spin-button{
-      opacity:1;
     }
 
     /* Timer */
@@ -817,6 +814,11 @@
       align-items:center;
       margin-left:4px;
       /*margin-left:auto;*/
+      pointer-events: auto;
+    }
+
+    .timer-row *{
+      pointer-events: auto;
     }
 
     .timer-input{
@@ -829,6 +831,8 @@
       color:#202124;
       outline:none;
       background:transparent;
+      pointer-events: auto;
+      cursor: text;
     }
 
     .timer-input:focus{
@@ -836,9 +840,14 @@
     }
 
     /* keep native steppers */
-    .timer-input::-webkit-inner-spin-button,
+/*    .timer-input::-webkit-inner-spin-button,
     .timer-input::-webkit-outer-spin-button{
       opacity:1;
+    }
+*/
+    input[type="number"] {
+      pointer-events: auto;
+      user-select: auto;
     }
 
     /* Top-right delete button (Google Forms style) */
@@ -1006,7 +1015,7 @@
 
           <div class="timer-row" style="display:none">
             <input
-              type="number"0
+              type="number"
               class="timer-input"
               min="0"
               max="24"
@@ -1150,7 +1159,6 @@ document.addEventListener('input', () => {
   if(!data) return;
 
   autosaveTimer = setTimeout(() => {
-    debugger;
     localStorage.setItem('formContent',data);
   }, 500);
 });
@@ -1540,6 +1548,18 @@ function updateTimerJSON(){
   // save where you want (example)
   console.log('Timer (seconds):', totalSeconds);
 }
+
+// protect focus explicitly to edit input=numbers
+document.querySelectorAll(".timer-input").forEach(input => {
+  input.addEventListener("mousedown", e => e.stopPropagation());
+  input.addEventListener("click", e => e.stopPropagation());
+  input.addEventListener("focus", e => e.stopPropagation());
+});
+document.querySelectorAll(".score-input").forEach(input => {
+  input.addEventListener("mousedown", e => e.stopPropagation());
+  input.addEventListener("click", e => e.stopPropagation());
+  input.addEventListener("focus", e => e.stopPropagation());
+});
 
 /***************************
 Save in JSON for database
