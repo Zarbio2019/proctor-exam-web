@@ -113,4 +113,6 @@ loadFormFromJSON
 
     localStorage.removeItem("examResult");
   }
-  
+
+  Show ✔ / ✖ icons inside option
+  Show feedback under each question
