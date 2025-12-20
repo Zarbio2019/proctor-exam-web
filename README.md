@@ -211,3 +211,11 @@ function previewExam() {
       <textarea class="q-title" placeholder="Question" rows="1"></textarea>
 
 function addOption(btn){
+
+      <!-- Settings Tabs -->
+    <div class="proctor-tabs">
+      <button class="tab active" onclick="switchSettingsTab('general')">General</button>
+      <button class="tab" onclick="switchSettingsTab('proctor')">Proctor 🛡️</button>
+    </div>
+
+proctor-tabs --> settings-tabs

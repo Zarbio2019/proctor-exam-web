@@ -602,12 +602,12 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .proctor-tabs{
+    .settings-tabs{
       display: flex;
       border-bottom: 1px solid var(--border);
     }
 
-    .proctor-tabs .tab{
+    .settings-tabs .tab{
       flex: 1;
       padding: 10px;
       background: none;
@@ -617,13 +617,13 @@
       color: #5f6368;
     }
 
-    .proctor-tabs .tab.active{
+    .settings-tabs .tab.active{
       color: var(--purple);
       border-bottom: 2px solid var(--purple);
       font-weight: 500;
     }
 
-    .proctor-content{
+    .settings-content{
       padding: 20px;
     }
 
@@ -866,13 +866,13 @@
     </div>
 
     <!-- Settings Tabs -->
-    <div class="proctor-tabs">
+    <div class="settings-tabs">
       <button class="tab active" onclick="switchSettingsTab('general')">General</button>
       <button class="tab" onclick="switchSettingsTab('proctor')">Proctor 🛡️</button>
     </div>
 
     <!-- Tab contents -->
-    <div class="proctor-content">
+    <div class="settings-content">
 
       <!-- General Settings -->
       <div class="tab-panel active" id="tab-general">
@@ -914,6 +914,9 @@
               />%
           </div>
         </div>
+      </div>
+      
+      <!-- Proctor Settings -->
       <div class="tab-panel" id="tab-proctor">
 
         <!-- Timer -->
@@ -980,7 +983,6 @@
 
         <!-- Screen -->
         <label class="toggle-row"><strong>Screen:</strong></label>
-
         <label class="toggle-row">
           <input type="checkbox" data-proctor="screen-tab"/>
           <span>Detect tab switching or minimize</span>
@@ -1389,7 +1391,7 @@ function closeProctorConfig(){
 }
 
 function switchSettingsTab(name){
-  document.querySelectorAll('.proctor-tabs .tab')
+  document.querySelectorAll('.settings-tabs .tab')
     .forEach(t => t.classList.remove('active'));
 
   document.querySelectorAll('.tab-panel')
