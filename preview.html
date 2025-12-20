@@ -502,8 +502,9 @@
     .feedback{
       position: relative;
       display: flex;
-      align-items: flex-start;
-      gap: 8px;
+      flex-direction: column;
+      /*align-items: flex-start;*/
+      gap: 2px;
       margin-top: 8px;
     }
 
@@ -511,6 +512,31 @@
     .feedback .q-title{
       border-bottom-color: transparent;
       transition: border-color .15s ease;
+    }
+
+    .feedback-ok-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #188038;
+      margin-bottom: 6px;
+    }
+
+    .feedback-error-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #ed0b0b;
+      margin-bottom: 6px;
+    }
+
+    .feedback-icon {
+      font-size: 14px;
+      line-height: 1;
     }
 
     /* Active question: show underline */
@@ -521,6 +547,20 @@
     /* Focus highlight */
     .card.active .feedback .q-title:focus{
       border-bottom-color: #1a73e8;
+    }
+
+    .feedback-group{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feedback-group textarea{
+      margin-top: 2px;
+      padding-left: 2px;
+    }
+
+    .feedback-group textarea:placeholder-shown {
+      opacity: 0.95;
     }
 
     /* Proctor modal */
@@ -760,6 +800,23 @@
       opacity: 0.9;
     }
 
+    /* Result highlighting */
+    /* ✅ options the user selected correctly → green border */
+    /* ❌ options the user selected incorrectly → red border */
+    .option.correct {
+      border: 2px solid #188038;
+      background: #e6f4ea;
+    }
+
+    .option.incorrect {
+      border: 2px solid #d93025;
+      background: #fce8e6;
+    }
+
+    /* Lock inputs after submit */
+    .preview-mode input {
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -953,6 +1010,10 @@ let questionIdCounter = 0; // question ID
 
 const questionsEl = document.getElementById('questions');
 
+// Detect "result mode"
+const examResult = JSON.parse(localStorage.getItem("examResult"));
+const isResultMode = !!examResult;
+
 function readFileAsJSON(file){
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -1004,7 +1065,8 @@ function gradeExamFromJSON(){
       correctOptions,
       selectedOptions,
       isCorrect,
-      feedback: q.comment || ""
+      feedbackOk: q.feedbackOk || "",
+      feedbackError: q.feedbackError || ""
     });
   });
 
@@ -1127,8 +1189,23 @@ function addQuestion(){
     </div>
 
     <div class="feedback" style="display:none">
-      <textarea class="q-title q-comment" id="comment" rows="1"
-        placeholder="Feedback"></textarea>
+
+      <div class="feedback-group ok">
+        <div class="feedback-ok-label">
+          <span class="feedback-icon">✔</span>
+          <span>Feedback for correct answers:</span>
+        </div>
+        <textarea class="q-title q-comment-ok" rows="1" placeholder="Feedback"></textarea>
+      </div>
+
+      <div class="feedback-group error">
+        <div class="feedback-error-label">
+          <span class="feedback-icon">✖</span>
+          <span>Feedback for incorrect answers:</span>
+        </div>
+        <textarea class="q-title q-comment-error" rows="1" placeholder="Feedback"></textarea>
+      </div>
+
     </div>
 
     <div class="actions">
@@ -1510,7 +1587,8 @@ function updateJSON(){
           checked: control.checked
         };
       }),
-      comment: q.querySelector('.q-comment')?.value || ''
+      feedbackOk: q.querySelector('.q-comment-ok')?.value || '',
+      feedbackError: q.querySelector('.q-comment-error')?.value || ''
     });
   });
 
@@ -1603,11 +1681,25 @@ function loadFormFromJSON(data){
     });
 
     // feedback
-    if(qData.comment){
-      // auto-resize for feedback
-      const comment = q.querySelector('#comment');
-      comment.value = qData.comment;
-      autoResizeTextarea(comment);
+    if(examResult?.certificateId) {
+      localStorage.removeItem("examResult");
+          
+      const feedbackBox = q.querySelector('.feedback');
+
+      if (qData.feedbackOk || qData.feedbackError) {
+        feedbackBox.style.display = 'block';
+      }
+
+      if(qData.feedbackOk){
+        // auto-resize for feedback
+        const feedbackOk = q.querySelector('.q-comment-ok');
+        feedbackOk.value = qData.feedbackOk;
+      }
+      if(qData.feedbackError){
+        // auto-resize for feedback
+        const feedbackError = q.querySelector('.q-comment-error');
+        feedbackError.value = qData.feedbackError;
+      }
     }
   });
 
@@ -1622,6 +1714,35 @@ function loadFormFromJSON(data){
   
   updateJSON();
   updateQuestionCounters();
+}
+
+// Apply borders per question
+// ✅ options the user selected correctly → green border
+// ❌ options the user selected incorrectly → red border
+function applyResultHighlighting() {
+  if (!examResult || !examResult.details) return;
+
+  document.body.classList.add("preview-mode");
+
+  document.querySelectorAll(".question").forEach((qEl, qIndex) => {
+    const detail = examResult.details[qIndex];
+    if (!detail) return;
+
+    const options = qEl.querySelectorAll(".option");
+
+    options.forEach((optEl, optIndex) => {
+      const input = optEl.querySelector("input");
+
+      // Mark selected options
+      if (detail.selectedOptions.includes(optIndex)) {
+        if (detail.correctOptions.includes(optIndex)) {
+          optEl.classList.add("correct");
+        } else {
+          optEl.classList.add("incorrect");
+        }
+      }
+    });
+  });
 }
 
 /***************************
@@ -2290,6 +2411,9 @@ window.onload = async function() {
 
   // Load questions
   loadFormFromJSON(examData);
+
+  // Apply borders per question
+  applyResultHighlighting();
 
   // Apply Settings/General
   applySettingsGeneral(examData.settings.general);

@@ -62,6 +62,7 @@
   <h2>Exam Result</h2>
   <div class="score" id="score"></div>
   <p id="summary"></p>
+  <button onclick="window.location.href='preview.html'">📊 See results</button>
   <button onclick="window.location.href='index.html'">🏠 Home</button>
 </div>
 
@@ -83,7 +84,7 @@
         </strong>
       </p>
       <p>
-        Score min: ${result.scoreMin}%</b>
+        Score min to pass: ${result.scoreMin}%</b>
       </p>
     `;
 
@@ -100,11 +101,12 @@
 
     document.getElementById("summary").innerHTML = html;
 
+    // Result details
     const list = document.createElement("ul");
 
     result.details.forEach(d => {
       const li = document.createElement("li");
-      li.textContent = `${d.question} — ${d.isCorrect ? "✔ Correct" : "✖ Incorrect"} ${d.feedback}`;
+      li.textContent = `${d.question} — ${d.isCorrect ? "✔ Correct" : "✖ Incorrect"}`;
       list.appendChild(li);
     });
 

@@ -84,138 +84,33 @@ Disable Submit until all required answered
 
 warning at last X minutes
 
+---
 
+function submitExam(){
 
+localStorage.setItem("examResult", JSON.stringify(result));
 
-<span>Score minimum to pass (%)</span>
+const result = JSON.parse(localStorage.getItem("examResult"));
+    <div class="feedback" style="display:none">
 
-<div class="toggle-inline">
-  <label class="toggle-row">
-    <input type="checkbox" data-proctor="timer-enabled" onchange="toggleTimer(this)" />
-    <span>Timer Left (hour | minutes)</span>
-  </label>
+loadFormFromJSON
 
-  <div class="timer-row" style="display:none">
-    <input
-      type="number"0
-      class="timer-input"
-      min="0"
-      max="24"
-      step="1"
-      value="0"
-      oninput="fixHour(this); updateTimerJSON()"
-    />h
-    <span>:</span>
-    <input
-      type="number"
-      class="timer-input"
-      min="0"
-      max="59"
-      step="1"
-      value="0"
-      oninput="fixMinutes(this); updateTimerJSON()"
-    />min
-  </div>
-</div>
+    <div class="feedback" style="display:none">
 
-      hours: timerEnabled ? Number(timerInputs[0]?.value || 0) : 0,
+      <div class="feedback-group ok">
+        <div class="feedback-ok-label">
+          <span class="feedback-icon">✔</span>
+          <span>Feedback for correct answers:</span>
+        </div>
+        <textarea class="q-title q-comment-ok" id="feedbackOk" rows="1" placeholder="Feedback"></textarea>
+      </div>
 
-gradeExamFromJSON
-
-    // Auto-focus title text:
-    // when clicking Add question, then cursor automatically appears in the title text
-    setTimeout(() => {
-      document.getElementById('formTitle')?.focus();
-    }, 0);
-    
-    /* Visible only on active question */
-    .card.active .opt-drag{
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-create:
-    .drag{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 100%;
-      height: 24px;
-
-      margin: -8px 0 8px 0;   /* pull it slightly up like GForms */
-      cursor: grab;
-      user-select: none;
-
-      color: #9aa0a6;
-      font-size: 18px;
-      line-height: 4;
-    }
-
-preview:
-    .drag{
-      display: none;
-      justify-content: center;
-      align-items: center;
-
-      width: 100%;
-      height: 24px;
-
-      margin: -8px 0 8px 0;   /* pull it slightly up like GForms */
-      cursor: grab;
-      user-select: none;
-
-      color: #9aa0a6;
-      font-size: 18px;
-      line-height: 4;
-      pointer-events: none;
-    }
-
-create:
-window.onload = async function() {
-
-  setupSettingsChangeTracking();
-
-  // Restore Auto-save while editing
-  // Restore go back button from Preview
-  // Read JSON file (awaitable)
-  const json = localStorage.getItem("formContent");
-  
-  if(json) {
-    examData = JSON.parse(json);
-  
+  // After Submit, the see results
+  const result = JSON.parse(localStorage.getItem("examResult"));
+  if(result?.certificateId) {
     // Load questions
     loadFormFromJSON(examData);
-  } else {
-    new Sortable(questionsEl, {
-      handle: '.drag',
-      animation: 150,
-      onEnd: () => {
-        updateJSON();
-        updateQuestionCounters();
-      }
-    });
 
-    addQuestion();
-
-    // Auto-focus title text:
-    // when clicking Add question, then cursor automatically appears in the title text
-    setTimeout(() => {
-      document.getElementById('formTitle')?.focus();
-    }, 0);
+    localStorage.removeItem("examResult");
   }
-}
-
-function previewExam() {
-
-      <textarea class="q-title" placeholder="Question" rows="1"></textarea>
-
-function addOption(btn){
-
-      <!-- Settings Tabs -->
-    <div class="proctor-tabs">
-      <button class="tab active" onclick="switchSettingsTab('general')">General</button>
-      <button class="tab" onclick="switchSettingsTab('proctor')">Proctor 🛡️</button>
-    </div>
-
-proctor-tabs --> settings-tabs
+  

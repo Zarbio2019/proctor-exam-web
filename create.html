@@ -550,8 +550,9 @@
     .feedback{
       position: relative;
       display: flex;
-      align-items: flex-start;
-      gap: 8px;
+      flex-direction: column;
+      /*align-items: flex-start;*/
+      gap: 2px;
       margin-top: 8px;
     }
 
@@ -559,6 +560,31 @@
     .feedback .q-title{
       border-bottom-color: transparent;
       transition: border-color .15s ease;
+    }
+
+    .feedback-ok-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #188038;
+      margin-bottom: 6px;
+    }
+
+    .feedback-error-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #ed0b0b;
+      margin-bottom: 6px;
+    }
+
+    .feedback-icon {
+      font-size: 14px;
+      line-height: 1;
     }
 
     /* Active question: show underline */
@@ -569,6 +595,20 @@
     /* Focus highlight */
     .card.active .feedback .q-title:focus{
       border-bottom-color: #1a73e8;
+    }
+
+    .feedback-group{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feedback-group textarea{
+      margin-top: 2px;
+      padding-left: 2px;
+    }
+
+    .feedback-group textarea:placeholder-shown {
+      opacity: 0.95;
     }
 
     /* Settings modal */
@@ -1151,8 +1191,23 @@ function addQuestion(){
     </div>
 
     <div class="feedback">
-      <textarea class="q-title q-comment" id="comment" rows="1"
-        placeholder="Feedback"></textarea>
+
+      <div class="feedback-group ok">
+        <div class="feedback-ok-label">
+          <span class="feedback-icon">✔</span>
+          <span>Feedback for correct answers:</span>
+        </div>
+        <textarea class="q-title q-comment-ok" rows="1" placeholder="Feedback"></textarea>
+      </div>
+
+      <div class="feedback-group error">
+        <div class="feedback-error-label">
+          <span class="feedback-icon">✖</span>
+          <span>Feedback for incorrect answers:</span>
+        </div>
+        <textarea class="q-title q-comment-error" rows="1" placeholder="Feedback"></textarea>
+      </div>
+
     </div>
 
     <div class="actions">
@@ -1481,7 +1536,8 @@ function updateJSON(){
           checked: control.checked
         };
       }),
-      comment: q.querySelector('.q-comment')?.value || ''
+      feedbackOk: q.querySelector('.q-comment-ok')?.value || '',
+      feedbackError: q.querySelector('.q-comment-error')?.value || ''
     });
   });
 
@@ -1646,12 +1702,19 @@ function loadFormFromJSON(data){
     });
 
     // feedback
-    if(qData.comment){
+    if(qData.feedbackOk){
       // auto-resize for feedback
-      const comment = q.querySelector('#comment');
-      comment.value = qData.comment;
-      autoResizeTextarea(comment);
+      const feedbackOk = q.querySelector('.q-comment-ok');
+      feedbackOk.value = qData.feedbackOk;
+      autoResizeTextarea(feedbackOk);
     }
+    if(qData.feedbackError){
+      // auto-resize for feedback
+      const feedbackError = q.querySelector('.q-comment-error');
+      feedbackError.value = qData.feedbackError;
+      autoResizeTextarea(feedbackError);
+    }
+
   });
 
   // Auto-resize ALL on load
