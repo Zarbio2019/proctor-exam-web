@@ -24,9 +24,6 @@
       font-family:Roboto, Arial, sans-serif;
       background:var(--bg);
       color:var(--text);
-      /* Mobile centering */
-      display: flex;
-      justify-content: center;
     }
 
     header{
@@ -43,23 +40,6 @@
       display: flex;
       align-items: flex-start;
       gap: 16px;
-    }
-
-    /* for mobile */
-    @media (max-width: 600px){
-      .form-header-row{
-        flex-direction: column;
-        gap: 8px;
-      }
-
-      .total-points{
-        margin-left: 0;
-        align-self: flex-end;
-      }
-
-      .title-input{
-        font-size: 24px;
-      }
     }
 
     .total-points{
@@ -80,13 +60,8 @@
     }
 
     .container{
-      width: 100%;
       max-width:820px;
-      /*margin:24px auto;*/
-
-      /* Mobile padding */
-      padding: 16px 12px 120px; /* bottom padding avoids toolbar overlap */
-      box-sizing: border-box;
+      margin:24px auto;
     }
 
     .card{
@@ -97,14 +72,6 @@
       padding:20px;
       margin-bottom:16px;
       /*position:relative;*/
-    }
-
-    /* for mobile */
-    @media (max-width: 600px){
-      .card{
-        padding: 16px;
-        border-radius: 10px;
-      }
     }
 
     .card.active{
@@ -467,16 +434,6 @@
       z-index: 1000;
     }
 
-    /* for mobile */
-    @media (max-width: 600px){
-      .gforms-toolbar.bottom{
-        width: calc(100% - 16px);
-        left: 8px;
-        transform: none;
-        border-radius: 12px 12px 0 0;
-      }
-    }
-
     /* Hidden state */
     .gforms-toolbar.bottom.hidden{
       transform: translateX(-50%) translateY(100%);
@@ -634,18 +591,6 @@
 
     .feedback-group textarea:placeholder-shown {
       opacity: 0.95;
-    }
-
-    /* for mobile */
-    @media (max-width: 600px){
-      textarea,
-      input[type="text"]{
-        font-size: 16px; /* prevents iOS zoom */
-      }
-
-      .opt-drag{
-        left: -10px;
-      }
     }
 
     /* Proctor modal */
@@ -922,54 +867,6 @@
     .preview-mode input {
       pointer-events: none;
     }
-
-    /* 📱 Mobile: make camera stick to top while scrolling */
-    @media (max-width: 600px) {
-      #webcam {
-        position: sticky;
-        top: 0;
-        right: auto;
-        left: 0;
-
-        width: 100%;
-        height: auto;
-
-        display: flex;
-        align-items: center;
-        gap: 8px;
-
-        padding: 8px;
-        border: none;
-        border-bottom: 1px solid #dadce0;
-        background: #000;
-
-        z-index: 1500;
-      }
-
-      #video {
-        width: 90px;
-        height: 70px;
-        object-fit: cover;
-        border-radius: 6px;
-      }
-
-      #timer {
-        font-size: 12px;
-        color: #ffcccc;
-        margin-left: auto;
-        white-space: nowrap;
-      }
-
-      canvas.overlay {
-        display: none; /* optional: hide overlay on mobile */
-      }
-      
-      /* Prevent content from hiding under camera */
-      .container {
-        padding-top: 90px;
-      }
-    }
-
   </style>
 </head>
 <body>

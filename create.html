@@ -503,22 +503,6 @@
       z-index: 1000;
     }
 
-    /* for mobile */
-    @media (max-width: 600px){
-      .gforms-toolbar.bottom{
-        left: 50px;
-        transform: translateX(-50%);
-        width: calc(100% - 16px);
-        border-radius: 12px 12px 0 0;
-      }
-
-      /* Mobile hidden state */
-      .gforms-toolbar.bottom.hidden,
-      .gforms-toolbar.collapsed{
-        transform: translateX(-50%) translateY(100%);
-      }
-    }
-
     /* Hidden state */
     .gforms-toolbar.bottom.hidden{
       transform: translateX(-50%) translateY(100%);
