@@ -331,6 +331,8 @@
       color: #9aa0a6;
       font-size: 18px;
       line-height: 4;
+
+      pointer-events: auto;
     }
 
     /* Required toggle */
@@ -1755,6 +1757,22 @@ window.onload = async function() {
   
     // Load questions
     loadFormFromJSON(examData);
+  
+    new Sortable(questionsEl, {
+      handle: '.drag',
+      animation: 150,
+      onEnd: () => {
+        updateJSON();
+        updateQuestionCounters();
+      }
+    });
+
+    // Auto-focus title text:
+    // when clicking Add question, then cursor automatically appears in the title text
+    setTimeout(() => {
+      document.getElementById('formTitle')?.focus();
+    }, 0);
+
   } else {
     new Sortable(questionsEl, {
       handle: '.drag',

@@ -128,3 +128,81 @@ gradeExamFromJSON
       document.getElementById('formTitle')?.focus();
     }, 0);
     
+    /* Visible only on active question */
+    .card.active .opt-drag{
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+create:
+    .drag{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+      height: 24px;
+
+      margin: -8px 0 8px 0;   /* pull it slightly up like GForms */
+      cursor: grab;
+      user-select: none;
+
+      color: #9aa0a6;
+      font-size: 18px;
+      line-height: 4;
+    }
+
+preview:
+    .drag{
+      display: none;
+      justify-content: center;
+      align-items: center;
+
+      width: 100%;
+      height: 24px;
+
+      margin: -8px 0 8px 0;   /* pull it slightly up like GForms */
+      cursor: grab;
+      user-select: none;
+
+      color: #9aa0a6;
+      font-size: 18px;
+      line-height: 4;
+      pointer-events: none;
+    }
+
+create:
+window.onload = async function() {
+
+  setupSettingsChangeTracking();
+
+  // Restore Auto-save while editing
+  // Restore go back button from Preview
+  // Read JSON file (awaitable)
+  const json = localStorage.getItem("formContent");
+  
+  if(json) {
+    examData = JSON.parse(json);
+  
+    // Load questions
+    loadFormFromJSON(examData);
+  } else {
+    new Sortable(questionsEl, {
+      handle: '.drag',
+      animation: 150,
+      onEnd: () => {
+        updateJSON();
+        updateQuestionCounters();
+      }
+    });
+
+    addQuestion();
+
+    // Auto-focus title text:
+    // when clicking Add question, then cursor automatically appears in the title text
+    setTimeout(() => {
+      document.getElementById('formTitle')?.focus();
+    }, 0);
+  }
+}
+
