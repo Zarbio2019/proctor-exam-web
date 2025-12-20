@@ -1892,6 +1892,13 @@ async function startCamera(cameraSettings){
   let faceMesh = null;
 
   try {
+    if(!camera.enabled) {
+      document.getElementById("timer").style.display = "block";
+      document.getElementById("video").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
+      return
+    }
+    
     if(camera.enabled || camera.faceAbsence || camera.eyeTracking) {
     // Eye-Tracking
     faceMesh = new window.FaceMesh({
@@ -2301,7 +2308,6 @@ function applySettingsGeneral(general){
   if(general.shuffleOptions) {
     
   }
-  
 }
 
 // Proctor Timer Settings
@@ -2310,6 +2316,11 @@ let timerInterval = null;
 
 function applySettingsProctorTimer(timerSettings){
   if(!timerSettings) return;
+  
+  if(!timerSettings.enabled) {
+    document.getElementById("timer").style.display = "block";
+    return;
+  }
 
   if(timerSettings.enabled) {
     const hours = Number(timerSettings.hours || 0);

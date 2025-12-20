@@ -86,6 +86,10 @@ warning at last X minutes
 
 ---
 style="display:none;"
+      document.getElementById("video").style.display = "none";
+
+
+async function startCamera(cameraSettings){
 
 addQuestion
       <div class="q-points">
@@ -130,9 +134,18 @@ score:
 
 /* keep native steppers */
 
+  <div id="webcam">
+    <div id="timer">Time Left: --:--:--</div>
+    <video id="video" autoplay muted playsinline></video>
+    <canvas id="overlay" class="overlay"></canvas> <!-- face detection -->
+  </div>
+
+when subbmit automatically must to appear the result page
+
 PENDINGS:
 1. In create.html addSection().
 2. Shuffle questions
 3. Shuffle options
-
-
+4. En preview param set logo company in certificado
+5. Add images in question and option, add atributtes font bold color text in question and option
+6. In preview when submit y falta checkbox una requiere question debe mostrar mensaje question requerida y no avanzar.
