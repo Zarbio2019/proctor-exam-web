@@ -1109,6 +1109,14 @@ function addQuestion(){
 
     <div class="question-header">
 
+      <div class="q-counter" style="
+        font-size:13px;
+        color:#5f6368;
+        margin-right:auto;
+      ">
+        1 de 1
+      </div>
+
       <button class="btn-link g-tooltip delete-top"
         data-tooltip="Delete question"
         onclick="removeQuestion(this)">
@@ -1173,6 +1181,8 @@ function addQuestion(){
   enableOptionDrag(q); // drag & drop per option
   updateJSON();
 
+  updateQuestionCounters();
+
   // Auto-focus question text:
   // when clicking Add question, then cursor automatically appears in the question text
   setTimeout(() => {
@@ -1208,6 +1218,7 @@ function removeQuestion(btn){
   btn.closest('.question').remove();
   updateJSON();
   updateSectionNumbers();
+  updateQuestionCounters();
 }
 
 // points: enforce max 2 decimals
@@ -1221,6 +1232,19 @@ function limitDecimals(input){
   }
 }
  
+// show {question-number} de {total-questions}
+function updateQuestionCounters() {
+  const questions = [...document.querySelectorAll('.question')];
+  const total = questions.length;
+
+  questions.forEach((q, index) => {
+    let counter = q.querySelector('.q-counter');
+    if (!counter) return;
+
+    counter.textContent = `${index + 1} de ${total}`;
+  });
+}
+
 function addOption(btn){
   const q = btn.closest('.question');
   const type = q.querySelector('.q-type').value;
@@ -1637,6 +1661,8 @@ function loadFormFromJSON(data){
   //q.querySelectorAll('textarea').forEach(autoResizeTextarea);
 
   updateJSON();
+
+  updateQuestionCounters();
 }
 
 /***************************
@@ -1733,7 +1759,10 @@ window.onload = async function() {
     new Sortable(questionsEl, {
       handle: '.drag',
       animation: 150,
-      onEnd: updateJSON
+      onEnd: () => {
+        updateJSON();
+        updateQuestionCounters();
+      }
     });
 
     addQuestion();
