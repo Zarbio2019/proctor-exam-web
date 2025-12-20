@@ -106,6 +106,7 @@
       gap:8px;
       margin-bottom:8px;
       user-select: none;
+      padding-right: 28px;
     }
   
     /* option multiline: textarea look like input */
@@ -539,6 +540,35 @@
       line-height: 1;
     }
 
+    /* Feedback container */
+    .question-feedback {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* Correct feedback */
+    .question-feedback.correct {
+      background: #e6f4ea;
+      border-left: 4px solid #188038;
+      color: #188038;
+    }
+
+    /* Incorrect feedback */
+    .question-feedback.incorrect {
+      background: #fce8e6;
+      border-left: 4px solid #d93025;
+      color: #d93025;
+    }
+
+    /* Icon */
+    .question-feedback span {
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
     /* Active question: show underline */
     .card.active .feedback .q-title{
       border-bottom-color: var(--border);
@@ -811,6 +841,26 @@
     .option.incorrect {
       border: 2px solid #d93025;
       background: #fce8e6;
+    }
+
+    /* Result icons */
+    .option-result-icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    /* Correct */
+    .option.correct .option-result-icon {
+      color: #188038;
+    }
+
+    /* Incorrect */
+    .option.incorrect .option-result-icon {
+      color: #d93025;
     }
 
     /* Lock inputs after submit */
@@ -1728,20 +1778,48 @@ function applyResultHighlighting() {
     const detail = examResult.details[qIndex];
     if (!detail) return;
 
+    /* ------------------
+       OPTION HIGHLIGHTING
+    ------------------- */
     const options = qEl.querySelectorAll(".option");
 
     options.forEach((optEl, optIndex) => {
-      const input = optEl.querySelector("input");
+      if (!detail.selectedOptions.includes(optIndex)) return;
 
-      // Mark selected options
-      if (detail.selectedOptions.includes(optIndex)) {
-        if (detail.correctOptions.includes(optIndex)) {
-          optEl.classList.add("correct");
-        } else {
-          optEl.classList.add("incorrect");
-        }
+      const icon = document.createElement("span");
+      icon.className = "option-result-icon";
+
+      if (detail.correctOptions.includes(optIndex)) {
+        optEl.classList.add("correct");
+        icon.textContent = "✔";
+      } else {
+        optEl.classList.add("incorrect");
+        icon.textContent = "✖";
       }
+
+      optEl.appendChild(icon);
     });
+
+    /* ------------------
+       QUESTION FEEDBACK
+    ------------------- */
+    const feedbackText = detail.isCorrect
+      ? detail.feedbackOk
+      : detail.feedbackError;
+
+    if (!feedbackText) return;
+
+    const feedbackDiv = document.createElement("div");
+    feedbackDiv.className = `question-feedback ${
+      detail.isCorrect ? "correct" : "incorrect"
+    }`;
+
+    feedbackDiv.innerHTML = `
+      <span>${detail.isCorrect ? "✔" : "✖"}</span>
+      ${feedbackText}
+    `;
+
+    qEl.appendChild(feedbackDiv);
   });
 }
 
