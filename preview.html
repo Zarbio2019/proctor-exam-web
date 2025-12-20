@@ -922,6 +922,54 @@
     .preview-mode input {
       pointer-events: none;
     }
+
+    /* 📱 Mobile: make camera stick to top while scrolling */
+    @media (max-width: 600px) {
+      #webcam {
+        position: sticky;
+        top: 0;
+        right: auto;
+        left: 0;
+
+        width: 100%;
+        height: auto;
+
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        padding: 8px;
+        border: none;
+        border-bottom: 1px solid #dadce0;
+        background: #000;
+
+        z-index: 1500;
+      }
+
+      #video {
+        width: 90px;
+        height: 70px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+
+      #timer {
+        font-size: 12px;
+        color: #ffcccc;
+        margin-left: auto;
+        white-space: nowrap;
+      }
+
+      canvas.overlay {
+        display: none; /* optional: hide overlay on mobile */
+      }
+      
+      /* Prevent content from hiding under camera */
+      .container {
+        padding-top: 90px;
+      }
+    }
+
   </style>
 </head>
 <body>
