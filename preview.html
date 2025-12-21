@@ -1551,12 +1551,9 @@ function submitExam(){
 // Auto-submits when time = 0
 // Prevents double submit
 function autoSubmitExam(){
-  if (examSubmitted) return;
-
-  examSubmitted = true;
   alert("⏱ Time is up! Exam submitted automatically.");
 
-  submitExam(); // 👈 your existing submit logic
+  submitExam();
 }
 
 /***************************

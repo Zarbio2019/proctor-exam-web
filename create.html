@@ -11,7 +11,7 @@
 
   <style>
     :root{
-      --purple:#2e7d32;
+      --purple:#0c77e9;
       /*--purple:#673ab7;*/
       --bg:#f1f3f4;
       --card:#ffffff;
@@ -633,6 +633,46 @@
       opacity: 0.95;
     }
 
+    /* Feedback toggle header */
+    .feedback-toggle{
+      display: none;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      color: var(--purple);
+    }
+
+    /* Arrow animation */
+    .feedback-toggle-icon{
+      transition: transform .2s ease;
+    }
+
+    /* Collapsible content */
+    .feedback-content{
+      margin-top: 8px;
+    }
+
+    /* Show ONLY when question is active */
+    .card.question.active .feedback-toggle{
+      display: flex;
+    }
+
+    /* Collapsed state */
+    /* Feedback only expands when question is active */
+    .card:not(.active) .feedback-content{
+      display: none !important;
+    }
+
+    .feedback.collapsed .feedback-content{
+      display: none;
+    }
+
+    .feedback.collapsed .feedback-toggle-icon{
+      transform: rotate(-90deg);
+    }
+
     /* for mobile */
     @media (max-width: 600px){
       textarea,
@@ -911,7 +951,7 @@
   <!-- <button class="add-question" onclick="addQuestion()">+ Add question</button> -->
 
   <!-- JSON view -->
-  <div style="display:block">
+  <div style="display:none">
     <h3 >Form JSON</h3>
     <pre id="output"></pre>
   </div>
@@ -1163,6 +1203,30 @@ document.addEventListener('input', () => {
   }, 500);
 });
 
+// toolbar: blue active question indicator
+document.addEventListener('click', e => {
+  document.querySelectorAll('.card.question').forEach(card => {
+    card.classList.remove('active');
+
+    // collapse feedback when inactive
+    const feedback = card.querySelector('.feedback');
+    if (feedback) feedback.classList.add('collapsed');
+  });
+
+  const card = e.target.closest('.card.question');
+
+  if(card) {
+    card.classList.add('active');
+
+    // auto-open feedback for active question
+    const feedback = card.querySelector('.feedback');
+    if (feedback) feedback.classList.remove('collapsed');
+  }
+  else {
+    document.activeElement.blur(); // zero cursor blinking when clicking outside
+  }
+});
+
 // Toggleable radios
 document.addEventListener('click', e => {
   const radio = e.target;
@@ -1234,24 +1298,34 @@ function addQuestion(){
       <button class="btn-link" onclick="addOption(this)">Add option</button>
     </div>
 
-    <div class="feedback">
+    <div class="feedback collapsed">
 
-      <div class="feedback-group ok">
-        <div class="feedback-ok-label">
-          <span class="feedback-icon">✔</span>
-          <span>Feedback for correct answers:</span>
-        </div>
-        <textarea class="q-title q-comment-ok" rows="1" placeholder="Feedback"></textarea>
+      <!-- Toggle header -->
+      <div class="feedback-toggle" onclick="toggleFeedback(this)">
+        <span class="feedback-toggle-icon">▼</span>
+        <span class="feedback-toggle-text">Answer feedback</span>
       </div>
 
-      <div class="feedback-group error">
-        <div class="feedback-error-label">
-          <span class="feedback-icon">✖</span>
-          <span>Feedback for incorrect answers:</span>
-        </div>
-        <textarea class="q-title q-comment-error" rows="1" placeholder="Feedback"></textarea>
-      </div>
+      <!-- Collapsible content -->
+      <div class="feedback-content">
 
+        <div class="feedback-group ok">
+          <div class="feedback-ok-label">
+            <span class="feedback-icon">✔</span>
+            <span>Correct:</span>
+          </div>
+          <textarea class="q-title q-comment-ok" rows="1" placeholder="Feedback"></textarea>
+        </div>
+
+        <div class="feedback-group error">
+          <div class="feedback-error-label">
+            <span class="feedback-icon">✖</span>
+            <span>Incorrect:</span>
+          </div>
+          <textarea class="q-title q-comment-error" rows="1" placeholder="Feedback"></textarea>
+        </div>
+
+      </div>
     </div>
 
     <div class="actions">
@@ -1476,6 +1550,18 @@ function previewExam() {
 
   // Option 2 (alternative): show preview modal
   // document.getElementById("previewModal").classList.add("open");
+}
+
+// toogle feedback collapsible
+function toggleFeedback(el){
+  const feedback = el.closest('.feedback');
+  feedback.classList.toggle('collapsed');
+
+  // Optional: auto-resize textareas when opening
+  if (!feedback.classList.contains('collapsed')) {
+    feedback.querySelectorAll('textarea')
+      .forEach(autoResizeTextarea);
+  }
 }
 
 /***************************
@@ -1817,18 +1903,6 @@ function toggleToolbar(){
     isCollapsed ? 'Open panel' : 'Close panel'
   );
 }
-
-// toolbar: Blue active question indicator
-document.addEventListener('click', e => {
-  document.querySelectorAll('.card').forEach(c => c.classList.remove('active'));
-
-  const card = e.target.closest('.card');
-
-  if(card)
-    card.classList.add('active');
-  else
-    document.activeElement.blur(); // zero cursor blinking when clicking outside
-});
 
 /***************************
 Section

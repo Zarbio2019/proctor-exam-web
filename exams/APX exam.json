@@ -3,13 +3,13 @@
   "description": "Examen de programación APX",
   "questions": [
     {
-      "text": "¿Cuál de los siguientes enunciados son incorrectos acerca de la nomenclatura de una transacción?",
+      "text": "¿Cuál de los siguientes enunciados son incorrectos acerca de la nomenclatura de una transacción?\nquestion test new line a\nquestion test new line b",
       "type": "checkbox",
       "points": 1,
       "required": false,
       "options": [
         {
-          "text": "a. Debe haber un código de versión. Este debe ser igual al número del pom.xml",
+          "text": "a. Debe haber un código de versión. Este debe ser igual al número del pom.xml\ntest new line a\ntest new line b",
           "checked": true
         },
         {
@@ -29,7 +29,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuál de las siguientes preguntas son incorrectas sobre la nomenclatura de una transacción?",
@@ -54,7 +55,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Para visualizar las dependencias de las transacciones, en qué lugar del proyecto me debo ubicar?",
@@ -83,7 +85,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Para que una librería externa online, sea consumida por componente apx (lib, trx o job) es necesario:",
@@ -112,7 +115,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "la visibilidad de las librerías externas se realiza en la misma UUAA o en la UUAA q se va usar?",
@@ -125,7 +129,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Para el consumo de un servicio ASO desde una transacción APX es necesario realizar un perfilado:",
@@ -154,7 +159,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Qué tag en el xml se utiliza para excluir el coverage?",
@@ -183,7 +189,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuáles son los valores de las propiedades para el proxy que se dan de alta en la configuración de la aplicación (UUAA) para consumir servicios externos en APX?",
@@ -212,7 +219,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "cuáles son los valores para las propiedades para el proxy en uuaa, para consumir servicios externos en ",
@@ -225,7 +233,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuáles son las propiedades del proxy que se dan de Alta en la configuración de Seguridad (UUAA) para consumir servicios externos en APX? (múltiple elección)",
@@ -254,7 +263,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuáles son las propiedades del proxy que se dan de Alta en la configuración de la Aplicación (UUAA) para consumir servicios externos en APX? (múltiple elección)",
@@ -283,7 +293,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Cuál es el porcentaje mínimo en Sonar para ambientes previos?",
@@ -312,7 +323,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "En una Transacción APX estándar nueva, cuáles son los headers de ejecución que se deben de verificar y actualizar, antes de ejecutar dicha transacción?",
@@ -341,7 +353,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Los headers en APX necesarios para referir a una transacción específica son:",
@@ -370,7 +383,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Cuáles son las dos propiedades básicas que se necesitan para poder hacer uso del conector de servicios internos? (múltiple elección)",
@@ -399,7 +413,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuáles son las dos propiedades básicas que se necesitan para poder hacer uso del conector de APIs al consumir servicios internos? (múltiple elección)",
@@ -428,7 +443,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "cual es el aplicativo con el que se administra la seguridad en apx",
@@ -445,7 +461,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuál es el servicio de la Plataforma Ether, que permite almacenar certificados para que puedan ser usados por APX?",
@@ -474,7 +491,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuál es el formato de Certificado que es soportado por el Servicio de Gestión de Servicios de Ether y es usado en APX?",
@@ -503,7 +521,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Para visualizar los campos entrada o salida de una transacción APX, ¿cuál es el comando necesario en el APX CLI?",
@@ -532,7 +551,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "cual es el comando de entrada, salida con código apx",
@@ -545,7 +565,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "estructura del name apx",
@@ -558,7 +579,8 @@
           "checked": true
         }
       ],
-      "comment": "onl_create_account\nonl_get_account\nbch_update_delete_account\nbch_extract_log\n\nora_load_customer\nora_update_parameter\n\nlib_notify_contract_online\nlib_envio_sms_batch\ndto_notify_contract\ndto_envio_sms"
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Para crear un recurso en Ether de tipo transacción ¿Cuál sería la nomenclatura correcta?",
@@ -587,7 +609,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Indique cual recurso está mal escrito:",
@@ -616,7 +639,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Donde se dan de alta a los códigos de excepción que va a enviar una transacción",
@@ -629,7 +653,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Cuál es la excepción que se puede manejar cuando se realiza una interacción a través de Api Connector",
@@ -642,7 +667,8 @@
           "checked": true
         }
       ],
-      "comment": "a.\norg.springframework.web.client.RestClientException\norg.springframework.web.client.HttpStatusCodeException"
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Al consumir una API por internalApiConnector. ¿Cuál es la única excepción permitida?",
@@ -671,7 +697,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuál no es una Excepción de APX?",
@@ -704,7 +731,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Indique que excepciones son permitidas en la Arquitectura APX:\nI. BusinessException\nII. DuplicateKeyException\nIII. NoResultException\nIV. Exception",
@@ -729,7 +757,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Para actualizar la versión de Arquitectura APX en una aplicación obsoleta, ¿cuántos valores se deben modificar en el POM.XML?",
@@ -758,7 +787,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Las 3 dimensiones de APX son:",
@@ -787,7 +817,8 @@
           "checked": true
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "las 3 dimensiones de apx ",
@@ -820,7 +851,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿En qué lugar se dan de alta los mensajes de error que devuelve una transacción APX?",
@@ -849,7 +881,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "La invocación de una Trx APX se realiza mediante el método http:",
@@ -878,7 +911,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuál es el tipo Severity que se usan en APX para indicar que la transacción terminó con errores y realizará rollback?",
@@ -907,7 +941,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "Para evitar realizar un rollback en una transacción, es necesario:",
@@ -936,7 +971,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Para qué se utiliza el método addAdvice(...)?",
@@ -965,7 +1001,8 @@
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
     },
     {
       "text": "¿Cuál es la forma correcta de excluir del SONAR los DATOS?",
@@ -974,31 +1011,2353 @@
       "required": false,
       "options": [
         {
-          "text": "do options multilines",
+          "text": "   <properties>\n\t<sonar.coverage.exclusions>\n\t\t/src/main/java/com/bbva/uuaa/dto/**/*.java\n\t</sonar.coverage.exclusions>\n   </properties>",
+          "checked": true
+        },
+        {
+          "text": "   <properties>\n\t<apx.coverage.exclusions>\n\t\t/src/main/java/com/bbva/uuaa/dto/**/*.java\n\t</apx.coverage.exclusions>\n   </properties>",
+          "checked": false
+        },
+        {
+          "text": "   <properties>\n\t<sonar.coverage.outputDirectoryDTOs>\n\t\t/src/main/java/com/bbva/uuaa/dto/**/*.java\n\t</sonar.coverage.outputDirectoryDTOs>\n   </properties>",
           "checked": false
         }
       ],
-      "comment": ""
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Para la ejecución en local de APX, ¿en qué parte del pom principal se debe hacer cambios de ruta?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Versión",
+          "checked": false
+        },
+        {
+          "text": "b. Name",
+          "checked": false
+        },
+        {
+          "text": "c. Properties",
+          "checked": true
+        },
+        {
+          "text": "d. Modules",
+          "checked": false
+        },
+        {
+          "text": "e. Dependencies",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "En APX CLI ¿Cuántos tipos de parámetros existen?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 4",
+          "checked": true
+        },
+        {
+          "text": "b. 5",
+          "checked": false
+        },
+        {
+          "text": "c. 6",
+          "checked": false
+        },
+        {
+          "text": "d. 2",
+          "checked": false
+        },
+        {
+          "text": "e. 3",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuál es la utilidad de APX que permite consumir servicios internos desplegados dentro de la red del banco?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. internalBuilderConnector",
+          "checked": false
+        },
+        {
+          "text": "b. internalHTTPConnector",
+          "checked": false
+        },
+        {
+          "text": "c. internalApiConnector",
+          "checked": true
+        },
+        {
+          "text": "d. internalConnector",
+          "checked": false
+        },
+        {
+          "text": "e. internalWebService",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuáles son los componentes de Arquitectura básicos, necesarios para que una Transacción APX funcione?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Solo runtime online",
+          "checked": false
+        },
+        {
+          "text": "b. Runtime Online y Consola APX",
+          "checked": false
+        },
+        {
+          "text": "c. Runtime Online, Base de datos y Consola APX",
+          "checked": false
+        },
+        {
+          "text": "d. Runtime Online, Repositorio y Base de datos",
+          "checked": false
+        },
+        {
+          "text": "e. Runtime Online, Repositorio, Base de datos y Consola APX",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿En APX donde se aplica un proceso funcional ACID?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Librería interna",
+          "checked": false
+        },
+        {
+          "text": "b. Transacción",
+          "checked": true
+        },
+        {
+          "text": "c. Librería",
+          "checked": false
+        },
+        {
+          "text": "d. DTO",
+          "checked": false
+        },
+        {
+          "text": "e. Ninguna",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuáles son los artefactos básicos que se construyen para la implementación de transacción APX?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. DTO, Transacción, Librería y Servicio",
+          "checked": false
+        },
+        {
+          "text": "b. DTO, Transacción y Librería",
+          "checked": true
+        },
+        {
+          "text": "c. Solo librería",
+          "checked": false
+        },
+        {
+          "text": "d. DTO y Transacción",
+          "checked": false
+        },
+        {
+          "text": "e. Transacción y Librería",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "El APIConnector tiene registrado un tiempo de respuesta de:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 6seg",
+          "checked": false
+        },
+        {
+          "text": "b. 2seg",
+          "checked": true
+        },
+        {
+          "text": "c. NA",
+          "checked": false
+        },
+        {
+          "text": "d. 4seg",
+          "checked": false
+        },
+        {
+          "text": "e. 5seg",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Es recomendable llamar dos librerías de una transacción",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Falso",
+          "checked": true
+        },
+        {
+          "text": "b. Verdadero",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuáles son los tipos de invocación que se pueden configurar para hacer uso del conector de servicios internos? (múltiple elección)",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. api.connector.proxy.port",
+          "checked": false
+        },
+        {
+          "text": "b. api.connector.proxy.username",
+          "checked": false
+        },
+        {
+          "text": "c. api.connector.proxy.password",
+          "checked": false
+        },
+        {
+          "text": "d. api.connector.proxy.hostname",
+          "checked": false
+        },
+        {
+          "text": "e. api.connector.proxy.host",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Para consumir servicios de semaas es necesario declarar los roles en:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx-cli",
+          "checked": false
+        },
+        {
+          "text": "b. ecs-cli",
+          "checked": true
+        },
+        {
+          "text": "c. NA",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuál es el endpoint de la Arquitectura APX para ejecutar las transacciones?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. RestService",
+          "checked": false
+        },
+        {
+          "text": "b. PG RestService",
+          "checked": true
+        },
+        {
+          "text": "c. GService",
+          "checked": false
+        },
+        {
+          "text": "d. RestService",
+          "checked": false
+        },
+        {
+          "text": "e. APXService",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuáles son los tipos de invocación que se pueden configurar para hacer uso del conector de APIs? (múltiple elección)",
+      "type": "checkbox",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 2: Invocación con impersonalización",
+          "checked": true
+        },
+        {
+          "text": "b. 0: Invocación simple (generica)",
+          "checked": true
+        },
+        {
+          "text": "c. 2: Invocación ASO",
+          "checked": false
+        },
+        {
+          "text": "d. 1: Invocación con impersonalización",
+          "checked": false
+        },
+        {
+          "text": "e. 1: Invocación ASO",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Para consumir un servicio por impersonalización que invoke type es necesario registrar en la consola",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. NA",
+          "checked": false
+        },
+        {
+          "text": "b. 2",
+          "checked": true
+        },
+        {
+          "text": "c. 3",
+          "checked": false
+        },
+        {
+          "text": "d. 0",
+          "checked": false
+        },
+        {
+          "text": "e. 1",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "que version de arquitectura apx son productivas",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 7.1.1",
+          "checked": false
+        },
+        {
+          "text": "b. 7.9.2",
+          "checked": false
+        },
+        {
+          "text": "c. 7.12.1",
+          "checked": false
+        },
+        {
+          "text": "d. 7.9.2",
+          "checked": false
+        },
+        {
+          "text": "e. 8.x.x",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "cuáles son los códigos de entorno",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a.\ndev = desarrollo\nint = test\naus = calidad\noct = octa\nlive = producción",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "cuál es el formato para la consulta en una base de datos",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. nombre_query_coneccion;",
+          "checked": false
+        },
+        {
+          "text": "b. nombre_query = query_conection",
+          "checked": false
+        },
+        {
+          "text": "c. query=conection; nombre_query",
+          "checked": false
+        },
+        {
+          "text": "d. nombre_query = conection_nombre_query",
+          "checked": false
+        },
+        {
+          "text": "e. conection = nombre_query ; query",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Si se encuentra un problema en el entorno en vivo, ¿Qué tipo de rama de revisión debe crear?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Hotfix",
+          "checked": true
+        },
+        {
+          "text": "b. Basic",
+          "checked": false
+        },
+        {
+          "text": "c. Bugfix",
+          "checked": false
+        },
+        {
+          "text": "d. Feature",
+          "checked": false
+        },
+        {
+          "text": "e. Internal",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Si se encuentra un problema en entornos previos, Qué tipo de rama de revisión debe crear?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Bugfix ó feature",
+          "checked": false
+        },
+        {
+          "text": "b. solo bugfix",
+          "checked": true
+        },
+        {
+          "text": "c. hotfix",
+          "checked": false
+        },
+        {
+          "text": "d. solo feature",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Escriba los comandos para generar una transacción en la consola APX (Ejm.: apx local deploy)",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a.\napx add lib\napx add dto\napx add trx",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Escriba los comandos para generar una librería en la consola APX (Ejm.: apx local deploy)",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx add lib",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Escriba los comandos para generar un dto en la consola APX (Ejm.: apx local deploy)",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx add dto",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "En qué consola modificas las propiedades de base de datos:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. consola ether",
+          "checked": false
+        },
+        {
+          "text": "b. consola apx",
+          "checked": true
+        },
+        {
+          "text": "c. athenea",
+          "checked": false
+        },
+        {
+          "text": "d. portunus",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "Dónde se genera un recurso apx?",
+          "checked": false
+        },
+        {
+          "text": "a. consola ether",
+          "checked": true
+        },
+        {
+          "text": "b. consola apx",
+          "checked": false
+        },
+        {
+          "text": "c. athenea",
+          "checked": false
+        },
+        {
+          "text": "d. portunus",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cómo se llama el header que hace referencia a la transacción?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. logical-transaction-code",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cómo se llama la variable de entorno de APX?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. APX_HOME",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Selecciona la opción donde se modifica las entradas y salidas del documento D520 en la transacción:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. UUAAT001-01-PE.xml",
+          "checked": true
+        },
+        {
+          "text": "b. UUAA.properties",
+          "checked": false
+        },
+        {
+          "text": "c. log4j.xml",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "dentro de un proyecto donde se realiza la configuración para la conexión a bd",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. dto",
+          "checked": false
+        },
+        {
+          "text": "b. trx",
+          "checked": false
+        },
+        {
+          "text": "c. librerias",
+          "checked": false
+        },
+        {
+          "text": "d. properties",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿En qué componente APX Batch se establece la conexión a Base de Datos?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. XML",
+          "checked": false
+        },
+        {
+          "text": "b. DTO",
+          "checked": false
+        },
+        {
+          "text": "c. JOB",
+          "checked": false
+        },
+        {
+          "text": "d. Librería",
+          "checked": true
+        },
+        {
+          "text": "e. PROPERTIES",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "El consumo de una transacción APX se realiza mediante el método HTTP?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. PATCH",
+          "checked": false
+        },
+        {
+          "text": "b. GET",
+          "checked": false
+        },
+        {
+          "text": "c. POST y GET",
+          "checked": false
+        },
+        {
+          "text": "d. UPDATED, DELETE",
+          "checked": false
+        },
+        {
+          "text": "e. POST",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Dónde se ubica el archivo sql.UUAAR001IMPL.properties",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Implementación de la librería",
+          "checked": true
+        },
+        {
+          "text": "b. Interfaz de la librería",
+          "checked": false
+        },
+        {
+          "text": "c. Transacción",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cuándo es recomendable hacer el diagrama de componentes",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. al finalizar el desarrollo",
+          "checked": false
+        },
+        {
+          "text": "b. al intermedio del desarrollo",
+          "checked": false
+        },
+        {
+          "text": "c. al inicio del desarrollo",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "A quien se solicita accesos para la consola apx",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. scrum master",
+          "checked": false
+        },
+        {
+          "text": "b. product owner",
+          "checked": false
+        },
+        {
+          "text": "c. arquitecto",
+          "checked": true
+        },
+        {
+          "text": "d. team leader",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Qué perfil debo tener para poder aprobar Pull Request?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. developer",
+          "checked": true
+        },
+        {
+          "text": "b. technical lead",
+          "checked": false
+        },
+        {
+          "text": "c. release manager",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Si quiero agregar una dependencia en la librería, qué comando debo usar?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx add dep",
+          "checked": true
+        },
+        {
+          "text": "b. apx add in",
+          "checked": false
+        },
+        {
+          "text": "c. apx add util",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cuál es el comando para eliminar una librería externa?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx del dep",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cuál es el comando para eliminar un parámetro de entrada?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx del in",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cuál es el comando para ver las dependencias?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx show dep",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cómo se llama el documento que tiene las especificaciones que son necesarias que debe tener la transacción?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. D520",
+          "checked": true
+        },
+        {
+          "text": "b. T907",
+          "checked": false
+        },
+        {
+          "text": "c. C204",
+          "checked": false
+        },
+        {
+          "text": "d. L011",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cuántos tipos de tickets gobierno existe? - para el gobierno de APX",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 1",
+          "checked": false
+        },
+        {
+          "text": "b. 2",
+          "checked": false
+        },
+        {
+          "text": "c. 3",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cuántos tipos de tickets de gobierno de Arquitectura existen?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 2",
+          "checked": false
+        },
+        {
+          "text": "b. 3",
+          "checked": true
+        },
+        {
+          "text": "c. 1",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "En el gobierno de APX, cómo se llama el ticket generado para nuevos componentes?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. APX Component Request",
+          "checked": true
+        },
+        {
+          "text": "b. APX Component Express Modification",
+          "checked": false
+        },
+        {
+          "text": "c. APX Component Modification",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "considerando que tienes un ticket APX Component Express Modification, es necesario pasar el ticket por certificación octa?.",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. verdadero",
+          "checked": false
+        },
+        {
+          "text": "b. falso",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "puedo desplegar una feature en calidad",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. no",
+          "checked": true
+        },
+        {
+          "text": "b. si",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "en el descriptor, cómo reconoces un parámetro obligatorio?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. mandatory=\"1\"",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cuando ejecutamos una malla para su ejecución, en qué estado inicia?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. NO OK",
+          "checked": false
+        },
+        {
+          "text": "b. STARTING",
+          "checked": true
+        },
+        {
+          "text": "c. FAILED",
+          "checked": false
+        },
+        {
+          "text": "d. SUCCESS",
+          "checked": false
+        },
+        {
+          "text": "e. STALLED",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Un proceso batch APX puede consumir un API external",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. FALSO",
+          "checked": false
+        },
+        {
+          "text": "b. VERDADERO",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Qué interface se utiliza para declarar un writer en un APX Batch?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. ItemWriter",
+          "checked": true
+        },
+        {
+          "text": "b. ItemProcess",
+          "checked": false
+        },
+        {
+          "text": "c. ItemBatchWriter",
+          "checked": false
+        },
+        {
+          "text": "d. CustomerItemWriter",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Los steps van a poder ser de dos tipos:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a.\nChunk (Fragmento): se procesan conjuntos de datos de entrada bajo la misma transacción\nTask (Tasklet): se realiza una operación dentro del step",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Qué son el Reader, Process y Writer?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Son componentes del step de tipo tasklet",
+          "checked": false
+        },
+        {
+          "text": "b. Son steps del job tasklet",
+          "checked": false
+        },
+        {
+          "text": "c. Son steps del job",
+          "checked": false
+        },
+        {
+          "text": "d. Son componentes del step de tipo chunk",
+          "checked": true
+        },
+        {
+          "text": "e. Son steps del job chunk",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Qué tipos de parámetros soporta un job APX?",
+      "type": "checkbox",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Parámetros de Spring",
+          "checked": true
+        },
+        {
+          "text": "b. Parámetros de la Consola Ether",
+          "checked": false
+        },
+        {
+          "text": "c. Parámetros de la Consola de Operaciones APX",
+          "checked": true
+        },
+        {
+          "text": "d. Parámetros de Java",
+          "checked": false
+        },
+        {
+          "text": "e. APX Batch no soporta ningún parámetro",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "En qué tecnología está basado APX Batch?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Cobol",
+          "checked": false
+        },
+        {
+          "text": "b. Go",
+          "checked": false
+        },
+        {
+          "text": "c. Spring",
+          "checked": true
+        },
+        {
+          "text": "d. Maven",
+          "checked": false
+        },
+        {
+          "text": "e. Python",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Qué herramientas utilizamos para llevar a producción una malla Control M?",
+      "type": "checkbox",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Helix",
+          "checked": true
+        },
+        {
+          "text": "b. One Support",
+          "checked": false
+        },
+        {
+          "text": "c. Dimension",
+          "checked": true
+        },
+        {
+          "text": "d. Control M",
+          "checked": true
+        },
+        {
+          "text": "e. Todos",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "qué tipos de batch existe",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a.\napx-ora\napx-batch",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Qué proceso en batch job realiza el commit?. ¿En qué componente, se procesa el bloque de registros definidos por el límite del intervalo (commit)?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Process",
+          "checked": false
+        },
+        {
+          "text": "b. Writer",
+          "checked": true
+        },
+        {
+          "text": "c. Job",
+          "checked": false
+        },
+        {
+          "text": "d. Reader",
+          "checked": false
+        },
+        {
+          "text": "e. Step",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Qué interface de Spring Batch se usa en el writer para poder generar un archivo en FileX?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. NA",
+          "checked": false
+        },
+        {
+          "text": "b. MultiResourceItemWriter",
+          "checked": false
+        },
+        {
+          "text": "c. FlatFileItemWriter",
+          "checked": true
+        },
+        {
+          "text": "d. ItemWriter",
+          "checked": false
+        },
+        {
+          "text": "e. FlatFileFooterCallback",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Para la UUAA PAPX, ¿Cuál de los siguientes namespace sería lo correcto?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx-batch-pe-papx-papxjr01-01-pe-de",
+          "checked": true
+        },
+        {
+          "text": "b. apx-batch-pe-papx-papxrj01-01-pe-de",
+          "checked": false
+        },
+        {
+          "text": "c. apx-batch-papx-papxjr01-01-pe-de",
+          "checked": false
+        },
+        {
+          "text": "d. apx-batch-pe-papx-papxrj01-01-de",
+          "checked": false
+        },
+        {
+          "text": "e. apx-batch-papx-papxrj01-01-pe-de",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Qué ruta de FileX se usa desde un apx batch para leer un archivo json?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. /fichtemcomp/datent/",
+          "checked": true
+        },
+        {
+          "text": "b. /fichtemcomp/datsal/",
+          "checked": false
+        },
+        {
+          "text": "c. /fichtemcomp/datsal/pe",
+          "checked": false
+        },
+        {
+          "text": "d. /fichtemcomp/datent/pe",
+          "checked": false
+        },
+        {
+          "text": "e. /fichtemcomp/pe/datent",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuál es el comando de APX CLI para crear un job?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx add mongo",
+          "checked": false
+        },
+        {
+          "text": "b. apx add shell",
+          "checked": false
+        },
+        {
+          "text": "c. apx add job",
+          "checked": true
+        },
+        {
+          "text": "d. apx add batch",
+          "checked": false
+        },
+        {
+          "text": "e. apx add process",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuáles son los tipos de JOBs APX? (múltiple elección)",
+      "type": "checkbox",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. APX_ORA",
+          "checked": true
+        },
+        {
+          "text": "b. APX_ELASTIC",
+          "checked": false
+        },
+        {
+          "text": "c. APX_BATCH",
+          "checked": true
+        },
+        {
+          "text": "d. APX_MONGO",
+          "checked": false
+        },
+        {
+          "text": "e. APX_SHELL",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Para crear un recurso en ether de tipo proceso batch ¿Cuál sería la nomenclatura correcta?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. batch_extract_log",
+          "checked": false
+        },
+        {
+          "text": "b. apx_batch_extract_log",
+          "checked": false
+        },
+        {
+          "text": "c. bch-extract-log",
+          "checked": false
+        },
+        {
+          "text": "d. extract_log",
+          "checked": false
+        },
+        {
+          "text": "e. bch_extract_log",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": " en control m que tipo de job utiliza un apx batch para la infraestructura r3",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. type os",
+          "checked": false
+        },
+        {
+          "text": "b. batch",
+          "checked": false
+        },
+        {
+          "text": "c. control",
+          "checked": false
+        },
+        {
+          "text": "d. ninguno",
+          "checked": false
+        },
+        {
+          "text": "e. type apx",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Qué es un namespace?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Es un contenedor Docker",
+          "checked": false
+        },
+        {
+          "text": "b. Es administrado por el Control-M",
+          "checked": false
+        },
+        {
+          "text": "c. Es un JOB Manager",
+          "checked": false
+        },
+        {
+          "text": "d. Es el servicio Worker",
+          "checked": false
+        },
+        {
+          "text": "e. Segmento de recurso de la plataforma que se le asigna al JOB para su ejecución",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "cuando un job falla, es obligatorio notificar?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. solo fup",
+          "checked": false
+        },
+        {
+          "text": "b. fup",
+          "checked": true
+        },
+        {
+          "text": "c. grupo aplicativo",
+          "checked": false
+        },
+        {
+          "text": "d. usuario final",
+          "checked": false
+        },
+        {
+          "text": "e. arquitectura final",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "cuales son los steps dentro de chunk",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a.\nreader\nprocesor\nwriter",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿En qué componente se pueden realizar el grabado de registros a una base de datos?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Step",
+          "checked": false
+        },
+        {
+          "text": "b. Writer",
+          "checked": true
+        },
+        {
+          "text": "c. Process",
+          "checked": false
+        },
+        {
+          "text": "d. Reader",
+          "checked": false
+        },
+        {
+          "text": "e. Job",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Un job se deploya e instala en prod?:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. solo se deploya",
+          "checked": false
+        },
+        {
+          "text": "b. solo se instala",
+          "checked": false
+        },
+        {
+          "text": "c. ambos",
+          "checked": true
+        },
+        {
+          "text": "d. NA",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Con respecto a la conexión a Elastic, ¿qué hace la propiedad routing?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Indica la Ruta del Servidor de la BBDD",
+          "checked": false
+        },
+        {
+          "text": "b. Particiona la Base de Datos",
+          "checked": true
+        },
+        {
+          "text": "c. N/A",
+          "checked": false
+        },
+        {
+          "text": "d. Indica el Ambiente de Despliegue",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Con respecto a la conexión a Elastic, los valores NO permitidos para la variable “operation” son:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. _delete",
+          "checked": false
+        },
+        {
+          "text": "b. _bulk",
+          "checked": false
+        },
+        {
+          "text": "c. _search",
+          "checked": false
+        },
+        {
+          "text": "d. _doc",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Sobre APX Batch Physics, seleccione la(s) respuesta(s) correcta(s):",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. El gestor de archivos es el NFS",
+          "checked": true
+        },
+        {
+          "text": "b. Aún se sigue usando los namespace",
+          "checked": false
+        },
+        {
+          "text": "c. El gestor de archivos con el que trabaja es el File X",
+          "checked": false
+        },
+        {
+          "text": "d. La referencia a los componentes se toman en caliente sin actualizar la versión del componente establecida en el POM que lo usa como dependencia.",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Qué versión de Physics completa el pase a prod o algo asi?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. R1",
+          "checked": false
+        },
+        {
+          "text": "b. R2",
+          "checked": false
+        },
+        {
+          "text": "c. R3",
+          "checked": true
+        },
+        {
+          "text": "d. NA",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Qué tipo de parámetro se debe utilizar para contabilizar registros en mongoDb?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. SUM",
+          "checked": false
+        },
+        {
+          "text": "b. COUNT",
+          "checked": true
+        },
+        {
+          "text": "c. ACCOUNT",
+          "checked": false
+        },
+        {
+          "text": "d. Ninguna",
+          "checked": false
+        },
+        {
+          "text": "e. CONTAR",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Las propiedades de mongo referencia a la base de datos física y lógica?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Ninguna",
+          "checked": false
+        },
+        {
+          "text": "b. Solo lógica",
+          "checked": true
+        },
+        {
+          "text": "c. Solo física",
+          "checked": false
+        },
+        {
+          "text": "d. Ambas",
+          "checked": false
+        },
+        {
+          "text": "e. Solo en la configuración",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Para realizar un insert desde una transacción a la base de datos mongoDb, se utiliza el tipo de parámetro",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. INSERT",
+          "checked": false
+        },
+        {
+          "text": "b. INSERT_ONE",
+          "checked": true
+        },
+        {
+          "text": "c. INSERT_INTO",
+          "checked": false
+        },
+        {
+          "text": "d. INSERT_ONLY",
+          "checked": false
+        },
+        {
+          "text": "e. INSERT_MANY",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Qué propiedad se utiliza para la inserción de muchos registros en Mongo DB",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. InsertMany()/EnumOperation.INSERT_MANY",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Desde la lógica de negocio en la implementación de la librería, como hacemos referencia a las propiedades de mongo en la consola APX?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Usando el nombre del collection",
+          "checked": false
+        },
+        {
+          "text": "b. Usando el código de la transacción",
+          "checked": false
+        },
+        {
+          "text": "c. Usando el nombre lógico de la conexión a la base de datos lógica",
+          "checked": true
+        },
+        {
+          "text": "d. Usando el nombre de un objeto en particular",
+          "checked": false
+        },
+        {
+          "text": "e. Usando código de la librería",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Los documentos de mongoDb en una librería APX se expresan como:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Tabla",
+          "checked": false
+        },
+        {
+          "text": "b. Collections",
+          "checked": false
+        },
+        {
+          "text": "c. Document",
+          "checked": false
+        },
+        {
+          "text": "d. Object",
+          "checked": false
+        },
+        {
+          "text": "e. DocumentWraper",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuál es la cantidad máxima de registros que puede devolver el conector a Oracle en una consulta?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 1000",
+          "checked": false
+        },
+        {
+          "text": "b. 50000",
+          "checked": false
+        },
+        {
+          "text": "c. 5000",
+          "checked": true
+        },
+        {
+          "text": "d. 12500",
+          "checked": false
+        },
+        {
+          "text": "e. 10000",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuál de los siguientes métodos de jdbcUtils se usaría para traer una lista de registros paginados?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. pagingQueryList",
+          "checked": false
+        },
+        {
+          "text": "b. queryForList",
+          "checked": false
+        },
+        {
+          "text": "c. NA",
+          "checked": false
+        },
+        {
+          "text": "d. pagingForList",
+          "checked": false
+        },
+        {
+          "text": "e. pagingQueryForList",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Que método trae las consultas paginadas en Oracle.? ¿Cuál de los siguientes métodos de jdbcUtils se usaría para traer una lista de Mapas paginadas?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. pagingQueryForList",
+          "checked": true
+        },
+        {
+          "text": "b. queryForList",
+          "checked": false
+        },
+        {
+          "text": "c. pagingForList",
+          "checked": false
+        },
+        {
+          "text": "d. pagingQueryList",
+          "checked": false
+        },
+        {
+          "text": "e. NA",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Marque la propiedad que no debe ir a producción",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. database.UUAA.credentialPrefix",
+          "checked": false
+        },
+        {
+          "text": "b. database.UUAA.driverClassName",
+          "checked": false
+        },
+        {
+          "text": "c. database.UUAA.jndi.url",
+          "checked": false
+        },
+        {
+          "text": "d. database.UUAA.name",
+          "checked": false
+        },
+        {
+          "text": "e. database.UUAA.showsql",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "qué job se utiliza para grabar en db oracle",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. apx-ora",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "tipos de operaciones Oracle",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a.\nupdate\nbatchUpdate\nqueryForMap\nqueryForList\npagingQueryForMap\npagingQueryForList\npagingQueryForTable",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Que método se usa para insertar en Oracle",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. update",
+          "checked": true
+        },
+        {
+          "text": "b. select",
+          "checked": false
+        },
+        {
+          "text": "c. addAll",
+          "checked": false
+        },
+        {
+          "text": "d. commit",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Dentro de los componentes de APX, ¿Dónde se define la consulta a la BD Oracle?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. En la consola de operaciones",
+          "checked": false
+        },
+        {
+          "text": "b. En las variables de entorno",
+          "checked": false
+        },
+        {
+          "text": "c. En el archivo properties",
+          "checked": true
+        },
+        {
+          "text": "d. Ninguna",
+          "checked": false
+        },
+        {
+          "text": "e. En el código de la librería",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cómo se llama la utilidad de APX para poder conectarse a una BD Oracle?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. jdbcUtils",
+          "checked": true
+        },
+        {
+          "text": "b. oracleConnector",
+          "checked": false
+        },
+        {
+          "text": "c. oracleUtils",
+          "checked": false
+        },
+        {
+          "text": "d. jdbcODBC",
+          "checked": false
+        },
+        {
+          "text": "e. jdbcConnector",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Si quiero grabar en una base de datos ORACLE, ¿Qué tipo de JOB se puede utilizar? (múltiple elección)",
+      "type": "checkbox",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. APX_ORACLE",
+          "checked": false
+        },
+        {
+          "text": "b. APX_ELASTIC",
+          "checked": false
+        },
+        {
+          "text": "c. APX_ORA",
+          "checked": true
+        },
+        {
+          "text": "d. APX_MONGO",
+          "checked": false
+        },
+        {
+          "text": "e. APX_BATCH",
+          "checked": true
+        },
+        {
+          "text": "f. elastic_batch",
+          "checked": false
+        },
+        {
+          "text": "g. oracle_sell_script",
+          "checked": false
+        },
+        {
+          "text": "h. mongo_batch",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "En una librería APX ¿Cómo se envían los parámetros de variable a la utilidad que permite ejecutar operaciones en Oracle?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. Set<Object>",
+          "checked": false
+        },
+        {
+          "text": "b. List<Object>",
+          "checked": false
+        },
+        {
+          "text": "c. DataTable<Object>",
+          "checked": false
+        },
+        {
+          "text": "d. Map<String, Object>",
+          "checked": true
+        },
+        {
+          "text": "e. Object[]",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "¿Cuál query es una buena práctica para consultar una BD oracle que se requiere filtrar por un campo constante?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. SELECT p.NAME\n\t\t\tFROM PPAN.T_PPAN_PARTICIPANT_SNAPSHOT p\n\t\t\tWHERE p.PROPOSAL_ID = :proposal_id and p.PARTICIPANT_TYPE = :participant_type;",
+          "checked": false
+        },
+        {
+          "text": "b. SELECT p.NAME\n\t\t\tFROM PPAN.T_PPAN_PARTICIPANT_SNAPSHOT p\n\t\t\tWHERE p.PROPOSAL_ID = :proposal_id and p.PARTICIPANT_TYPE = ‘H’;",
+          "checked": false
+        },
+        {
+          "text": "c. FROM PPAN.T_PPAN_PARTICIPANT_SNAPSHOT p\n\t\tWHERE p.PROPOSAL_ID = :proposal_id and p.PARTICIPANT_TYPE = ‘H’;",
+          "checked": false
+        },
+        {
+          "text": "d. NA",
+          "checked": false
+        },
+        {
+          "text": "e. SELECT * FROM PPAN.T_PPAN_PARTICIPANT_SNAPSHOT p\n\t\tWHERE p.PROPOSAL_ID = :proposal_id and p.PARTICIPANT_TYPE = :participant_type;",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "Cuántas TRX como máximo se pueden enviar en cics:",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 2",
+          "checked": false
+        },
+        {
+          "text": "b. 3",
+          "checked": false
+        },
+        {
+          "text": "c. 4",
+          "checked": false
+        },
+        {
+          "text": "d. 5",
+          "checked": true
+        },
+        {
+          "text": "e. 6",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "que protocolo apx cisc conector",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. ps10",
+          "checked": true
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
+    },
+    {
+      "text": "El tiempo de respuesta considerado por defecto para cics?",
+      "type": "radio",
+      "points": 0,
+      "required": false,
+      "options": [
+        {
+          "text": "a. 5",
+          "checked": false
+        },
+        {
+          "text": "b. Ninguno",
+          "checked": false
+        },
+        {
+          "text": "c. 2",
+          "checked": false
+        },
+        {
+          "text": "d. 3",
+          "checked": true
+        },
+        {
+          "text": "e. 4",
+          "checked": false
+        }
+      ],
+      "feedbackOk": "",
+      "feedbackError": ""
     }
   ],
-  "proctor": {
+  "settings": {
+    "general": {
+      "shuffleQuestions": false,
+      "shuffleOptions": false,
+      "viewToggleQuestions": true,
+      "viewQuestions": true,
+      "scoreMin": 0
+    },
     "timer": {
       "enabled": true,
-      "minutes": 2.25,
-      "seconds": 0
+      "hours": 1,
+      "minutes": 0
     },
     "camera": {
-      "enabled": false,
-      "faceAbsence": false,
-      "eyeTracking": false
+      "enabled": true,
+      "faceAbsence": true,
+      "eyeTracking": true
     },
-    "noise": {
-      "enabled": false,
-      "loudNoise": false
+    "microphone": {
+      "enabled": true,
+      "loudNoise": true
     },
     "screen": {
-      "tabSwitch": false,
-      "fullscreenExit": false
+      "tabSwitch": true,
+      "fullscreenExit": true,
+      "devToolsOpen": true,
+      "leaveFullScreen": true,
+      "blockKeyShortcuts": true,
+      "secondMonitor": true
     }
   }
 }

@@ -85,63 +85,7 @@ Disable Submit until all required answered
 warning at last X minutes
 
 ---
-style="display:none;"
-      document.getElementById("video").style.display = "none";
-
-
-async function startCamera(cameraSettings){
-
-addQuestion
-      <div class="q-points">
-        <input type="number"
-          class="points-input"
-          min="0"
-          step="0.01"
-          placeholder="0"
-          oninput="limitDecimals(this); updateJSON()" />
-        <span>points</span>
-      </div>
-
-timer:
-          <div class="timer-row" style="display:none">
-            <input
-              type="number"
-              class="timer-input"
-              min="0"
-              max="24"
-              step="1"
-              value="0"
-              oninput="fixHour(this); updateTimerJSON()"
-            />h
-
-score:
-        <div class="toggle-inline">
-          <label class="toggle-row">
-            <input type="checkbox" data-proctor="score-min" onchange="toggleScoreMin(this)" />
-            <span>Score minimum to pass (%)</span>
-          </label>
-
-          <div class="score-row" style="display:none">
-              <input
-                type="number"
-                class="score-input"
-                min="0"
-                step="1"
-                value="0"
-              />%
-          </div>
-        </div>
-
-/* keep native steppers */
-
-  <div id="webcam">
-    <div id="timer">Time Left: --:--:--</div>
-    <video id="video" autoplay muted playsinline></video>
-    <canvas id="overlay" class="overlay"></canvas> <!-- face detection -->
-  </div>
-
-when subbmit automatically must to appear the result page
-
+  
 PENDINGS:
 1. In create.html addSection().
 2. Shuffle questions
@@ -149,3 +93,15 @@ PENDINGS:
 4. En preview param set logo company in certificado
 5. Add images in question and option, add atributtes font bold color text in question and option
 6. In preview when submit y falta checkbox una requiere question debe mostrar mensaje question requerida y no avanzar.
+7. no show JSON:
+  <!-- JSON view -->
+  <div style="display:none">
+    <h3 >Form JSON</h3>
+    <pre id="output"></pre>
+  </div>
+8. when subbmit automatically must to appear the result page
+
+2. add button to see correct and incorrect questions
+2. impl start exam
+3. deploy free
+4. sell it
