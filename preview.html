@@ -2338,6 +2338,8 @@ Settings
 // General Settings
 function applySettingsGeneral(general){
   if(!general) return;
+  
+  if(examResult?.certificateId) return;
 
   // View toggle questions (One by One/All)
   const viewToggle = document.getElementById('viewToggle');
@@ -2380,6 +2382,8 @@ let timerInterval = null;
 function applySettingsProctorTimer(timerSettings){
   if(!timerSettings) return;
   
+  if(examResult?.certificateId) return;
+
   if(examResult?.certificateId) {
     //localStorage.removeItem("examResult");
     clearInterval(timerInterval);
@@ -2418,12 +2422,16 @@ function applySettingsProctorTimer(timerSettings){
 async function applySettingsProctorCamera(cameraSettings) {
   if(!cameraSettings) return;
 
+  if(examResult?.certificateId) return;
+  
   await startCamera(cameraSettings);
 }
 
 // Proctor Microphone Settings
 async function applySettingsProctorMicrophone(microphoneSettings) {
   if(!microphoneSettings) return;
+
+  if(examResult?.certificateId) return;
 
   if(microphoneSettings.enabled || microphoneSettings.loudNoise) {
     await startMicrophone(microphoneSettings);
@@ -2456,6 +2464,8 @@ function addViolation(reason) {
 function applySettingsProctorScreen(screenSettings) {
 
   if(!screenSettings) return;
+
+  if(examResult?.certificateId) return;
 
   screen = screenSettings;
 
@@ -2562,7 +2572,7 @@ window.onload = async function() {
   if(examResult?.certificateId)
     document.getElementById('goResults').style.display = 'block';
 
-  // Apply Settings/Proctor/Camera
+    // Apply Settings/Proctor/Camera
   await applySettingsProctorCamera(examData.settings.camera);
 
   // Apply Settings/Proctor/Microphone

@@ -951,7 +951,7 @@
   <!-- <button class="add-question" onclick="addQuestion()">+ Add question</button> -->
 
   <!-- JSON view -->
-  <div style="display:none">
+  <div style="display:block">
     <h3 >Form JSON</h3>
     <pre id="output"></pre>
   </div>
@@ -1779,7 +1779,10 @@ document.getElementById('jsonFileInput').addEventListener('change', e => {
 
       loadFormFromJSON(data);
 
-      // Apply settings automatically
+      outputEl.textContent = reader.result;
+      localStorage.setItem('formContent', reader.result);
+
+      // Apply settings automatically from JSON to modal
       if (data.settings) {
         applySettingsToProctorModal(data.settings);
       }
@@ -2032,6 +2035,13 @@ window.onload = async function() {
     // Load questions
     loadFormFromJSON(examData);
   
+    outputEl.textContent = json;
+
+    // Apply settings automatically from JSON to modal
+    if (examData.settings) {
+      applySettingsToProctorModal(examData.settings);
+    }
+
     new Sortable(questionsEl, {
       handle: '.drag',
       animation: 150,

@@ -106,12 +106,22 @@ PENDINGS:
 4. sell it
 
 
+document.getElementById('jsonFileInput').add
+
+function saveProctorSettings(){
+function previewExam() {
+
+if(examResult?.certificateId)
+
 viewToggleQuestions
         <label class="toggle-row">
           <input type="checkbox" id="viewToggleQuestions" data-proctor="view-toggle-questions" />
           <span>View toggle questions (One by One/All)</span>
         </label>
 
+function isChecked(key){
+  return document.querySelector(`[data-proctor="${key}"]`)?.checked || false;
+}
 
 function importJSON(){
 
