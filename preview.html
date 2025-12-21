@@ -930,6 +930,8 @@
       <button onclick="filterResults('incorrect')">❌ Incorrect</button>
     </div>
 
+    <button id="goResults" class="g-tooltip" data-tooltip="Back to results" style="display:none" onclick="window.location.href='result.html'">Back to results ➡</button>
+
     <div class="view-toggle" id="viewToggle">
       <span>View:</span>
 
@@ -1764,7 +1766,7 @@ function loadFormFromJSON(data){
 
     // feedback
     if(examResult?.certificateId) {
-      localStorage.removeItem("examResult");
+      //localStorage.removeItem("examResult");
           
       const feedbackBox = q.querySelector('.feedback');
 
@@ -2381,7 +2383,7 @@ function applySettingsProctorTimer(timerSettings){
   if(!timerSettings) return;
   
   if(examResult?.certificateId) {
-    localStorage.removeItem("examResult");
+    //localStorage.removeItem("examResult");
     clearInterval(timerInterval);
     return;
   }
@@ -2559,7 +2561,8 @@ window.onload = async function() {
   const json = localStorage.getItem("formContent");
   examData = JSON.parse(json);
 
-  console.log("examData.settings.timer: ",examData.settings.timer);
+  if(examResult?.certificateId)
+    document.getElementById('goResults').style.display = 'block';
 
   // Apply Settings/Proctor/Camera
   await applySettingsProctorCamera(examData.settings.camera);
