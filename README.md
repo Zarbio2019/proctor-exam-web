@@ -83,18 +83,3 @@ PENDINGS:
     <pre id="output"></pre>
   </div>
 8. when subbmit automatically must to appear the result page
-
-2. impl start exam
-3. deploy free
-4. sell it
-
----
-
-async function handleImport(){
-
-preview-script.js:1481 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'settings')
-
-window.onload = async function() {
-
-if(examResult?.certificateId) {
-      localStorage.setItem("examResult", JSON.stringify(result));
