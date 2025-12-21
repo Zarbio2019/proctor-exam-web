@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Google Forms Clone – UI + Drag & Drop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- SortableJS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+
+  <link rel="stylesheet" href="preview-styles.css">
+</head>
+<body>
+
+<!-- Eye-Tracking -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils"></script>
+<!--<script src="camera.js"></script>
+<script src="eye-tracking.js"></script>
+<script src="microphone.js"></script>
+<link rel="stylesheet" href="eye-tracking.css">
+<link rel="stylesheet" href="camera.css">-->
+
+  <header></header>
+
+  <!-- Webcam -->
+  <div id="webcam">
+    <div id="timer">Time Left: --:--:--</div>
+    <video id="video" autoplay muted playsinline></video>
+    <canvas id="overlay" class="overlay"></canvas> <!-- face detection -->
+  </div>
+  
+  <div class="container">
+
+    <!-- Form header -->
+  <div class="preview-topbar">
+    <button id="goBack" class="g-tooltip" data-tooltip="Back to editor" onclick="window.location.href='create.html'">⬅ Back</button>
+    
+    <div id="resultFilters" style="display:none; margin:12px 0; gap:8px;">
+      <button onclick="filterResults('all')">📋 All</button>
+      <button onclick="filterResults('correct')">✅ Correct</button>
+      <button onclick="filterResults('incorrect')">❌ Incorrect</button>
+    </div>
+
+    <button id="goResults" class="g-tooltip" data-tooltip="Back to results" style="display:none" onclick="window.location.href='result.html'">Back to results ➡</button>
+
+    <div class="view-toggle" id="viewToggle">
+      <span>View:</span>
+
+      <label class="switch"> 
+        <input type="checkbox" id="oneByOneToggle" onchange="toggleQuestionView(this)">
+        <span class="slider"></span>
+      </label>
+
+      <span>One by one</span>
+    </div>
+  </div>
+
+  <div class="card form-header">
+    <div class="form-header-row">
+      <div>
+        <input class="title-input" id="formTitle" placeholder="Title" readonly/>
+        <input class="desc-input" id="formDesc" placeholder="Form description" readonly/>
+      </div>
+
+      <div class="total-points">
+        <span>Total points</span>
+        <strong id="totalPoints">0</strong>
+      </div>
+    </div>
+
+  </div>
+
+    <!-- Questions -->
+    <div id="questions"></div>
+
+    <!-- Navigation Buttons -->
+    <div id="questionNav" class="question-nav" style="display:none;">
+      <div id="navCenter" class="nav-center">
+        <button id="prevBtn" onclick="prevQuestion()">⬅ Previous</button>
+        <button id="nextBtn" onclick="nextQuestion()">Next ➡</button>
+      </div>
+
+      <button id="submitBtn" onclick="submitExam()">Submit</button>
+    </div>
+  </div>
+
+  <!-- Bottom toolbar -->
+  <div id="gformsToolbar" class="gforms-toolbar bottom" style="display:none">
+    <!-- Handle -->
+    <div class="toolbar-handle g-tooltip" id="toolbarHandle" data-tooltip="Close panel" onclick="toggleToolbar()">▼</div>
+
+    <div class="toolbar-buttons">
+      <button class="g-tooltip" data-tooltip="Add question" onclick="addQuestion()">+</button>
+      <button class="g-tooltip" data-tooltip="Add section" onclick="addSection()">≡</button>
+      <button class="g-tooltip" data-tooltip="Import JSON" onclick="importJSON()">📂</button>
+      <button class="g-tooltip" data-tooltip="Export JSON" onclick="exportJSON()">💾</button>
+      <button  class="g-tooltip" data-tooltip="Proctor settings" onclick="openProctorConfig()">🛡️</button>
+      <button class="g-tooltip" data-tooltip="Home" onclick="window.location.href='index.html'">🏠</button>
+    </div>
+  </div>
+
+  <!-- Proctor Modal -->
+  <div id="proctorModal" class="proctor-modal hidden">
+    <div class="proctor-card">
+
+      <div class="proctor-header">
+        <h3>Proctor configuration</h3>
+        <button class="btn-icon" onclick="closeProctorConfig()">✕</button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="proctor-tabs">
+        <button class="tab active" onclick="switchProctorTab('timer')">Timer</button>
+        <button class="tab" onclick="switchProctorTab('camera')">Camera detection</button>
+        <button class="tab" onclick="switchProctorTab('noise')">Noise detection</button>
+        <button class="tab" onclick="switchProctorTab('screen')">Screen detection</button>
+      </div>
+
+      <!-- Tab contents -->
+      <div class="proctor-content">
+
+        <!-- TIMER -->
+        <div class="tab-panel active" id="tab-timer">
+
+          <div class="toggle-inline">
+            <label class="toggle-row">
+              <input type="checkbox" data-proctor="timer-enabled" onchange="toggleTimer(this)" />
+              <span>Timer Left</span>
+            </label>
+
+            <div class="timer-row" style="display:none">
+              <input
+                type="number"
+                class="timer-input"
+                min="0"
+                max="59"
+                step="1"
+                value="0"
+                oninput="updateTimerJSON()"
+              />
+              <span>:</span>
+              <input
+                type="number"
+                class="timer-input"
+                min="0"
+                max="59"
+                step="1"
+                value="0"
+                oninput="fixSeconds(this); updateTimerJSON()"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- CAMERA -->
+        <div class="tab-panel" id="tab-camera">
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="camera-enabled" />
+            <span>Show camera</span>
+          </label>
+
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="camera-face" />
+            <span>Detect Face absence</span>
+          </label>
+
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="camera-eye" />
+            <span>Eye-Tracking</span>
+          </label>
+        </div>
+
+        <!-- NOISE -->
+        <div class="tab-panel" id="tab-noise">
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="noise-enabled" />
+            <span>Show microphone</span>
+          </label>
+
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="noise-loud" />
+            <span>Noise-detection: Detect loud background noise</span>
+          </label>
+        </div>
+
+        <!-- SCREEN -->
+        <div class="tab-panel" id="tab-screen">
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="screen-tab"/>
+            <span>Detect tab switching</span>
+          </label>
+
+          <label class="toggle-row">
+            <input type="checkbox" data-proctor="screen-fullscreen"/>
+            <span>Detect fullscreen exit</span>
+          </label>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="preview-script.js"></script>
+
+</body>
+</html>

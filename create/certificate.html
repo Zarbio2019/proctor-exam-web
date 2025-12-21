@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Certificate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="certificate-styles.css">
+</head>
+<body>
+
+<!-- QR Code library -->
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<div class="certificate" id="certificate">
+  <h1>🎓 Certificate of Completion</h1>
+
+  <p>This certifies that the candidate has successfully passed</p>
+
+  <div class="exam" id="examTitle"></div>
+  <div class="score" id="examScore"></div>
+
+  <div class="footer">
+    <div>
+        Date:<br>
+        <strong id="date"></strong>
+    </div>
+
+    <div class="signature">
+        <img src="signature.png" alt="Signature">
+        <div class="sig-name">Authorized Signature</div>
+    </div>
+  </div>
+
+  <p style="margin-top:12px;font-size:14px;color:#555">
+  Certificate ID: <strong id="certId"></strong>
+  </p>
+
+  <div id="qrSection" style="margin-top:20px;">
+    <div id="qrcode"></div>
+    <p style="font-size:12px;color:#555;margin-top:6px;">
+        Scan to verify certificate
+    </p>
+  </div>
+
+  <div class="actions">
+    <button onclick="downloadPDF()">⬇ Download as PDF</button>
+  </div>
+</div>
+
+<script src="certificate-script.js"></script>
+
+</body>
+</html>

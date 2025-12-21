@@ -29,8 +29,8 @@
           "checked": false
         }
       ],
-      "feedbackOk": "",
-      "feedbackError": ""
+      "feedbackOk": "Well done!",
+      "feedbackError": "Remember that..."
     },
     {
       "text": "¿Cuál de las siguientes preguntas son incorrectas sobre la nomenclatura de una transacción?",
@@ -3335,7 +3335,7 @@
       "shuffleOptions": false,
       "viewToggleQuestions": true,
       "viewQuestions": true,
-      "scoreMin": 0
+      "scoreMin": 70
     },
     "timer": {
       "enabled": true,

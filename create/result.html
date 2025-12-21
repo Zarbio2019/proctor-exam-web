@@ -63,7 +63,7 @@
   <div class="score" id="score"></div>
   <p id="summary"></p>
   <button onclick="window.location.href='preview.html'">📊 See results</button>
-  <button onclick="window.location.href='index.html'">🏠 Home</button>
+  <button onclick="window.location.href='../index.html'">🏠 Home</button>
 </div>
 
 <script>
@@ -90,7 +90,6 @@
 
     if (result.percentage >= 70) {
       result.certificateId = generateCertificateId();
-      localStorage.setItem("examResult", JSON.stringify(result));
 
       html += `
         <button id="certificateBtn" onclick="goToCertificate()">
@@ -98,6 +97,9 @@
         </button>
       `;
     }
+
+    result.done = true;
+    localStorage.setItem("examResult", JSON.stringify(result));
 
     document.getElementById("summary").innerHTML = html;
 

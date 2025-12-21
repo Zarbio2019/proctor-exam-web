@@ -56,35 +56,18 @@ Proctor Exam Web
 9. Show all questions/One question at a time (exam mode / paginated)
 10. Do options multiline
 11. Auto-save while editing
-
-Others: “Google Forms + Proctor exam system
-Preview mode (student view)
-Save / load from Firebase Firestore
-Proctoring hooks (camera / mic / tab focus)
-Settings
-  Show One question/All questions
-
-  📊 Auto-grade on submit
-
-🔐 Lock exam after submit
-
-⏱ Auto-submit when timer ends
-
-Disable Submit until all required answered
-
-📤 Send answers to Firebase
-
-⚠ Turn timer red at last 60s
-
-🔐 QR verification
-
-🏫 Institution logo & signatures
-
-🖋 Digital signature image
-
-warning at last X minutes
-
----
+12. Preview mode (student view)
+13. Save / load from Firebase Firestore
+14. Proctoring hooks (camera / mic / tab focus)
+15. 🔐 Lock exam after submit
+16. ⏱ Auto-submit when timer ends
+17. Disable Submit until all required answered
+18. 📤 Send answers to Firebase
+19. ⚠ Turn timer red at last 60s
+20. 🔐 QR verification
+21. 🏫 Institution logo & signatures
+22. 🖋 Digital signature image
+23. warning at last X minutes
   
 PENDINGS:
 1. In create.html addSection().
@@ -105,70 +88,13 @@ PENDINGS:
 3. deploy free
 4. sell it
 
+---
 
-document.getElementById('jsonFileInput').add
+async function handleImport(){
 
-function saveProctorSettings(){
-function previewExam() {
-
-if(examResult?.certificateId)
-
-viewToggleQuestions
-        <label class="toggle-row">
-          <input type="checkbox" id="viewToggleQuestions" data-proctor="view-toggle-questions" />
-          <span>View toggle questions (One by One/All)</span>
-        </label>
-
-function isChecked(key){
-  return document.querySelector(`[data-proctor="${key}"]`)?.checked || false;
-}
-
-function importJSON(){
-
-.option .opt-text{
-
-
+preview-script.js:1481 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'settings')
 
 window.onload = async function() {
 
-
-
-    <button id="goResults" class="g-tooltip" data-tooltip="Back to results" onclick="window.location.href='result.html'">⬅ Back to results</button>
-
-
-function submitExam(wasSubmited)
-window.location.href = "result.html";
-
-  <button id="goBack" class="g-tooltip" data-tooltip="Back to editor" onclick="window.location.href='create.html'">⬅ Back</button>
-
-it works. Now I have this preview.html, want to put the id="viewToggle" in the same row of goBack button but in the right corner:
-
-          <span class="feedback-icon">✔</span>
-          <span>Feedback for correct answers:</span>
-
-                    <span class="feedback-icon">✖</span>
-          <span>Feedback for incorrect answers:</span>
-
-It works. Now 
-
-
-id="submitBtn"
-    document.getElementById('submitBtn').style.display = 'none';
-  return {
-    general: {
-      shuffleQuestions: isChecked('shuffle-questions'),
-      shuffleOptions: isChecked('shuffle-options'),
-      viewToggleQuestions: isChecked('view-toggle-questions'),
-      viewQuestions: isChecked('view-questions'),
-
-applySettingsGeneral
-
-function submitExam(){
-  clearInterval(timerInterval);
-
-window.onload = async function() {
-
-applySettingsProctorTimer
-
-    if(examResult?.certificateId) {
-      localStorage.removeItem("examResult");
+if(examResult?.certificateId) {
+      localStorage.setItem("examResult", JSON.stringify(result));
