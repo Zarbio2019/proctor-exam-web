@@ -787,6 +787,7 @@
       background: #000 
     }
 
+    /* top bar */
     .preview-topbar{
       display: flex;
       align-items: center;
@@ -806,6 +807,25 @@
 
       font-size:13px;
       color:#5f6368;
+    }
+
+    /* see answers questions result */
+    #resultFilters{
+      display:flex;
+      justify-content:center;
+    }
+
+    #resultFilters button{
+      border:1px solid #dadce0;
+      background:white;
+      padding:6px 12px;
+      border-radius:16px;
+      cursor:pointer;
+      font-size:13px;
+    }
+
+    #resultFilters button:hover{
+      background:#f1f3f4;
     }
 
     /* Previous / Next / Submit buttons */
@@ -903,6 +923,12 @@
     <!-- Form header -->
   <div class="preview-topbar">
     <button id="goBack" class="g-tooltip" data-tooltip="Back to editor" onclick="window.location.href='create.html'">⬅ Back</button>
+    
+    <div id="resultFilters" style="display:none; margin:12px 0; gap:8px;">
+      <button onclick="filterResults('all')">📋 All</button>
+      <button onclick="filterResults('correct')">✅ Correct</button>
+      <button onclick="filterResults('incorrect')">❌ Incorrect</button>
+    </div>
 
     <div class="view-toggle" id="viewToggle">
       <span>View:</span>
@@ -1784,6 +1810,9 @@ function applyResultHighlighting() {
     const detail = examResult.details[qIndex];
     if (!detail) return;
 
+    // Tag each question as correct / incorrect
+    qEl.dataset.result = detail.isCorrect ? "correct" : "incorrect";
+
     /* ------------------
        OPTION HIGHLIGHTING
     ------------------- */
@@ -1828,6 +1857,26 @@ function applyResultHighlighting() {
 
     qEl.appendChild(feedbackDiv);
     */
+  });
+
+  // See All/Correct/Incorrect answer questions
+  // Show filters ONLY in results mode
+  if (examResult?.certificateId) {
+    document.getElementById('resultFilters').style.display = 'flex';
+    document.getElementById('submitBtn').style.display = 'none';
+  }
+}
+
+// Filtering logic: All/correct/incorrect answer questions result
+function filterResults(type){
+  document.querySelectorAll('.question').forEach(q => {
+    if(type === 'all'){
+      q.style.display = '';
+      return;
+    }
+
+    q.style.display =
+      q.dataset.result === type ? '' : 'none';
   });
 }
 
@@ -2293,6 +2342,12 @@ function applySettingsGeneral(general){
   // View toggle questions (One by One/All)
   const viewToggle = document.getElementById('viewToggle');
   const oneByOneToggle = document.getElementById('oneByOneToggle');
+
+  if (examResult?.certificateId) {
+    viewToggle.style.display = 'none';
+    oneByOneToggle.checked = false;
+    return;
+  }
 
   if(general.viewToggleQuestions){
     viewToggle.style.display = 'flex';

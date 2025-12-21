@@ -111,10 +111,25 @@ PENDINGS:
 
 it works. Now I have this preview.html, want to put the id="viewToggle" in the same row of goBack button but in the right corner:
 
+          <span class="feedback-icon">✔</span>
+          <span>Feedback for correct answers:</span>
+
+                    <span class="feedback-icon">✖</span>
+          <span>Feedback for incorrect answers:</span>
+
+It works. Now 
 
 
+id="submitBtn"
+    document.getElementById('submitBtn').style.display = 'none';
+  return {
+    general: {
+      shuffleQuestions: isChecked('shuffle-questions'),
+      shuffleOptions: isChecked('shuffle-options'),
+      viewToggleQuestions: isChecked('view-toggle-questions'),
+      viewQuestions: isChecked('view-questions'),
 
-
+applySettingsGeneral
 
 function submitExam(){
   clearInterval(timerInterval);

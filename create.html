@@ -1220,7 +1220,11 @@ document.addEventListener('click', e => {
 
     // auto-open feedback for active question
     const feedback = card.querySelector('.feedback');
-    if (feedback) feedback.classList.remove('collapsed');
+
+    // Auto-open ONLY if user hasn't manually collapsed it
+    if (feedback && !feedback.dataset.userCollapsed) {
+      feedback.classList.remove('collapsed');
+    }
   }
   else {
     document.activeElement.blur(); // zero cursor blinking when clicking outside
@@ -1554,11 +1558,16 @@ function previewExam() {
 
 // toogle feedback collapsible
 function toggleFeedback(el){
+  event.stopPropagation();
+
   const feedback = el.closest('.feedback');
-  feedback.classList.toggle('collapsed');
+  const isCollapsed = feedback.classList.toggle('collapsed');
+
+  // remember user intent
+  feedback.dataset.userCollapsed = isCollapsed ? 'true' : '';
 
   // Optional: auto-resize textareas when opening
-  if (!feedback.classList.contains('collapsed')) {
+  if (!isCollapsed) {
     feedback.querySelectorAll('textarea')
       .forEach(autoResizeTextarea);
   }
