@@ -84,4 +84,8 @@ PENDINGS:
   </div>
 8. when subbmit automatically must to appear the result page
 
-if(examResult?.done)
+    <div class="total-points">
+      <span>Total points</span>
+      <strong id="totalPoints">0</strong>
+    </div>
+    

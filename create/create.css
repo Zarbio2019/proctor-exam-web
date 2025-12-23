@@ -46,6 +46,17 @@ header{
     }
 }
 
+.total-points{
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 14px;
+  color: #5f6368;
+  white-space: nowrap;
+}
+
 .total-points strong{
     font-size: 16px;
     font-weight: 500;

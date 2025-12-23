@@ -46,7 +46,8 @@ document.addEventListener('input', () => {
 
   autosaveTimer = setTimeout(() => {
     localStorage.setItem('formContent',data);
-  }, 500);
+    console.log('test autosave');
+  }, 5000); // 5 seg
 });
 
 // toolbar: blue active question indicator
@@ -73,6 +74,13 @@ document.addEventListener('click', e => {
     }
   }
   else {
+    // DO NOT blur if clicking an editable element
+    if (
+      e.target.closest('input, textarea, [contenteditable]')
+    ) {
+      return;
+    }
+
     document.activeElement.blur(); // zero cursor blinking when clicking outside
   }
 });
