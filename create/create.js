@@ -73,7 +73,6 @@ document.addEventListener('click', e => {
     const feedback = card.querySelector('.feedback');
 
     // Auto-open ONLY if user hasn't manually collapsed it
-    debugger;
     if (feedback && !feedback.dataset.userCollapsed) {
       feedback.classList.remove('collapsed');
 
@@ -897,7 +896,6 @@ window.onload = async function() {
   if(json) {
     examData = JSON.parse(json);
   
-    debugger;
     // Load questions
     loadFormFromJSON(examData);
   

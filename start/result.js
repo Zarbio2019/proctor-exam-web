@@ -11,15 +11,12 @@
     let html = `
       <p>
         <strong>
-          Score: ${result.score}% → <b>${status}</b>
-        </strong>
-      </p>
-      <p>
-        Score min to pass: ${result.scoreMin}%</b>
+          Score: ${result.score} → <b>${status}</b>
+        </strong>(Score min to pass: ${result.scoreMin})
       </p>
     `;
 
-    if (result.percentage >= result.scoreMin) {
+    if (result.score >= result.scoreMin) {
       result.certificateId = generateCertificateId();
 
       html += `

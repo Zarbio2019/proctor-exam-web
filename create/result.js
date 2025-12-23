@@ -17,7 +17,6 @@
       <p>
     `;
 
-    debugger;
     if (result.score >= result.scoreMin) {
       result.certificateId = generateCertificateId();
 
