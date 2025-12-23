@@ -1326,7 +1326,10 @@ function applySettingsProctorTimer(timerSettings){
 async function applySettingsProctorCamera(cameraSettings) {
   if(!cameraSettings) return;
 
-  if(examResult?.done) return;
+  if(examResult?.done) {
+    document.getElementById('webcam').style.display = 'none';
+    return;
+  }
   
   await startCamera(cameraSettings);
 }

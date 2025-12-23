@@ -83,3 +83,5 @@ PENDINGS:
     <pre id="output"></pre>
   </div>
 8. when subbmit automatically must to appear the result page
+
+if(examResult?.done)
